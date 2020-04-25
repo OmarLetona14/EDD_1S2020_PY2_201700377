@@ -5,6 +5,8 @@
  */
 package edd.proyecto2;
 
+import edd.proyecto2.view.Login;
+
 /**
  *
  * @author Omar
@@ -15,7 +17,8 @@ public class EDDProyecto2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+       Login login = new Login();
+       login.setVisible(true);
     }
     
 }
