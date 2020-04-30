@@ -9,9 +9,9 @@ package edd.proyecto2.model;
  *
  * @author Omar
  */
-public class Book implements Comparable <Book>{
+public class Book implements Comparable <Book>{    
 
-    public Book(int ISBN, String titulo, String autor, String editorial, int anio, String edicion, String idioma, User usuario) {
+    public Book(Integer ISBN, String titulo, String autor, String editorial, int anio, String edicion, String idioma, User usuario) {
         this.ISBN = ISBN;
         this.titulo = titulo;
         this.autor = autor;
@@ -22,11 +22,11 @@ public class Book implements Comparable <Book>{
         this.usuario = usuario;
     }
 
-    public int getISBN() {
+    public Integer getISBN() {
         return ISBN;
     }
 
-    public void setISBN(int ISBN) {
+    public void setISBN(Integer ISBN) {
         this.ISBN = ISBN;
     }
 
@@ -86,8 +86,7 @@ public class Book implements Comparable <Book>{
         this.usuario = usuario;
     }
     
-    
-    private int ISBN;
+    private Integer ISBN;
     private String titulo;
     private String autor;
     private String editorial;
@@ -98,7 +97,7 @@ public class Book implements Comparable <Book>{
 
     @Override
     public int compareTo(Book o) {
-        return this.getTitulo().compareTo(o.getTitulo());
+        return this.getISBN().compareTo(o.getISBN());
     }
     
     

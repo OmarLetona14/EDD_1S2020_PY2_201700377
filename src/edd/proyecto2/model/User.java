@@ -11,14 +11,15 @@ package edd.proyecto2.model;
  */
 public class User implements Comparable<User>{
 
-    public User(int carnet, String nombre, String apellido, String carrera, String password, ROL rol) {
+    public User(int carnet, String nombre, String apellido, String carrera, String password) {
         this.carnet = carnet;
         this.nombre = nombre;
         this.apellido = apellido;
         this.carrera = carrera;
         this.password = password;
-        this.rol = rol;
     }
+    
+    public User(){}
 
     public int getCarnet() {
         return carnet;
@@ -60,28 +61,15 @@ public class User implements Comparable<User>{
         this.password = password;
     }
 
-    public ROL getRol() {
-        return rol;
-    }
-
-    public void setRol(ROL rol) {
-        this.rol = rol;
-    }
     private int carnet;
     private String nombre;
     private String apellido;
     private String carrera;
     private String password;
-    private ROL rol;
 
     @Override
     public int compareTo(User o) {
         return this.getNombre().compareTo(o.getNombre());
     }
             
-    enum ROL{
-        ADMINISTRADOR,
-        USUARIO
-    }
-  
 }

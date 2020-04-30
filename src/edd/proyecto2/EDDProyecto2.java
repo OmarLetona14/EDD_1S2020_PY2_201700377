@@ -5,7 +5,7 @@
  */
 package edd.proyecto2;
 
-import edd.proyecto2.view.Login;
+import edd.proyecto2.view.MainWindow;
 
 /**
  *
@@ -17,8 +17,8 @@ public class EDDProyecto2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Login login = new Login();
-       login.setVisible(true);
+       MainWindow main = new MainWindow();
+       main.setVisible(true);
     }
     
 }

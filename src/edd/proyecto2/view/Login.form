@@ -42,8 +42,11 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
-                      <Component id="LoginBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="LoginBtn" max="32767" attributes="0"/>
+                          <Component id="registrarseTxt" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace pref="54" max="32767" attributes="0"/>
@@ -61,9 +64,11 @@
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="passwordTxt" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="LoginBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="31" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="registrarseTxt" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -72,7 +77,6 @@
     <Component class="javax.swing.JButton" name="LoginBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Iniciar sesion"/>
-        <Property name="actionCommand" type="java.lang.String" value="Iniciar sesion"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="carnetTxt">
@@ -88,6 +92,12 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="passwordTxt">
+    </Component>
+    <Component class="javax.swing.JButton" name="registrarseTxt">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Registrarse"/>
+        <Property name="actionCommand" type="java.lang.String" value=""/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
