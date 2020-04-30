@@ -9,7 +9,7 @@ package edd.proyecto2.model;
  *
  * @author Omar
  */
-public class User {
+public class User implements Comparable<User>{
 
     public User(int carnet, String nombre, String apellido, String carrera, String password, ROL rol) {
         this.carnet = carnet;
@@ -73,14 +73,15 @@ public class User {
     private String carrera;
     private String password;
     private ROL rol;
+
+    @Override
+    public int compareTo(User o) {
+        return this.getNombre().compareTo(o.getNombre());
+    }
             
     enum ROL{
         ADMINISTRADOR,
         USUARIO
     }
-    
-    
-    
-    
-    
+  
 }

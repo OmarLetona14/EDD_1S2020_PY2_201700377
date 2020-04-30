@@ -9,7 +9,7 @@ package edd.proyecto2.model;
  *
  * @author Omar
  */
-public class Book {
+public class Book implements Comparable <Book>{
 
     public Book(int ISBN, String titulo, String autor, String editorial, int anio, String edicion, String idioma, User usuario) {
         this.ISBN = ISBN;
@@ -95,6 +95,11 @@ public class Book {
     private String edicion;
     private String idioma;
     private User usuario;
+
+    @Override
+    public int compareTo(Book o) {
+        return this.getTitulo().compareTo(o.getTitulo());
+    }
     
     
 }
