@@ -19,6 +19,14 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
     }
+    
+    
+    private boolean doLogin(int carnet, String password){
+        boolean exists = false;
+        
+        
+        return exists;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

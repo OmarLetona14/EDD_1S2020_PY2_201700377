@@ -213,7 +213,7 @@ public class BTreeBook {
         int minSize = (node == root ? 1 : (arity - 1)/2);
         return (node.size < minSize);
     }
-
+    
     //////////// Driver ////////////
 
     public void print () {

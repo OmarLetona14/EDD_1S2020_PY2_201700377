@@ -5,11 +5,15 @@
  */
 package edd.proyecto2.model;
 
+import edd.proyecto2.structure.UserHashTable;
+
 /**
  *
  * @author Omar
  */
 public class User implements Comparable<User>{
+    
+    public static UserHashTable users;
 
     public User(int carnet, String nombre, String apellido, String carrera, String password) {
         this.carnet = carnet;

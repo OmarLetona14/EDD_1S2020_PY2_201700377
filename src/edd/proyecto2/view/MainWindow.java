@@ -79,6 +79,7 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+        this.dispose();
         Login login = new Login();
         login.setVisible(true);
     }//GEN-LAST:event_loginBtnActionPerformed
@@ -93,6 +94,8 @@ public class MainWindow extends javax.swing.JFrame {
             try{
                 System.out.println(ruta);
                 jsonUpload.uploadUserDocument(ruta);
+                JOptionPane.showMessageDialog(this, "Usuarios cargados correctamente",
+                        "Usuarios cargados", JOptionPane.INFORMATION_MESSAGE);
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Ocurrio un error al intentar leer los datos",
                         "Error al leer los datos", JOptionPane.ERROR_MESSAGE);

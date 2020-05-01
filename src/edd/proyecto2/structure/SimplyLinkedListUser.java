@@ -86,4 +86,14 @@ public class SimplyLinkedListUser {
         }
     }
     
+    public String print(){
+        String listInfo = "";
+        NodeUser aux = first;
+        while(aux!=null){
+            listInfo += "| Estudiante = " + aux.info.getNombre()+ " " + aux.info.getApellido() + " |";
+            aux = aux.next;
+        }
+        return listInfo;
+    }
+    
 }
