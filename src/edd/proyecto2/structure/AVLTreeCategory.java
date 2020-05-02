@@ -15,6 +15,16 @@ import java.util.List;
  * @author Omar
  */
 public class AVLTreeCategory {
+    
+    private int iteracion;
+    private String contenido;
+    private boolean validation;
+    
+    public AVLTreeCategory(){
+        this.iteracion = 0;
+        this.contenido = "";
+    }
+    
      private int height (NodeCategory N) {
         if (N == null)
             return 0;
@@ -291,6 +301,102 @@ public class AVLTreeCategory {
             next = new ArrayList<NodeCategory>(elements);
 
         }
+    }
+    
+    public void ReportIn(NodeCategory root){
+        if(root==null){
+            return;
+        }else{
+            ReportIn(root.left);
+            if(iteracion!=0){
+                contenido += " -> "+ root.value.getCategoryName() + "\n";
+            }else{
+                contenido += root.value.getCategoryName() +"\n";
+                
+            }
+            iteracion++;
+            ReportIn(root.right);
+        }
+        
+    }
+    
+    public void ReportPost(NodeCategory root){
+        if(root==null){
+            return;
+        }else{
+            ReportPost(root.left);
+            ReportPost(root.right);
+            if(iteracion!=0){
+                contenido += " -> " + root.value.getCategoryName() + "\n";
+            }else{
+                contenido += root.value.getCategoryName() + "\n";
+            }
+        }
+        iteracion++;
+    }
+    
+    public void ReportPre(NodeCategory root){
+        if(root==null){
+            return;
+        }else{
+            if(iteracion!=0){
+                contenido += " -> " + root.value.getCategoryName() + "\n";
+            }else{
+                contenido += root.value.getCategoryName() + "\n";
+            }
+        }
+        ReportPre(root.left);
+        ReportPre(root.right);
+    }
+    
+    private String Branch(NodeCategory root, String chain){
+        if(root == null){
+            return chain;
+        }
+        chain += "nodo" + root.value.getCategoryName() + " [ label = \" " + root.value.getCategoryName() + "\"];\n";
+        chain = Branch(root.left, chain);
+        chain = Branch(root.right, chain);
+        return chain;
+    }
+
+    public String Children(NodeCategory root, String chain){
+        if(root == null){
+            return chain;
+        }
+        if(root.left != null){
+            chain += "nodo" + root.value.getCategoryName() + ": c0->nodo" + root.left.value.getCategoryName() + ";\n";
+        }
+        if(root.right != null){
+            chain += "nodo" + root.value.getCategoryName()  + ": c1->nodo" + root.right.value.getCategoryName() + ";\n";
+        }
+        chain = Children(root.left, chain);
+        chain = Children(root.right, chain);
+        return chain;
+    }
+    
+    private String GraphAVL(NodeCategory root){
+        String txt = "";
+        txt = Branch(root, txt);
+        txt = Children(root, txt);
+        return txt;
+    }
+    
+    public String printTree(NodeCategory root){
+        return GraphAVL(root);
+    }
+    
+    
+    public boolean searchByName(NodeCategory root, String categoryName){
+        if(root==null){
+            return validation;
+        }else{
+            if(root.value.getCategoryName().equals(categoryName)){
+                validation = true;
+            }
+            searchByName(root.left, categoryName);
+            searchByName(root.right, categoryName);
+        }
+        return validation;
     }
 
 }

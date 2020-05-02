@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import edd.proyecto2.helper.MD5Password;
 import edd.proyecto2.model.Book;
 import edd.proyecto2.model.User;
 import java.io.BufferedReader;
@@ -26,6 +27,7 @@ import java.util.logging.Logger;
  */
 public class JSONFileUpload {
     Gson gson;
+    MD5Password encrypt;
     private String read(String filename){
         Gson gson = new Gson();
         String fileContent = "";
@@ -76,11 +78,12 @@ public class JSONFileUpload {
             JsonArray usuarios = usuariosJSON.getAsJsonArray();
             for(JsonElement e: usuarios){
                 User user = new User();
+                String userPassword = MD5Password.getMD5(e.getAsJsonObject().get("Password").getAsString());
                 user.setCarnet(e.getAsJsonObject().get("Carnet").getAsInt());
                 user.setNombre(e.getAsJsonObject().get("Nombre").getAsString());
                 user.setApellido(e.getAsJsonObject().get("Apellido").getAsString());
                 user.setCarrera(e.getAsJsonObject().get("Carrera").getAsString());
-                user.setPassword(e.getAsJsonObject().get("Password").getAsString());
+                user.setPassword(userPassword);
                 users.add(user);
                 System.out.println("Usuario agregado correctamente");
             }

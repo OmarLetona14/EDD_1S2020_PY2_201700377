@@ -16,6 +16,8 @@ public class UserProfile extends javax.swing.JFrame {
      */
     public UserProfile() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**

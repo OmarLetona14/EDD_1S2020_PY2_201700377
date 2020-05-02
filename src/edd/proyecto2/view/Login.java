@@ -54,6 +54,11 @@ public class Login extends javax.swing.JFrame {
 
         registrarseTxt.setText("Registrarse");
         registrarseTxt.setActionCommand("");
+        registrarseTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarseTxtActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,6 +105,12 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void registrarseTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarseTxtActionPerformed
+        this.dispose();
+        SignUpUser signup = new SignUpUser();
+        signup.setVisible(true);
+    }//GEN-LAST:event_registrarseTxtActionPerformed
 
     /**
      * @param args the command line arguments
