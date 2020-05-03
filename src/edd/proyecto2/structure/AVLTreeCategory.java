@@ -6,6 +6,7 @@
 package edd.proyecto2.structure;
 
 import edd.proyecto2.model.Category;
+import edd.proyecto2.model.LocalData;
 import edd.proyecto2.node.NodeCategory;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +16,24 @@ import java.util.List;
  * @author Omar
  */
 public class AVLTreeCategory {
+
+    public int getIteracion() {
+        return iteracion;
+    }
+
+    public void setIteracion(int iteracion) {
+        this.iteracion = iteracion;
+    }
     
     private int iteracion;
+
+    public String getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
+    }
     private String contenido;
     private boolean validation;
     private List<Category> categories;
@@ -327,14 +344,14 @@ public class AVLTreeCategory {
         }else{
             ReportIn(root.left);
             if(iteracion!=0){
-                contenido += " -> "+ root.value.getCategoryName() + "\n";
+                contenido +=  " -> "+ root.value.getCategoryName() ;
             }else{
-                contenido += root.value.getCategoryName() +"\n";
+                contenido += root.value.getCategoryName();
                 
             }
-            iteracion++;
-            ReportIn(root.right);
         }
+        iteracion++;
+        ReportIn(root.right);
         
     }
     
@@ -345,9 +362,9 @@ public class AVLTreeCategory {
             ReportPost(root.left);
             ReportPost(root.right);
             if(iteracion!=0){
-                contenido += " -> " + root.value.getCategoryName() + "\n";
+                contenido += " -> " +root.value.getCategoryName();
             }else{
-                contenido += root.value.getCategoryName() + "\n";
+                contenido += root.value.getCategoryName();
             }
         }
         iteracion++;
@@ -358,11 +375,12 @@ public class AVLTreeCategory {
             return;
         }else{
             if(iteracion!=0){
-                contenido += " -> " + root.value.getCategoryName() + "\n";
+                contenido +=  " -> "+ root.value.getCategoryName();
             }else{
-                contenido += root.value.getCategoryName() + "\n";
+                contenido += root.value.getCategoryName();
             }
         }
+        iteracion++;
         ReportPre(root.left);
         ReportPre(root.right);
     }

@@ -25,12 +25,15 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="bibliotecaVirtualBtn" alignment="0" max="32767" attributes="0"/>
-                  <Component id="conexionRemotaBtn" alignment="0" pref="253" max="32767" attributes="0"/>
-                  <Component id="bibliotecaBtn" alignment="0" max="32767" attributes="0"/>
-                  <Component id="editarPerfilBtn" alignment="0" max="32767" attributes="0"/>
-                  <Component id="cerrarSesionBtn" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="reporteBtn" min="-2" pref="253" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="bibliotecaVirtualBtn" alignment="0" max="32767" attributes="0"/>
+                      <Component id="conexionRemotaBtn" alignment="0" pref="253" max="32767" attributes="0"/>
+                      <Component id="bibliotecaBtn" alignment="0" max="32767" attributes="0"/>
+                      <Component id="editarPerfilBtn" alignment="0" max="32767" attributes="0"/>
+                      <Component id="cerrarSesionBtn" alignment="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="74" max="32767" attributes="0"/>
           </Group>
@@ -48,8 +51,10 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="editarPerfilBtn" min="-2" pref="49" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="reporteBtn" min="-2" pref="51" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="cerrarSesionBtn" min="-2" pref="49" max="-2" attributes="0"/>
-              <EmptySpace pref="36" max="32767" attributes="0"/>
+              <EmptySpace pref="48" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -89,6 +94,15 @@
         <Property name="text" type="java.lang.String" value="Configuracion de conexion remota"/>
         <Property name="actionCommand" type="java.lang.String" value=""/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="reporteBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Reportes"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reporteBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

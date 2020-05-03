@@ -76,11 +76,17 @@ public class JSONFileUpload {
                 currentCategory.getBooks().insert(book);
                 currentCategory.getBooks().print();
             }
-        }catch(Exception e){}
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
     
     private Category searchCategory(JsonElement e){
-        return LocalData.categories.searchNode(e.getAsJsonObject().get("Categoria").getAsString(), LocalData.root, null).getValue();
+        if(LocalData.categories.searchNode(e.getAsJsonObject().get("Categoria").getAsString(), LocalData.root, null) !=null){
+            return LocalData.categories.searchNode(e.getAsJsonObject().get("Categoria").getAsString(), LocalData.root, null).getValue();
+        }else{
+            return null;
+        }
     }
     
     

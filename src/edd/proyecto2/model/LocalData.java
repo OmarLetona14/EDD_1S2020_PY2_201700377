@@ -15,11 +15,9 @@ import edd.proyecto2.structure.UserHashTable;
  */
 public class LocalData {
     
-    public static UserHashTable users = new UserHashTable(45);
-
+    public static UserHashTable users = new UserHashTable(45); 
     public static NodeCategory root = null;
     public static AVLTreeCategory categories = new AVLTreeCategory();
     public static User currentUser;
-    
  
 }
