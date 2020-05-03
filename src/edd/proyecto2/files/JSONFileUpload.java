@@ -105,7 +105,7 @@ public class JSONFileUpload {
             JsonArray usuarios = usuariosJSON.getAsJsonArray();
             for(JsonElement e: usuarios){
                 User user = new User();
-                String userPassword = MD5Password.getMD5(e.getAsJsonObject().get("Password").getAsString());
+                String userPassword = MD5Password.encriptar(e.getAsJsonObject().get("Password").getAsString());
                 user.setCarnet(e.getAsJsonObject().get("Carnet").getAsInt());
                 user.setNombre(e.getAsJsonObject().get("Nombre").getAsString());
                 user.setApellido(e.getAsJsonObject().get("Apellido").getAsString());

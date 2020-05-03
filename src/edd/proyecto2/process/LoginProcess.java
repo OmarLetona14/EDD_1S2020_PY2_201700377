@@ -5,8 +5,14 @@
  */
 package edd.proyecto2.process;
 
+import edd.proyecto2.helper.MD5Password;
 import edd.proyecto2.model.LocalData;
 import edd.proyecto2.model.User;
+import edd.proyecto2.view.UserDashboard;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,8 +20,29 @@ import edd.proyecto2.model.User;
  */
 public class LoginProcess {
     
-    
-    public void doLogin(String carnet, String password){
-        
+    User userLogger;
+    public void doLogin(String carnet, String password, JFrame window){
+        userLogger = LocalData.users.searchUser(carnet);
+        if(userLogger!=null){
+            try {
+                String descryptPassword = MD5Password.desencriptar(userLogger.getPassword());
+                if(password.equals(descryptPassword)){
+                    LocalData.currentUser = userLogger;
+                    JOptionPane.showMessageDialog(window, "Bienvenido " + userLogger.getNombre() + " " +userLogger.getApellido(),
+                        "Login exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    window.dispose();
+                    UserDashboard userDashboard = new UserDashboard();
+                    userDashboard.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(window, "Password incorrecto",
+                        "Error de credenciales", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(LoginProcess.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(window, "No existe ningun usuario con este numero de carnet",
+                    "Error de credenciales", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

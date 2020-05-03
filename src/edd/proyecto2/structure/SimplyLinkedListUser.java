@@ -56,6 +56,20 @@ public class SimplyLinkedListUser {
         return found;
     }
     
+    public User serchByCarnet(int carnet){
+        NodeUser aux = first;
+        boolean found = false;
+        while(aux != null && found!=true){
+            if(carnet==aux.info.getCarnet()){
+                found = true;
+                return aux.info;
+            }else{
+                aux = aux.next;
+            }
+        }
+        return null;
+    }
+    
     public void edit(User user, int carnet){
         if(serch(carnet)){
             NodeUser aux = first;

@@ -5,12 +5,15 @@
  */
 package edd.proyecto2.view;
 
+import edd.proyecto2.process.LoginProcess;
+
 /**
  *
  * @author Omar
  */
 public class Login extends javax.swing.JFrame {
-
+    
+    LoginProcess loginProcess;
     /**
      * Creates new form Login
      */
@@ -20,13 +23,6 @@ public class Login extends javax.swing.JFrame {
         setResizable(false);
     }
     
-    
-    private boolean doLogin(int carnet, String password){
-        boolean exists = false;
-        
-        
-        return exists;
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,6 +43,11 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         LoginBtn.setText("Iniciar sesion");
+        LoginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginBtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Carnet ");
 
@@ -111,6 +112,12 @@ public class Login extends javax.swing.JFrame {
         SignUpUser signup = new SignUpUser();
         signup.setVisible(true);
     }//GEN-LAST:event_registrarseTxtActionPerformed
+
+    private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
+        loginProcess = new LoginProcess();
+        String pass = new String(passwordTxt.getPassword());
+        loginProcess.doLogin(carnetTxt.getText(), pass, this);
+    }//GEN-LAST:event_LoginBtnActionPerformed
 
     /**
      * @param args the command line arguments

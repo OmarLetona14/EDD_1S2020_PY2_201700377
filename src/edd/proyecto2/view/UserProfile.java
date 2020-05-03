@@ -5,11 +5,19 @@
  */
 package edd.proyecto2.view;
 
+import edd.proyecto2.helper.MD5Password;
+import edd.proyecto2.model.LocalData;
+import edd.proyecto2.model.User;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Omar
  */
 public class UserProfile extends javax.swing.JFrame {
+    
+    User loggedUser;
 
     /**
      * Creates new form UserProfile
@@ -18,6 +26,20 @@ public class UserProfile extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        loadData();
+    }
+    
+    private void loadData(){
+        try {
+            loggedUser = LocalData.currentUser;
+            lblUsername.setText(loggedUser.getNombre() + " " +loggedUser.getApellido() + " " + loggedUser.getCarnet());
+            nombreTxt.setText(loggedUser.getNombre());
+            apellidoTxt.setText(loggedUser.getApellido());
+            carreraTxt.setText(loggedUser.getCarrera());
+            passwordTxt.setText(MD5Password.desencriptar(loggedUser.getPassword()));
+        } catch (Exception ex) {
+            Logger.getLogger(UserProfile.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -46,7 +68,7 @@ public class UserProfile extends javax.swing.JFrame {
         lblUsername.setText("jLabel1");
 
         deleteUserBtn.setBackground(new java.awt.Color(255, 51, 0));
-        deleteUserBtn.setForeground(new java.awt.Color(255, 51, 0));
+        deleteUserBtn.setForeground(new java.awt.Color(255, 255, 255));
         deleteUserBtn.setText("Eliminar cuenta");
 
         jLabel1.setText("Nombre:");

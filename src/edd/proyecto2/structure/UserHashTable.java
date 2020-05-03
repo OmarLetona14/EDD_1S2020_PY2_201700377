@@ -33,6 +33,24 @@ public class UserHashTable {
         return this.size;
     }
     
+    public User searchUser(String carnet){
+        try{
+            SimplyLinkedListUser usersByIndex = this.getListOfUsers()[carnetHashFunction(Integer.valueOf(carnet))];
+            if(usersByIndex!=null){
+                return usersByIndex.serchByCarnet(Integer.valueOf(carnet));
+            }else{
+                return null;
+            }
+        }catch(Exception e){
+            System.out.println("Ocurrio un error al intentar buscar al usuario");
+        }
+        return null;
+    }
+    
+    private int carnetHashFunction(int carnet){
+        return carnet%getSize();
+    }
+    
     public void insert(User student){
         if(student !=null){
             int index = hashFunction(student);

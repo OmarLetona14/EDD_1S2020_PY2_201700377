@@ -5,12 +5,19 @@
  */
 package edd.proyecto2.view;
 
+import edd.proyecto2.files.JSONFileUpload;
+import edd.proyecto2.model.LocalData;
+import java.awt.FileDialog;
+import java.io.File;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Omar
  */
 public class LibraryDashboard extends javax.swing.JFrame {
-
+    
+    JSONFileUpload uploadBooks;
     /**
      * Creates new form LibraryDashboard
      */
@@ -61,7 +68,25 @@ public class LibraryDashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cargaMasivaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargaMasivaBtnActionPerformed
-        // TODO add your handling code here:
+        uploadBooks = new JSONFileUpload();
+        FileDialog openFile = new FileDialog(this, "Abrir", FileDialog.LOAD);
+        openFile.setFilenameFilter((File dir, String name) -> name.endsWith(".json"));
+        openFile.setVisible(true);
+        if(openFile.getFile()!=null){
+            String ruta = openFile.getFiles()[0].getAbsolutePath();
+            try{
+                System.out.println(ruta);
+                uploadBooks.uploadBookDocument(ruta);
+                JOptionPane.showMessageDialog(this, "Libros cargados correctamente",
+                        "Libros cargados", JOptionPane.INFORMATION_MESSAGE);
+                LocalData.categories.print(LocalData.root);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this, "Ocurrio un error al intentar leer los datos",
+                        "Error al leer los datos", JOptionPane.ERROR_MESSAGE);
+                System.out.println(e.getMessage());
+            }
+            
+        }
     }//GEN-LAST:event_cargaMasivaBtnActionPerformed
 
     /**
