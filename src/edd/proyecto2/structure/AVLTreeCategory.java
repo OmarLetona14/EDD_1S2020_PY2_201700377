@@ -19,8 +19,11 @@ public class AVLTreeCategory {
     private int iteracion;
     private String contenido;
     private boolean validation;
+    private List<Category> categories;
+    private int size;
     
     public AVLTreeCategory(){
+        this.size = 0;
         this.iteracion = 0;
         this.contenido = "";
     }
@@ -31,7 +34,7 @@ public class AVLTreeCategory {
         return N.getHeight();
     }
 
-    private NodeCategory insert(NodeCategory node, Category value) {
+    public NodeCategory insert(NodeCategory node, Category value) {
         /* 1.  Perform the normal BST rotation */
         if (node == null) {
             return(new NodeCategory(value));
@@ -263,7 +266,7 @@ public class AVLTreeCategory {
 
                 } else {
 
-                    System.out.printf("(%6d)", n.value);
+                    System.out.printf(n.value.getCategoryName());
                     next.add(n.left);
                     next.add(n.right);
 
@@ -301,6 +304,21 @@ public class AVLTreeCategory {
             next = new ArrayList<NodeCategory>(elements);
 
         }
+    }
+    
+    public NodeCategory searchNode(String category_name, NodeCategory root, NodeCategory tmp){
+        if(root ==null && tmp == null){
+            return null;
+        }else{
+            if(tmp == null){
+                if(root.value.getCategoryName().equals(category_name)){
+                    return root;
+                }
+                tmp = searchNode(category_name, root.left, tmp);
+                tmp = searchNode(category_name, root.right, tmp);
+            }
+        }
+        return tmp;
     }
     
     public void ReportIn(NodeCategory root){
@@ -385,6 +403,21 @@ public class AVLTreeCategory {
         return GraphAVL(root);
     }
     
+    public List<Category> getAll(NodeCategory root){
+        this.categories = new ArrayList();
+        return getCategories(root);
+    }
+    
+    private List<Category> getCategories(NodeCategory root){
+        if(root==null){
+            return categories;
+        }else{
+            categories.add(root.value);
+            getCategories(root.left);
+            getCategories(root.right);
+        }
+        return categories;
+    }
     
     public boolean searchByName(NodeCategory root, String categoryName){
         if(root==null){

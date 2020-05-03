@@ -13,14 +13,6 @@ import edd.proyecto2.structure.BTreeBook;
  */
 public class Category implements Comparable<Category>{
 
-    public int getIdCategory() {
-        return idCategory;
-    }
-
-    public void setIdCategory(int idCategory) {
-        this.idCategory = idCategory;
-    }
-
     public String getCategoryName() {
         return categoryName;
     }
@@ -37,13 +29,15 @@ public class Category implements Comparable<Category>{
         this.books = books;
     }
 
-    public Category(int idCategory, String categoryName, BTreeBook books) {
-        this.idCategory = idCategory;
+    public Category(String categoryName) {
         this.categoryName = categoryName;
-        this.books = books;
+        this.books = new BTreeBook(5);
     }
     
-    private int idCategory;
+    public Category(){
+        this.books = new BTreeBook(5);
+    }
+    
     private String categoryName;
     private BTreeBook books;
 

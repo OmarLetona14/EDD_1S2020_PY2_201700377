@@ -19,6 +19,7 @@ public class LocalData {
 
     public static NodeCategory root = null;
     public static AVLTreeCategory categories = new AVLTreeCategory();
+    public static User currentUser;
     
  
 }

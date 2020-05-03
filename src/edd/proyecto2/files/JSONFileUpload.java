@@ -11,6 +11,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import edd.proyecto2.helper.MD5Password;
 import edd.proyecto2.model.Book;
+import edd.proyecto2.model.Category;
+import edd.proyecto2.model.LocalData;
 import edd.proyecto2.model.User;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -26,8 +28,10 @@ import java.util.logging.Logger;
  * @author Omar
  */
 public class JSONFileUpload {
-    Gson gson;
-    MD5Password encrypt;
+    private Gson gson;
+    private MD5Password encrypt;
+    private Category currentCategory;
+    
     private String read(String filename){
         Gson gson = new Gson();
         String fileContent = "";
@@ -44,31 +48,54 @@ public class JSONFileUpload {
         return fileContent;
     }
     
-    public Object[] uploadBookDocument(String filename){
+    public void uploadBookDocument(String filename){
         FileReader fr = null;
-        Book[] books = null;
-        try {
+        try{
             gson = new Gson();
             JsonParser parser = new JsonParser();
             fr = new FileReader(filename);
             JsonElement datos = parser.parse(fr);
-            JsonElement usuarios = datos.getAsJsonObject().get("libros");
-            books = gson.fromJson(usuarios.getAsString(), Book[].class);
-            return books;
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(JSONFileUpload.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                fr.close();
-            } catch (IOException ex) {
-                Logger.getLogger(JSONFileUpload.class.getName()).log(Level.SEVERE, null, ex);
+            JsonElement librosJson = datos.getAsJsonObject().get("libros");
+            JsonArray libros = librosJson.getAsJsonArray();
+            for(JsonElement e: libros){
+                Book book = new Book();
+                book.setISBN(e.getAsJsonObject().get("ISBN").getAsInt());
+                book.setTitulo(e.getAsJsonObject().get("Titulo").getAsString());
+                book.setAutor(e.getAsJsonObject().get("Autor").getAsString());
+                book.setAnio(e.getAsJsonObject().get("Año").getAsInt());
+                book.setEditorial(e.getAsJsonObject().get("Editorial").getAsString());
+                book.setEdicion(e.getAsJsonObject().get("Edicion").getAsInt());
+                book.setIdioma(e.getAsJsonObject().get("Idioma").getAsString());
+                currentCategory = searchCategory(e);
+                if(currentCategory==null){
+                    insertCategory(e.getAsJsonObject().get("Categoria").getAsString());
+                    currentCategory = searchCategory(e);
+                }
+                book.setCategory(currentCategory);      
+                book.setUsuario(LocalData.currentUser);
+                currentCategory.getBooks().insert(book);
+                currentCategory.getBooks().print();
             }
-        }
-        return books;
+        }catch(Exception e){}
     }
-    public List<User> uploadUserDocument(String filename){
+    
+    private Category searchCategory(JsonElement e){
+        return LocalData.categories.searchNode(e.getAsJsonObject().get("Categoria").getAsString(), LocalData.root, null).getValue();
+    }
+    
+    
+    private void insertCategory(String categoryName){
+        try{
+            Category newCategory = new Category();
+            newCategory.setCategoryName(categoryName);
+            LocalData.root = LocalData.categories.insert(LocalData.root, newCategory);
+        }catch(Exception e){
+            System.out.println("Ocurrio un error al intentar ingresar la categoria");
+        }
+        
+    }
+    public void uploadUserDocument(String filename){
         FileReader fr = null;
-        List<User> users = new ArrayList();
         try{
             gson = new Gson();
             JsonParser parser = new JsonParser();
@@ -84,13 +111,11 @@ public class JSONFileUpload {
                 user.setApellido(e.getAsJsonObject().get("Apellido").getAsString());
                 user.setCarrera(e.getAsJsonObject().get("Carrera").getAsString());
                 user.setPassword(userPassword);
-                users.add(user);
-                System.out.println("Usuario agregado correctamente");
+                LocalData.users.insert(user);
             }
-        }catch(FileNotFoundException ex){
-            Logger.getLogger(JSONFileUpload.class.getName()).log(Level.SEVERE, null, ex);
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
         }
-        return users;
     }
     
     

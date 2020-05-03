@@ -11,7 +11,7 @@ package edd.proyecto2.model;
  */
 public class Book implements Comparable <Book>{    
 
-    public Book(Integer ISBN, String titulo, String autor, String editorial, int anio, String edicion, String idioma, User usuario) {
+    public Book(Integer ISBN, String titulo, String autor, String editorial, int anio, int edicion, String idioma, User usuario, Category category) {
         this.ISBN = ISBN;
         this.titulo = titulo;
         this.autor = autor;
@@ -20,7 +20,9 @@ public class Book implements Comparable <Book>{
         this.edicion = edicion;
         this.idioma = idioma;
         this.usuario = usuario;
+        this.category = category;
     }
+    public Book(){}
 
     public Integer getISBN() {
         return ISBN;
@@ -62,11 +64,11 @@ public class Book implements Comparable <Book>{
         this.anio = anio;
     }
 
-    public String getEdicion() {
+    public int getEdicion() {
         return edicion;
     }
 
-    public void setEdicion(String edicion) {
+    public void setEdicion(int edicion) {
         this.edicion = edicion;
     }
 
@@ -85,15 +87,25 @@ public class Book implements Comparable <Book>{
     public void setUsuario(User usuario) {
         this.usuario = usuario;
     }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     
     private Integer ISBN;
     private String titulo;
     private String autor;
     private String editorial;
     private int anio;
-    private String edicion;
+    private int edicion;
     private String idioma;
     private User usuario;
+    private Category category;
 
     @Override
     public int compareTo(Book o) {
