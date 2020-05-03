@@ -47,6 +47,18 @@ public class UserHashTable {
         return null;
     }
     
+    
+    public void deleteUser(String carnet){
+        try{
+            SimplyLinkedListUser usersByIndex = this.getListOfUsers()[carnetHashFunction(Integer.valueOf(carnet))];
+            if(usersByIndex!=null){
+                usersByIndex.delete(Integer.valueOf(carnet));
+            }
+        }catch(Exception e){
+            System.out.println("Ocurrio un error al intentar eliminar al usuario");
+        }
+    }
+    
     private int carnetHashFunction(int carnet){
         return carnet%getSize();
     }
@@ -69,6 +81,16 @@ public class UserHashTable {
         }
     }
     
+    public void edit(String carnet, User user){
+        try{
+            SimplyLinkedListUser usersByIndex = this.getListOfUsers()[carnetHashFunction(Integer.valueOf(carnet))];
+            if(usersByIndex!=null){
+                usersByIndex.edit(user, Integer.valueOf(carnet));
+            }
+        }catch(Exception e){
+            System.out.println("Ocurrio un error al intentar editar al usuario");
+        }
+    }
     private SimplyLinkedListUser getListByIndex(int x){
         return this.listOfUsers[x];
     }

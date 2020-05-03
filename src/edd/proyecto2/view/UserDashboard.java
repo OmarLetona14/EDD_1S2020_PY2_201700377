@@ -38,6 +38,11 @@ public class UserDashboard extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         bibliotecaBtn.setText("Mi Biblioteca");
+        bibliotecaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bibliotecaBtnActionPerformed(evt);
+            }
+        });
 
         bibliotecaVirtualBtn.setText("Conectarse a biblioteca virtual");
 
@@ -102,6 +107,12 @@ public class UserDashboard extends javax.swing.JFrame {
         UserProfile userProfile = new UserProfile();
         userProfile.setVisible(true);
     }//GEN-LAST:event_editarPerfilBtnActionPerformed
+
+    private void bibliotecaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaBtnActionPerformed
+        this.dispose();
+        LibraryDashboard libraryDashboard = new LibraryDashboard();
+        libraryDashboard.setVisible(true);
+    }//GEN-LAST:event_bibliotecaBtnActionPerformed
 
     /**
      * @param args the command line arguments

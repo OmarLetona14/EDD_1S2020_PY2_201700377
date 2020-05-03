@@ -47,6 +47,7 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="deleteUserBtn" pref="140" max="32767" attributes="0"/>
                   <Component id="editarBtn" max="32767" attributes="0"/>
+                  <Component id="atrasBtn" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
@@ -70,6 +71,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="apellidoTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="atrasBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -81,7 +83,7 @@
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <Component id="passwordTxt" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="42" max="32767" attributes="0"/>
+              <EmptySpace pref="39" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -102,6 +104,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Eliminar cuenta"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteUserBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -141,6 +146,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Editar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editarBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="atrasBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Atras"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="atrasBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -10,6 +10,7 @@ import edd.proyecto2.model.LocalData;
 import edd.proyecto2.model.User;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -62,6 +63,7 @@ public class UserProfile extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         passwordTxt = new javax.swing.JPasswordField();
         editarBtn = new javax.swing.JButton();
+        atrasBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +72,11 @@ public class UserProfile extends javax.swing.JFrame {
         deleteUserBtn.setBackground(new java.awt.Color(255, 51, 0));
         deleteUserBtn.setForeground(new java.awt.Color(255, 255, 255));
         deleteUserBtn.setText("Eliminar cuenta");
+        deleteUserBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteUserBtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nombre:");
 
@@ -84,6 +91,18 @@ public class UserProfile extends javax.swing.JFrame {
         passwordTxt.setToolTipText("");
 
         editarBtn.setText("Editar");
+        editarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarBtnActionPerformed(evt);
+            }
+        });
+
+        atrasBtn.setText("Atras");
+        atrasBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atrasBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,7 +127,8 @@ public class UserProfile extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(deleteUserBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addComponent(editarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(editarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(atrasBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
@@ -126,7 +146,8 @@ public class UserProfile extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(apellidoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(apellidoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(atrasBtn))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -135,11 +156,40 @@ public class UserProfile extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void atrasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasBtnActionPerformed
+        this.dispose();
+        UserDashboard userDashboard= new UserDashboard();
+        userDashboard.setVisible(true);
+    }//GEN-LAST:event_atrasBtnActionPerformed
+
+    private void deleteUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserBtnActionPerformed
+        JOptionPane.showMessageDialog(this, "Se eliminaran todos los datos asociados con su cuenta, desea proceder?",
+                "Eliminacion de cuenta", JOptionPane.WARNING_MESSAGE);
+        LocalData.users.deleteUser(String.valueOf(loggedUser.getCarnet()));
+        this.dispose();
+        Login login = new Login();
+        login.setVisible(true);
+    }//GEN-LAST:event_deleteUserBtnActionPerformed
+
+    private void editarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarBtnActionPerformed
+        loggedUser.setNombre(nombreTxt.getText());
+        loggedUser.setApellido(apellidoTxt.getText());
+        loggedUser.setCarrera(carreraTxt.getText());
+        String pass = new String(passwordTxt.getPassword());
+        String encryptedPassword = MD5Password.encriptar(pass);
+        loggedUser.setPassword(encryptedPassword);
+        LocalData.users.edit(String.valueOf(loggedUser.getCarnet()), loggedUser);
+        JOptionPane.showMessageDialog(this, "Usuario editado correctamente", "Editado", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
+        UserProfile userProfile = new UserProfile();
+        userProfile.setVisible(true);
+    }//GEN-LAST:event_editarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,6 +228,7 @@ public class UserProfile extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidoTxt;
+    private javax.swing.JButton atrasBtn;
     private javax.swing.JTextField carreraTxt;
     private javax.swing.JButton deleteUserBtn;
     private javax.swing.JButton editarBtn;
