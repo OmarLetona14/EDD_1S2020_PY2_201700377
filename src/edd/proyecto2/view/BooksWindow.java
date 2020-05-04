@@ -33,7 +33,7 @@ public class BooksWindow extends javax.swing.JFrame {
     }
     
     private void initWindow(){
-        List<Category> categories = LocalData.categories.getAll(LocalData.root);
+        List<Category> categories = LocalData.currentUser.getCategories().getAll(LocalData.currentUser.getRoot());
         if(categories!=null){
             for(Category c: categories){
                 categoriaCb.addItem(c.getCategoryName());
@@ -43,8 +43,8 @@ public class BooksWindow extends javax.swing.JFrame {
     
     private void fillPanel(){
         booksPane.repaint();
-        if(LocalData.categories.searchNode(categoriaCb.getSelectedItem().toString(), LocalData.root, null)!=null){
-            category = LocalData.categories.searchNode(categoriaCb.getSelectedItem().toString(), LocalData.root, null).getValue();
+        if(LocalData.currentUser.getCategories().searchNode(categoriaCb.getSelectedItem().toString(), LocalData.currentUser.getRoot(), null)!=null){
+            category = LocalData.currentUser.getCategories().searchNode(categoriaCb.getSelectedItem().toString(), LocalData.currentUser.getRoot(), null).getValue();
             List<Book> libros = category.getBooks().getAllBooks();
             for(Book book: libros){
                 if(book!=null){

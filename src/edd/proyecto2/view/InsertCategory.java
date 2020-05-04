@@ -92,10 +92,10 @@ public class InsertCategory extends javax.swing.JFrame {
         Category category = new Category();
         if(!nombreCategoriaTxt.getText().equals("")){
             category.setCategoryName(nombreCategoriaTxt.getText());
-            LocalData.root = LocalData.categories.insert(LocalData.root, category);
+            LocalData.currentUser.setRoot(LocalData.currentUser.getCategories().insert(LocalData.currentUser.getRoot(), category));
             JOptionPane.showMessageDialog(this, "Se inserto correctamente la categoria",
                     "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
-            LocalData.categories.print(LocalData.root);
+            LocalData.currentUser.getCategories().print(LocalData.currentUser.getRoot());
             this.dispose();
             InsertBook insertBook = new InsertBook();
             insertBook.setVisible(true);

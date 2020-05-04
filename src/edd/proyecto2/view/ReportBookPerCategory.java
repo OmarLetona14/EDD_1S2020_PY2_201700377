@@ -29,7 +29,7 @@ public class ReportBookPerCategory extends javax.swing.JFrame {
     }
     
     private void initWindow(){
-        List<Category> categories =  LocalData.categories.getAll(LocalData.root);
+        List<Category> categories =  LocalData.currentUser.getCategories().getAll(LocalData.currentUser.getRoot());
         if(categories!=null){
             for(Category c: categories){
                 if(c!=null){
@@ -116,9 +116,9 @@ public class ReportBookPerCategory extends javax.swing.JFrame {
 
     private void generarReporteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarReporteBtnActionPerformed
         report = new GenerateReport();
-        if(LocalData.categories.searchNode(categoriasCb.getSelectedItem().toString(), LocalData.root, null)!=null){
+        if(LocalData.currentUser.getCategories().searchNode(categoriasCb.getSelectedItem().toString(), LocalData.currentUser.getRoot(), null)!=null){
             try{
-                Category category = LocalData.categories.searchNode(categoriasCb.getSelectedItem().toString(), LocalData.root, null).getValue();
+                Category category = LocalData.currentUser.getCategories().searchNode(categoriasCb.getSelectedItem().toString(), LocalData.currentUser.getRoot(), null).getValue();
                 report.generate("ArbolB" + category.getCategoryName(), category.getBooks().printReport());   
                 JOptionPane.showMessageDialog(this, "Reporte generado correctamente", "Reporte generado", JOptionPane.INFORMATION_MESSAGE);
             }catch(Exception e){

@@ -5,6 +5,8 @@
  */
 package edd.proyecto2.model;
 
+import edd.proyecto2.node.NodeCategory;
+import edd.proyecto2.structure.AVLTreeCategory;
 import edd.proyecto2.structure.UserHashTable;
 
 /**
@@ -12,18 +14,41 @@ import edd.proyecto2.structure.UserHashTable;
  * @author Omar
  */
 public class User implements Comparable<User>{
-    
-    public static UserHashTable users;
 
+    public AVLTreeCategory getCategories() {
+        return categories;
+    }
+
+    public void setCategories(AVLTreeCategory categories) {
+        this.categories = categories;
+    }
+    
+    private AVLTreeCategory categories;
+
+    public NodeCategory getRoot() {
+        return root;
+    }
+
+    public void setRoot(NodeCategory root) {
+        this.root = root;
+    }
+    private NodeCategory root;
+    
+    
     public User(int carnet, String nombre, String apellido, String carrera, String password) {
         this.carnet = carnet;
         this.nombre = nombre;
         this.apellido = apellido;
         this.carrera = carrera;
         this.password = password;
+        this.categories = new AVLTreeCategory();
+        this.root = null;
     }
     
-    public User(){}
+    public User(){
+        this.categories = new AVLTreeCategory();
+        this.root = null;
+    }
 
     public int getCarnet() {
         return carnet;

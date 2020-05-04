@@ -30,7 +30,7 @@ public class InsertBook extends javax.swing.JFrame {
     }
     
     private void initWindow(){
-        LocalData.categories.getAll(LocalData.root).stream().filter((category) -> (category!=null)).forEach((category) -> {
+        LocalData.currentUser.getCategories().getAll(LocalData.currentUser.getRoot()).stream().filter((category) -> (category!=null)).forEach((category) -> {
             cbCategory.addItem(category.getCategoryName());
         });
     }   
@@ -209,7 +209,8 @@ public class InsertBook extends javax.swing.JFrame {
     private void insertBook(){
         error= false;
         book = new Book();
-        currentCategory = LocalData.categories.searchNode(String.valueOf(cbCategory.getSelectedItem()), LocalData.root, null).getValue();
+        currentCategory = LocalData.currentUser.getCategories().searchNode(
+                String.valueOf(cbCategory.getSelectedItem()), LocalData.currentUser.getRoot(), null).getValue();
         if(currentCategory!=null){
             try{
                 book.setUsuario(LocalData.currentUser);

@@ -113,7 +113,7 @@ public class LibraryDashboard extends javax.swing.JFrame {
                 uploadBooks.uploadBookDocument(ruta);
                 JOptionPane.showMessageDialog(this, "Libros cargados correctamente",
                         "Libros cargados", JOptionPane.INFORMATION_MESSAGE);
-                LocalData.categories.print(LocalData.root);
+                LocalData.currentUser.getCategories().print(LocalData.currentUser.getRoot());
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Ocurrio un error al intentar leer los datos",
                         "Error al leer los datos", JOptionPane.ERROR_MESSAGE);

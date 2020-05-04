@@ -18,10 +18,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -82,8 +78,8 @@ public class JSONFileUpload {
     }
     
     private Category searchCategory(JsonElement e){
-        if(LocalData.categories.searchNode(e.getAsJsonObject().get("Categoria").getAsString(), LocalData.root, null) !=null){
-            return LocalData.categories.searchNode(e.getAsJsonObject().get("Categoria").getAsString(), LocalData.root, null).getValue();
+        if(LocalData.currentUser.getCategories().searchNode(e.getAsJsonObject().get("Categoria").getAsString(), LocalData.currentUser.getRoot(), null) !=null){
+            return LocalData.currentUser.getCategories().searchNode(e.getAsJsonObject().get("Categoria").getAsString(), LocalData.currentUser.getRoot(), null).getValue();
         }else{
             return null;
         }
@@ -94,7 +90,7 @@ public class JSONFileUpload {
         try{
             Category newCategory = new Category();
             newCategory.setCategoryName(categoryName);
-            LocalData.root = LocalData.categories.insert(LocalData.root, newCategory);
+            LocalData.currentUser.setRoot(LocalData.currentUser.getCategories().insert(LocalData.currentUser.getRoot(), newCategory)); 
         }catch(Exception e){
             System.out.println("Ocurrio un error al intentar ingresar la categoria");
         }

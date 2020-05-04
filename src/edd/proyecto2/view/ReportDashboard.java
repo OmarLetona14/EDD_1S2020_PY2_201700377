@@ -139,7 +139,7 @@ public class ReportDashboard extends javax.swing.JFrame {
     private void arbolALVbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arbolALVbtnActionPerformed
        report = new GenerateReport();
         try{
-            String content = LocalData.categories.printTree(LocalData.root);
+            String content = LocalData.currentUser.getCategories().printTree(LocalData.currentUser.getRoot());
             if(!content.equals("")){
                 report.generate("Categorias", content);
                 JOptionPane.showMessageDialog(this, "Reporte generado correctamente", "Reporte Generado", JOptionPane.INFORMATION_MESSAGE);
@@ -167,10 +167,10 @@ public class ReportDashboard extends javax.swing.JFrame {
     private void preOrdenBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_preOrdenBtnActionPerformed
         report = new GenerateReport();
         try{
-            LocalData.categories.setIteracion(0);
-            LocalData.categories.setContenido("");
-            LocalData.categories.ReportPre(LocalData.root);
-            String content = LocalData.categories.getContenido();
+            LocalData.currentUser.getCategories().setIteracion(0);
+            LocalData.currentUser.getCategories().setContenido("");
+            LocalData.currentUser.getCategories().ReportPre(LocalData.currentUser.getRoot());
+            String content = LocalData.currentUser.getCategories().getContenido();
             report.generate("PreOrdenAVL", content); 
             JOptionPane.showMessageDialog(this, "Reporte generado correctamente", "Generado correctamente", JOptionPane.INFORMATION_MESSAGE);
         }catch(Exception e){
@@ -181,10 +181,10 @@ public class ReportDashboard extends javax.swing.JFrame {
     private void postOrdenBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postOrdenBtnActionPerformed
         report = new GenerateReport();
         try{
-            LocalData.categories.setIteracion(0);
-            LocalData.categories.setContenido("");
-            LocalData.categories.ReportPost(LocalData.root);
-            String content = LocalData.categories.getContenido();
+            LocalData.currentUser.getCategories().setIteracion(0);
+            LocalData.currentUser.getCategories().setContenido("");
+            LocalData.currentUser.getCategories().ReportPost(LocalData.currentUser.getRoot());
+            String content = LocalData.currentUser.getCategories().getContenido();
             report.generate("PostOrdenAVL", content); 
             JOptionPane.showMessageDialog(this, "Reporte generado correctamente", "Generado correctamente", JOptionPane.INFORMATION_MESSAGE);
         }catch(Exception e){
@@ -195,10 +195,10 @@ public class ReportDashboard extends javax.swing.JFrame {
     private void inOrdenBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inOrdenBtnActionPerformed
         report = new GenerateReport();
         try{
-            LocalData.categories.setIteracion(0);
-            LocalData.categories.setContenido("");
-            LocalData.categories.ReportIn(LocalData.root);
-            String content = LocalData.categories.getContenido();
+            LocalData.currentUser.getCategories().setIteracion(0);
+            LocalData.currentUser.getCategories().setContenido("");
+            LocalData.currentUser.getCategories().ReportIn(LocalData.currentUser.getRoot());
+            String content = LocalData.currentUser.getCategories().getContenido();
             report.generate("InOrdenAVL", content); 
             JOptionPane.showMessageDialog(this, "Reporte generado correctamente", "Generado correctamente", JOptionPane.INFORMATION_MESSAGE);
         }catch(Exception e){

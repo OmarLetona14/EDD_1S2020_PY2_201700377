@@ -7,6 +7,8 @@ package edd.proyecto2.view;
 
 import edd.proyecto2.model.Book;
 import edd.proyecto2.model.LocalData;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -24,6 +26,7 @@ public class BookDetails extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         staticBook = book;
         initWindow();
     }
