@@ -32,14 +32,25 @@ public class Category implements Comparable<Category>{
     public Category(String categoryName) {
         this.categoryName = categoryName;
         this.books = new BTreeBook(5);
+        this.user = LocalData.currentUser;
     }
     
     public Category(){
         this.books = new BTreeBook(5);
+        this.user = LocalData.currentUser;
     }
     
     private String categoryName;
     private BTreeBook books;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    private User user;
 
     @Override
     public int compareTo(Category o) {

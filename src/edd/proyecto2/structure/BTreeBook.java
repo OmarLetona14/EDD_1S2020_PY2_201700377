@@ -8,6 +8,8 @@ package edd.proyecto2.structure;
 import edd.proyecto2.model.Book;
 import edd.proyecto2.node.LinkedStack;
 import edd.proyecto2.node.NodeBook;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class BTreeBook {
@@ -31,6 +33,7 @@ public class BTreeBook {
     private final int arity;
     private NodeBook root;
     private String content;
+    private List<Book> books;
 
     public BTreeBook (int k) {
     // Construct an empty B-tree of arity k.
@@ -54,7 +57,36 @@ public class BTreeBook {
                 curr = curr.childs[pos];
         }
     }
-
+    
+    public List<Book> getAllBooks(){
+         books  = new ArrayList();
+         books.addAll(getAll(root));
+         return books;
+    }
+    
+    public List<Book> getAll(NodeBook curr){
+        if(curr ==null){
+            return null;
+        }else{
+           books.addAll(getNodeElements(curr));
+           for(NodeBook n: curr.childs){
+               getAll(n);
+           }
+        }
+        return books;
+    }   
+    
+    private List<Book> getNodeElements(NodeBook node){
+        List<Book> nodeBooks = new ArrayList();
+        for(Comparable n: node.elems){
+            if(n!=null){
+                Book element = (Book)n;
+                nodeBooks.add(element);
+            }
+        }
+        return nodeBooks;
+    }
+    
     public void insert (Comparable elem) {
     // Insert element elem into this B-tree.
         if (root == null) {

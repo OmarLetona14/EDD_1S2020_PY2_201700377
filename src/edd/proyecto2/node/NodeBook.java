@@ -53,7 +53,7 @@ public class NodeBook {
         }
 
         public int searchInNode (Comparable target) {
-        // Return the index of the leftmost element in this node that is not less
+        // Return the index of the ltargeteftmost element in this node that is not less
         // than target.
             int l = 0, r = size-1;
             while (l <= r) {

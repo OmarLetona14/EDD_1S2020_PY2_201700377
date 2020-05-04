@@ -97,6 +97,11 @@ public class InsertBook extends javax.swing.JFrame {
         });
 
         atrasBtn.setText("Atras");
+        atrasBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atrasBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -194,6 +199,12 @@ public class InsertBook extends javax.swing.JFrame {
     private void agregarLibroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarLibroBtnActionPerformed
         insertBook();
     }//GEN-LAST:event_agregarLibroBtnActionPerformed
+
+    private void atrasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasBtnActionPerformed
+        this.dispose();
+        LibraryDashboard libraryDashboard = new LibraryDashboard();
+        libraryDashboard.setVisible(true);
+    }//GEN-LAST:event_atrasBtnActionPerformed
     
     private void insertBook(){
         error= false;
