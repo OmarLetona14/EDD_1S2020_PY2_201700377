@@ -15,5 +15,17 @@ public class LocalData {
     
     public static UserHashTable users = new UserHashTable(45); 
     public static User currentUser;
+    public static final int ISBN = 0;
+    public static final int TITULO = 1;
+    public static final int AUTOR = 2; 
+    public static final int EDITORIAL = 3;
+    public static final int ANIO = 4;
+    public static final int EDICION =5;
+    public static final int IDIOMA=6;
+    public static final int USUARIO = 7;
+    public static final int CATEGORIA = 8;
+    public static final int DETALLES = 9;
+    public static int filaSeleccionada;
+    
  
 }

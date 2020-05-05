@@ -8,19 +8,37 @@ package edd.proyecto2.view;
 import edd.proyecto2.model.Book;
 import edd.proyecto2.model.Category;
 import edd.proyecto2.model.LocalData;
+import edd.proyecto2.table.BookTableModel;
+import edd.proyecto2.table.CellManagement;
+import edd.proyecto2.table.HeaderManagement;
 import java.awt.GridLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.ScrollPaneLayout;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author Omar
  */
-public class BooksWindow extends javax.swing.JFrame {
+public class BooksWindow extends javax.swing.JFrame implements MouseListener{
     
-    Category category;
-    BookDetailsButton bookBtn;
+    private Category category;
+    private BookDetailsButton bookBtn;
+    private BookTableModel bookModel;
+    private List<Book> libros;
+    private JTable booksTable;
+    private int filasTabla, columnasTabla;
+    private JScrollPane scrollPane; 
+    private TableRowSorter sorter = null; 
+ 
     /**
      * Creates new form BooksWindow
      */
@@ -28,11 +46,13 @@ public class BooksWindow extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        booksPane.setLayout(new GridLayout(5,5));
         initWindow();
     }
     
     private void initWindow(){
+        scrollPane = new JScrollPane();
+        scrollPane.setSize(booksPane.getWidth(), booksPane.getHeight());
+        booksPane.add(scrollPane);
         List<Category> categories = LocalData.currentUser.getCategories().getAll(LocalData.currentUser.getRoot());
         if(categories!=null){
             for(Category c: categories){
@@ -45,16 +65,68 @@ public class BooksWindow extends javax.swing.JFrame {
         booksPane.repaint();
         if(LocalData.currentUser.getCategories().searchNode(categoriaCb.getSelectedItem().toString(), LocalData.currentUser.getRoot(), null)!=null){
             category = LocalData.currentUser.getCategories().searchNode(categoriaCb.getSelectedItem().toString(), LocalData.currentUser.getRoot(), null).getValue();
-            List<Book> libros = category.getBooks().getAllBooks();
-            for(Book book: libros){
-                if(book!=null){
-                    bookBtn = new BookDetailsButton(book);
-                    booksPane.add(bookBtn);
-                }
-            }
+            libros = category.getBooks().getAllBooks();
+            
         }else{
             JOptionPane.showMessageDialog(this, "No hay libros asociados a esta categoria", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        fillTable();
+    }
+    
+    private void fillTable(){
+        booksTable = new JTable();
+        booksTable.addMouseListener(this);
+       // booksTable.addMouseListener(this);
+        String[] titulos_tabla = {"ISBN", "Titulo", "Autor", "Editorial", "Anio", "Edicion", "Idioma", "Usuario propietario", "Categoria"," "};
+        Object[][] datos = obtainMatrix();
+        bookModel = new BookTableModel(datos, titulos_tabla);
+        booksTable.setModel(bookModel);
+        filasTabla = booksTable.getRowCount();
+        columnasTabla = booksTable.getColumnCount();
+        booksTable.getColumnModel().getColumn(LocalData.ISBN).setCellRenderer(new CellManagement("numerico"));
+        booksTable.getColumnModel().getColumn(LocalData.TITULO).setCellRenderer(new CellManagement("texto"));
+        booksTable.getColumnModel().getColumn(LocalData.AUTOR).setCellRenderer(new CellManagement("texto"));
+        booksTable.getColumnModel().getColumn(LocalData.EDITORIAL).setCellRenderer(new CellManagement("texto"));
+        booksTable.getColumnModel().getColumn(LocalData.ANIO).setCellRenderer(new CellManagement("numerico"));
+        booksTable.getColumnModel().getColumn(LocalData.EDICION).setCellRenderer(new CellManagement("numerico"));
+        booksTable.getColumnModel().getColumn(LocalData.IDIOMA).setCellRenderer(new CellManagement("texto"));
+        booksTable.getColumnModel().getColumn(LocalData.USUARIO).setCellRenderer(new CellManagement("texto"));
+        booksTable.getColumnModel().getColumn(LocalData.CATEGORIA).setCellRenderer(new CellManagement("texto"));
+        booksTable.getColumnModel().getColumn(LocalData.DETALLES).setCellRenderer(new CellManagement("boton"));
+        booksTable.getTableHeader().setReorderingAllowed(false);
+        booksTable.setRowHeight(25);//tamaño de las celdas
+        booksTable.setGridColor(new java.awt.Color(0, 0, 0));
+        booksTable.getColumnModel().getColumn(LocalData.ISBN).setPreferredWidth(150);
+        booksTable.getColumnModel().getColumn(LocalData.TITULO).setPreferredWidth(400);
+        booksTable.getColumnModel().getColumn(LocalData.AUTOR).setPreferredWidth(250);
+        booksTable.getColumnModel().getColumn(LocalData.EDITORIAL).setPreferredWidth(400);
+        booksTable.getColumnModel().getColumn(LocalData.ANIO).setPreferredWidth(150);
+        booksTable.getColumnModel().getColumn(LocalData.EDICION).setPreferredWidth(150);
+        booksTable.getColumnModel().getColumn(LocalData.IDIOMA).setPreferredWidth(400);
+        booksTable.getColumnModel().getColumn(LocalData.USUARIO).setPreferredWidth(400);
+        booksTable.getColumnModel().getColumn(LocalData.CATEGORIA).setPreferredWidth(400);
+        booksTable.getColumnModel().getColumn(LocalData.DETALLES).setPreferredWidth(400);
+        JTableHeader jtableHeader = booksTable.getTableHeader();
+        jtableHeader.setDefaultRenderer(new HeaderManagement());
+        booksTable.setTableHeader(jtableHeader);
+        scrollPane.setViewportView(booksTable);
+    }
+    
+    private Object[][] obtainMatrix(){
+        String information[][] = new String[libros.size()][9];
+        for(int i=0; i<information.length;i++){
+            information[i][LocalData.ISBN] = libros.get(i).getISBN().toString();
+            information[i][LocalData.TITULO] = libros.get(i).getAutor();
+            information[i][LocalData.AUTOR] = libros.get(i).getAutor();
+            information[i][LocalData.EDITORIAL] = libros.get(i).getEditorial();
+            information[i][LocalData.ANIO] = String.valueOf(libros.get(i).getAnio());
+            information[i][LocalData.EDICION] = String.valueOf(libros.get(i).getEdicion());
+            information[i][LocalData.IDIOMA] = String.valueOf(libros.get(i).getIdioma());
+            information[i][LocalData.USUARIO] = libros.get(i).getUsuario().getNombre() + " "+libros.get(i).getUsuario().getApellido()
+                    + " " + libros.get(i).getUsuario().getCarnet();
+            information[i][LocalData.CATEGORIA] = libros.get(i).getCategory().getCategoryName();
+        }
+        return information;
     }
 
     /**
@@ -73,6 +145,8 @@ public class BooksWindow extends javax.swing.JFrame {
         atrasBtn = new javax.swing.JButton();
         mostrarLibrosBtn = new javax.swing.JButton();
         booksPane = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        filtroTxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,12 +180,25 @@ public class BooksWindow extends javax.swing.JFrame {
         booksPane.setLayout(booksPaneLayout);
         booksPaneLayout.setHorizontalGroup(
             booksPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
         booksPaneLayout.setVerticalGroup(
             booksPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 324, Short.MAX_VALUE)
+            .addGap(0, 399, Short.MAX_VALUE)
         );
+
+        jLabel2.setText("Filtro");
+
+        filtroTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtroTxtActionPerformed(evt);
+            }
+        });
+        filtroTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                filtroTxtKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,7 +207,6 @@ public class BooksWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(booksPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
@@ -130,9 +216,16 @@ public class BooksWindow extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(eliminarCategoriaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(atrasBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
+                        .addComponent(atrasBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(mostrarLibrosBtn)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(booksPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(mostrarLibrosBtn)
+                                .addGap(39, 39, 39)
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(filtroTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -147,7 +240,10 @@ public class BooksWindow extends javax.swing.JFrame {
                     .addComponent(eliminarCategoriaBtn)
                     .addComponent(atrasBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mostrarLibrosBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mostrarLibrosBtn)
+                    .addComponent(jLabel2)
+                    .addComponent(filtroTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(booksPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -169,6 +265,22 @@ public class BooksWindow extends javax.swing.JFrame {
     private void mostrarLibrosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarLibrosBtnActionPerformed
         fillPanel();
     }//GEN-LAST:event_mostrarLibrosBtnActionPerformed
+
+    private void filtroTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_filtroTxtActionPerformed
+
+    private void filtroTxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filtroTxtKeyTyped
+    
+        filtroTxt.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyReleased(KeyEvent evt){
+                sorter.setRowFilter(RowFilter.regexFilter("(?i)" + filtroTxt.getText(), LocalData.TITULO));
+            }  
+        });   
+        sorter = new TableRowSorter(bookModel);
+        booksTable.setRowSorter(sorter);
+    }//GEN-LAST:event_filtroTxtKeyTyped
 
     /**
      * @param args the command line arguments
@@ -210,8 +322,40 @@ public class BooksWindow extends javax.swing.JFrame {
     private javax.swing.JPanel booksPane;
     private javax.swing.JComboBox categoriaCb;
     private javax.swing.JButton eliminarCategoriaBtn;
+    private javax.swing.JTextField filtroTxt;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton mostrarLibrosBtn;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        Book book = libros.get(booksTable.rowAtPoint(e.getPoint()));
+        if(book!=null){
+            BookDetails bookDetails = new BookDetails(book);
+            bookDetails.setVisible(true);
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

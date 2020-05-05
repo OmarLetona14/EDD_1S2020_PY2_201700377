@@ -8,7 +8,6 @@ package edd.proyecto2.view;
 import edd.proyecto2.model.Book;
 import edd.proyecto2.model.LocalData;
 import javax.swing.JFrame;
-import javax.swing.WindowConstants;
 
 /**
  *
@@ -43,12 +42,6 @@ public class BookDetails extends javax.swing.JFrame {
             usuarioTxt.setText(staticBook.getUsuario().getNombre() + " " + staticBook.getUsuario().getApellido() + " - " +
                     staticBook.getUsuario().getCarnet());
             categoriaTxt.setText(staticBook.getCategory().getCategoryName());
-            if(LocalData.currentUser==staticBook.getUsuario()){
-                eliminarBtn.setEnabled(true);
-                
-            }else{
-                eliminarBtn.setEnabled(false);
-            }
         }
         
     }
@@ -66,7 +59,6 @@ public class BookDetails extends javax.swing.JFrame {
         isbnTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         tituloTxt = new javax.swing.JTextField();
-        eliminarBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         autorTxt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -75,7 +67,6 @@ public class BookDetails extends javax.swing.JFrame {
         edicionTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         idiomaTxt = new javax.swing.JTextField();
-        atrasBtn = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         usuarioTxt = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -94,8 +85,6 @@ public class BookDetails extends javax.swing.JFrame {
         tituloTxt.setEditable(false);
         tituloTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        eliminarBtn.setText("Eliminar");
-
         jLabel3.setText("Autor");
         jLabel3.setToolTipText("");
 
@@ -112,8 +101,6 @@ public class BookDetails extends javax.swing.JFrame {
         jLabel6.setText("Idioma");
 
         idiomaTxt.setEditable(false);
-
-        atrasBtn.setText("Atras");
 
         jLabel7.setText("Usuario");
 
@@ -134,41 +121,34 @@ public class BookDetails extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel9))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(usuarioTxt)
-                                    .addComponent(editorialTxt)
-                                    .addComponent(edicionTxt)
-                                    .addComponent(idiomaTxt)
-                                    .addComponent(categoriaTxt, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(anioTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel1))
-                                .addGap(41, 41, 41)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(isbnTxt)
-                                    .addComponent(autorTxt)
-                                    .addComponent(tituloTxt))))
-                        .addGap(18, 28, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(eliminarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                            .addComponent(atrasBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel9))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(usuarioTxt)
+                                .addComponent(editorialTxt)
+                                .addComponent(edicionTxt)
+                                .addComponent(idiomaTxt)
+                                .addComponent(categoriaTxt, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(anioTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel1))
+                            .addGap(41, 41, 41)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(isbnTxt)
+                                .addComponent(autorTxt)
+                                .addComponent(tituloTxt))))
+                    .addComponent(jLabel7))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,14 +156,11 @@ public class BookDetails extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eliminarBtn))
+                    .addComponent(isbnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tituloTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(atrasBtn)))
+                    .addComponent(tituloTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -212,7 +189,7 @@ public class BookDetails extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(categoriaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -255,12 +232,10 @@ public class BookDetails extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField anioTxt;
-    private javax.swing.JButton atrasBtn;
     private javax.swing.JTextField autorTxt;
     private javax.swing.JTextField categoriaTxt;
     private javax.swing.JTextField edicionTxt;
     private javax.swing.JTextField editorialTxt;
-    private javax.swing.JButton eliminarBtn;
     private javax.swing.JTextField idiomaTxt;
     private javax.swing.JTextField isbnTxt;
     private javax.swing.JLabel jLabel1;

@@ -3,29 +3,33 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/CardExample.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/UserProfile.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/node/NodeCategory.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/node/NodeUser.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/files/JSONFileUpload.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/model/Category.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/LibraryDashboard.java</file>
+            <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/BooksWindow.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/model/User.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/model/LocalData.java</file>
+            <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/DeleteBookMenu.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/structure/AVLTreeCategory.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/structure/UserHashTable.java</file>
+            <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/ReportBookPerCategory.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/node/NodeBook.java</file>
-            <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/CardBook.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/helper/MD5Password.java</file>
+            <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/BookDetailsButton.java</file>
+            <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/BookDetails.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/structure/BTreeBook.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/SignUpUser.java</file>
-            <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/BookCard.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/model/Book.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/Login.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/structure/SimplyLinkedListUser.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/InsertBook.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/MainWindow.java</file>
+            <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/files/GenerateReport.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/node/LinkedStack.java</file>
+            <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/ReportDashboard.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/UserDashboard.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/InsertCategory.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/EDDProyecto2.java</file>
