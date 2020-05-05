@@ -5,6 +5,7 @@
  */
 package edd.proyecto2.view;
 
+import edd.proyecto2.helper.CryptoMD5;
 import edd.proyecto2.model.LocalData;
 import edd.proyecto2.model.User;
 import javax.swing.JOptionPane;
@@ -24,6 +25,14 @@ public class SignUpUser extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+    }
+    
+    private void clear(){
+        carnetTxt.setText("");
+        nombreTxt.setText("");
+        apellidoTxt.setText("");
+        carreraTxt.setText("");
+        passwordTxt.setText("");
     }
 
     /**
@@ -199,21 +208,27 @@ public class SignUpUser extends javax.swing.JFrame {
             }
             if(passwordTxt.getPassword().length>1 && !insertError){
                 String pass = new String(passwordTxt.getPassword());
-                user.setPassword(pass);
+                user.setPassword(CryptoMD5.encriptar(pass));
             }else{
                 JOptionPane.showMessageDialog(this, "Debe introducir una contrasenia valida", "Error en el registro", JOptionPane.ERROR_MESSAGE);
                 insertError = true;
             }
             if(!insertError){
-                LocalData.users.insert(user);
-                JOptionPane.showMessageDialog(this, "Usuario registrado correctamente", "Usuario registrado", JOptionPane.INFORMATION_MESSAGE);
-                this.dispose();
-                Login login = new Login();
-                login.setVisible(true);
+                if(LocalData.users.insert(user)){
+                    JOptionPane.showMessageDialog(this, "Usuario registrado correctamente", "Usuario registrado", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
+                    Login login = new Login();
+                    login.setVisible(true);
+                    return;
+                }else{
+                    JOptionPane.showMessageDialog(this, "El usuario " + user.getCarnet() + " ya esta registrado", 
+                            "Error en el registro", JOptionPane.ERROR_MESSAGE);
+                } 
             }  
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Ocurrio un error al registrar el usuario", "Error en el registro", JOptionPane.ERROR_MESSAGE);
         }
+        clear();
     }
     
     /**

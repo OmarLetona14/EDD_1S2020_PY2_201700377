@@ -26,10 +26,13 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="cargaMasivaBtn" max="32767" attributes="0"/>
-                  <Component id="atrasBtn" max="32767" attributes="0"/>
-                  <Component id="verLibrosBtn" max="32767" attributes="0"/>
-                  <Component id="agregarLibro" max="32767" attributes="0"/>
+                  <Component id="eliminarLibroBtn" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="cargaMasivaBtn" max="32767" attributes="0"/>
+                      <Component id="atrasBtn" max="32767" attributes="0"/>
+                      <Component id="verLibrosBtn" max="32767" attributes="0"/>
+                      <Component id="agregarLibro" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="49" max="32767" attributes="0"/>
           </Group>
@@ -39,14 +42,16 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="verLibrosBtn" min="-2" max="-2" attributes="0"/>
+              <Component id="verLibrosBtn" min="-2" pref="53" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="agregarLibro" min="-2" max="-2" attributes="0"/>
+              <Component id="agregarLibro" min="-2" pref="52" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="cargaMasivaBtn" min="-2" max="-2" attributes="0"/>
+              <Component id="eliminarLibroBtn" min="-2" pref="49" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="atrasBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="cargaMasivaBtn" min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="atrasBtn" min="-2" pref="49" max="-2" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -82,6 +87,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregarLibroActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="eliminarLibroBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Eliminar libro"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarLibroBtnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

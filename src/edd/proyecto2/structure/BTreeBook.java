@@ -289,11 +289,11 @@ public class BTreeBook {
                     if(elem instanceof Book){
                         Book b = (Book)elem;
                         if(elements!=1){
-                            content += b.getTitulo()+ " /n" + b.getISBN() + " | ";
+                            content += b.getTitulo()+ " \n" + b.getISBN() + " | ";
                             elements--;
                         }
                         else
-                            content += b.getTitulo() + " /n"+ b.getISBN() + " ";
+                            content += b.getTitulo() + " \n"+ b.getISBN() + " ";
                     }else if(elem instanceof Integer){
                         if(elements!=1){
                             content += elem + " | ";

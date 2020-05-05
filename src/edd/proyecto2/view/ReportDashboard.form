@@ -36,14 +36,17 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="lagOperacionesBtn" max="32767" attributes="0"/>
-                  <Component id="listaNodosBtn" max="32767" attributes="0"/>
-                  <Component id="inOrdenBtn" max="32767" attributes="0"/>
-                  <Component id="postOrdenBtn" max="32767" attributes="0"/>
-                  <Component id="preOrdenBtn" max="32767" attributes="0"/>
-                  <Component id="usuariosBtn" max="32767" attributes="0"/>
-                  <Component id="arbolbBtn" pref="165" max="32767" attributes="0"/>
-                  <Component id="arbolALVbtn" max="32767" attributes="0"/>
+                  <Component id="backBtn" pref="165" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="lagOperacionesBtn" max="32767" attributes="0"/>
+                      <Component id="listaNodosBtn" max="32767" attributes="0"/>
+                      <Component id="inOrdenBtn" max="32767" attributes="0"/>
+                      <Component id="postOrdenBtn" max="32767" attributes="0"/>
+                      <Component id="preOrdenBtn" max="32767" attributes="0"/>
+                      <Component id="usuariosBtn" max="32767" attributes="0"/>
+                      <Component id="arbolbBtn" pref="165" max="32767" attributes="0"/>
+                      <Component id="arbolALVbtn" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="42" max="32767" attributes="0"/>
           </Group>
@@ -68,7 +71,9 @@
               <Component id="listaNodosBtn" min="-2" pref="52" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="lagOperacionesBtn" min="-2" pref="53" max="-2" attributes="0"/>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="backBtn" min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace pref="36" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -128,6 +133,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Lag de operaciones"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="backBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Atras"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

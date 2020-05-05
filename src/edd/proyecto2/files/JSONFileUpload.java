@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import edd.proyecto2.helper.MD5Password;
+import edd.proyecto2.helper.CryptoMD5;
 import edd.proyecto2.model.Book;
 import edd.proyecto2.model.Category;
 import edd.proyecto2.model.LocalData;
@@ -25,7 +25,7 @@ import java.io.IOException;
  */
 public class JSONFileUpload {
     private Gson gson;
-    private MD5Password encrypt;
+    private CryptoMD5 encrypt;
     private Category currentCategory;
     
     private String read(String filename){
@@ -107,7 +107,7 @@ public class JSONFileUpload {
             JsonArray usuarios = usuariosJSON.getAsJsonArray();
             for(JsonElement e: usuarios){
                 User user = new User();
-                String userPassword = MD5Password.encriptar(e.getAsJsonObject().get("Password").getAsString());
+                String userPassword = CryptoMD5.encriptar(e.getAsJsonObject().get("Password").getAsString());
                 user.setCarnet(e.getAsJsonObject().get("Carnet").getAsInt());
                 user.setNombre(e.getAsJsonObject().get("Nombre").getAsString());
                 user.setApellido(e.getAsJsonObject().get("Apellido").getAsString());

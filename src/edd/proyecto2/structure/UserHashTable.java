@@ -63,22 +63,26 @@ public class UserHashTable {
         return carnet%getSize();
     }
     
-    public void insert(User student){
+    public boolean insert(User student){
         if(student !=null){
-            int index = hashFunction(student);
-            if(isEmpty(index)){
-                System.out.println("El usuario: " + 
-                        student.getNombre() +" fue asignado a la posicion " + index);
-                listUsers = new SimplyLinkedListUser();
-                listUsers.addToFinal(student);
-                this.listOfUsers[hashFunction(student)] = listUsers;
-            }else{
-                System.out.println("El usuario: " + 
-                        student.getNombre() +" fue asignado a la posicion " + index);
-                getListByIndex(index).addToFinal(student);
+            if(searchUser(String.valueOf(student.getCarnet()))==null){
+                int index = hashFunction(student);
+                if(isEmpty(index)){
+                    System.out.println("El usuario: " + 
+                            student.getNombre() +" fue asignado a la posicion " + index);
+                    listUsers = new SimplyLinkedListUser();
+                    listUsers.addToFinal(student);
+                    this.listOfUsers[hashFunction(student)] = listUsers;
+                    return true;
+                }else{
+                    System.out.println("El usuario: " + 
+                            student.getNombre() +" fue asignado a la posicion " + index);
+                    getListByIndex(index).addToFinal(student);
+                }
+                System.out.println("Usuario agregado correctamente");
             }
-            System.out.println("Usuario agregado correctamente");
         }
+        return false;
     }
     
     public void edit(String carnet, User user){

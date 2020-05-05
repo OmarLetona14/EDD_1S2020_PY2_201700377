@@ -19,7 +19,7 @@ import org.apache.commons.codec.binary.Base64;
  *
  * @author Omar
  */
-public class MD5Password {
+public class CryptoMD5 {
     
     public static String encriptar(String texto) {
         String secretKey = "qualityinfosolutions"; //llave para encriptar datos

@@ -5,7 +5,7 @@
  */
 package edd.proyecto2.view;
 
-import edd.proyecto2.helper.MD5Password;
+import edd.proyecto2.helper.CryptoMD5;
 import edd.proyecto2.model.LocalData;
 import edd.proyecto2.model.User;
 import java.util.logging.Level;
@@ -37,7 +37,7 @@ public class UserProfile extends javax.swing.JFrame {
             nombreTxt.setText(loggedUser.getNombre());
             apellidoTxt.setText(loggedUser.getApellido());
             carreraTxt.setText(loggedUser.getCarrera());
-            passwordTxt.setText(MD5Password.desencriptar(loggedUser.getPassword()));
+            passwordTxt.setText(CryptoMD5.desencriptar(loggedUser.getPassword()));
         } catch (Exception ex) {
             Logger.getLogger(UserProfile.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -182,7 +182,7 @@ public class UserProfile extends javax.swing.JFrame {
         loggedUser.setApellido(apellidoTxt.getText());
         loggedUser.setCarrera(carreraTxt.getText());
         String pass = new String(passwordTxt.getPassword());
-        String encryptedPassword = MD5Password.encriptar(pass);
+        String encryptedPassword = CryptoMD5.encriptar(pass);
         loggedUser.setPassword(encryptedPassword);
         LocalData.users.edit(String.valueOf(loggedUser.getCarnet()), loggedUser);
         JOptionPane.showMessageDialog(this, "Usuario editado correctamente", "Editado", JOptionPane.INFORMATION_MESSAGE);

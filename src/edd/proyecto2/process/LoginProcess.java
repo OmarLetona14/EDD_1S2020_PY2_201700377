@@ -5,7 +5,7 @@
  */
 package edd.proyecto2.process;
 
-import edd.proyecto2.helper.MD5Password;
+import edd.proyecto2.helper.CryptoMD5;
 import edd.proyecto2.model.LocalData;
 import edd.proyecto2.model.User;
 import edd.proyecto2.view.UserDashboard;
@@ -25,7 +25,7 @@ public class LoginProcess {
         userLogger = LocalData.users.searchUser(carnet);
         if(userLogger!=null){
             try {
-                String descryptPassword = MD5Password.desencriptar(userLogger.getPassword());
+                String descryptPassword = CryptoMD5.desencriptar(userLogger.getPassword());
                 if(password.equals(descryptPassword)){
                     LocalData.currentUser = userLogger;
                     JOptionPane.showMessageDialog(window, "Bienvenido " + userLogger.getNombre() + " " +userLogger.getApellido(),

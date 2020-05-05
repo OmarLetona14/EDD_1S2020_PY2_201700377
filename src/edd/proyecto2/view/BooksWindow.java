@@ -96,16 +96,16 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
         booksTable.getTableHeader().setReorderingAllowed(false);
         booksTable.setRowHeight(25);//tamaño de las celdas
         booksTable.setGridColor(new java.awt.Color(0, 0, 0));
-        booksTable.getColumnModel().getColumn(LocalData.ISBN).setPreferredWidth(150);
-        booksTable.getColumnModel().getColumn(LocalData.TITULO).setPreferredWidth(400);
-        booksTable.getColumnModel().getColumn(LocalData.AUTOR).setPreferredWidth(250);
-        booksTable.getColumnModel().getColumn(LocalData.EDITORIAL).setPreferredWidth(400);
-        booksTable.getColumnModel().getColumn(LocalData.ANIO).setPreferredWidth(150);
-        booksTable.getColumnModel().getColumn(LocalData.EDICION).setPreferredWidth(150);
-        booksTable.getColumnModel().getColumn(LocalData.IDIOMA).setPreferredWidth(400);
-        booksTable.getColumnModel().getColumn(LocalData.USUARIO).setPreferredWidth(400);
-        booksTable.getColumnModel().getColumn(LocalData.CATEGORIA).setPreferredWidth(400);
-        booksTable.getColumnModel().getColumn(LocalData.DETALLES).setPreferredWidth(400);
+        booksTable.getColumnModel().getColumn(LocalData.ISBN).setPreferredWidth(300);
+        booksTable.getColumnModel().getColumn(LocalData.TITULO).setPreferredWidth(800);
+        booksTable.getColumnModel().getColumn(LocalData.AUTOR).setPreferredWidth(500);
+        booksTable.getColumnModel().getColumn(LocalData.EDITORIAL).setPreferredWidth(800);
+        booksTable.getColumnModel().getColumn(LocalData.ANIO).setPreferredWidth(300);
+        booksTable.getColumnModel().getColumn(LocalData.EDICION).setPreferredWidth(300);
+        booksTable.getColumnModel().getColumn(LocalData.IDIOMA).setPreferredWidth(800);
+        booksTable.getColumnModel().getColumn(LocalData.USUARIO).setPreferredWidth(800);
+        booksTable.getColumnModel().getColumn(LocalData.CATEGORIA).setPreferredWidth(800);
+        booksTable.getColumnModel().getColumn(LocalData.DETALLES).setPreferredWidth(800);
         JTableHeader jtableHeader = booksTable.getTableHeader();
         jtableHeader.setDefaultRenderer(new HeaderManagement());
         booksTable.setTableHeader(jtableHeader);
@@ -180,11 +180,11 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
         booksPane.setLayout(booksPaneLayout);
         booksPaneLayout.setHorizontalGroup(
             booksPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         booksPaneLayout.setVerticalGroup(
             booksPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 399, Short.MAX_VALUE)
+            .addGap(0, 495, Short.MAX_VALUE)
         );
 
         jLabel2.setText("Filtro");
@@ -207,6 +207,7 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(booksPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
@@ -216,16 +217,13 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
                         .addGap(18, 18, 18)
                         .addComponent(eliminarCategoriaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(atrasBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
+                        .addComponent(atrasBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(booksPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(mostrarLibrosBtn)
-                                .addGap(39, 39, 39)
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(filtroTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(mostrarLibrosBtn)
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(filtroTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
