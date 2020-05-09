@@ -63,8 +63,10 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
     
     private void fillPanel(){
         booksPane.repaint();
+        
         if(LocalData.currentUser.getCategories().searchNode(categoriaCb.getSelectedItem().toString(), LocalData.currentUser.getRoot(), null)!=null){
             category = LocalData.currentUser.getCategories().searchNode(categoriaCb.getSelectedItem().toString(), LocalData.currentUser.getRoot(), null).getValue();
+            
             libros = category.getBooks().getAllBooks();
             
         }else{

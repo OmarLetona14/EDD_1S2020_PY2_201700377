@@ -72,6 +72,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Conectarse a biblioteca virtual"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bibliotecaVirtualBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="editarPerfilBtn">
       <Properties>
@@ -94,6 +97,9 @@
         <Property name="text" type="java.lang.String" value="Configuracion de conexion remota"/>
         <Property name="actionCommand" type="java.lang.String" value=""/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="conexionRemotaBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="reporteBtn">
       <Properties>

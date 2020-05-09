@@ -5,15 +5,26 @@
  */
 package edd.proyecto2.view;
 
+import edd.proyecto2.files.GenerateFile;
+import edd.proyecto2.model.LocalData;
+import edd.proyecto2.model.Peer;
+import edd.proyecto2.network.Blockchain;
+import edd.proyecto2.network.ServerThread;
+import edd.proyecto2.structure.SimplyLinkedListPeer;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Omar
  */
 public class UserDashboard extends javax.swing.JFrame {
-
+    
+    private Blockchain blockchain;
     /**
      * Creates new form UserDashboard
      */
+    
     public UserDashboard() {
         initComponents();
         setLocationRelativeTo(null);
@@ -46,6 +57,11 @@ public class UserDashboard extends javax.swing.JFrame {
         });
 
         bibliotecaVirtualBtn.setText("Conectarse a biblioteca virtual");
+        bibliotecaVirtualBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bibliotecaVirtualBtnActionPerformed(evt);
+            }
+        });
 
         editarPerfilBtn.setText("Editar perfil");
         editarPerfilBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -63,6 +79,11 @@ public class UserDashboard extends javax.swing.JFrame {
 
         conexionRemotaBtn.setText("Configuracion de conexion remota");
         conexionRemotaBtn.setActionCommand("");
+        conexionRemotaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                conexionRemotaBtnActionPerformed(evt);
+            }
+        });
 
         reporteBtn.setText("Reportes");
         reporteBtn.setToolTipText("");
@@ -133,6 +154,27 @@ public class UserDashboard extends javax.swing.JFrame {
         reports.setVisible(true);
     }//GEN-LAST:event_reporteBtnActionPerformed
 
+    private void conexionRemotaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conexionRemotaBtnActionPerformed
+        this.dispose();
+        RemoteConfiguration remote = new RemoteConfiguration();
+        remote.setVisible(true);
+    }//GEN-LAST:event_conexionRemotaBtnActionPerformed
+
+    private void bibliotecaVirtualBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaVirtualBtnActionPerformed
+        if(LocalData.remote !=null){
+            blockchain = new Blockchain();
+            blockchain.connect();
+            blockchain.registerNode();
+            BooksWindow books = new BooksWindow();
+            books.setVisible(true);
+            ServerThread serverThread = new ServerThread(LocalData.remote.getPort());
+            serverThread.start();
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe configurar un puerto y una ip", "Error de conexion", JOptionPane.WARNING_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_bibliotecaVirtualBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -161,10 +203,8 @@ public class UserDashboard extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UserDashboard().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new UserDashboard().setVisible(true);
         });
     }
 

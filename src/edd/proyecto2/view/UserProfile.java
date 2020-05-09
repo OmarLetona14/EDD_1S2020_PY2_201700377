@@ -169,12 +169,14 @@ public class UserProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_atrasBtnActionPerformed
 
     private void deleteUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserBtnActionPerformed
-        JOptionPane.showMessageDialog(this, "Se eliminaran todos los datos asociados con su cuenta, desea proceder?",
+        int option = JOptionPane.showConfirmDialog(this, "Se eliminaran todos los datos asociados con su cuenta, desea proceder?",
                 "Eliminacion de cuenta", JOptionPane.WARNING_MESSAGE);
-        LocalData.users.deleteUser(String.valueOf(loggedUser.getCarnet()));
-        this.dispose();
-        Login login = new Login();
-        login.setVisible(true);
+        if(option==0){
+            LocalData.users.deleteUser(String.valueOf(loggedUser.getCarnet()));
+            this.dispose();
+            Login login = new Login();
+            login.setVisible(true);
+        }
     }//GEN-LAST:event_deleteUserBtnActionPerformed
 
     private void editarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarBtnActionPerformed

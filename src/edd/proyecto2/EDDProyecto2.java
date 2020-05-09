@@ -5,6 +5,7 @@
  */
 package edd.proyecto2;
 
+import edd.proyecto2.files.GenerateFile;
 import edd.proyecto2.view.MainWindow;
 
 /**
