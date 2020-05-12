@@ -21,8 +21,10 @@
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/node/NodeBook.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/BookDetailsButton.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/BookDetails.java</file>
+            <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/network/ClientThread.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/structure/BTreeBook.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/SignUpUser.java</file>
+            <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/files/GenerateFile.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/model/Book.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/Login.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/table/HeaderManagement.java</file>
@@ -34,10 +36,13 @@
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/helper/CryptoMD5.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/node/LinkedStack.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/ReportDashboard.java</file>
+            <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/model/Peer.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/table/BookTableModel.java</file>
-            <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/UserDashboard.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/view/InsertCategory.java</file>
+            <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/network/Blockchain.java</file>
+            <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/network/ServerThread.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/EDDProyecto2.java</file>
+            <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/process/StopProgram.java</file>
             <file>file:/C:/Users/Omar/Documents/Omar/7mo%20semestre/Estructuras%20de%20datos/%5BEDD%5DProyecto2/src/edd/proyecto2/process/LoginProcess.java</file>
         </group>
     </open-files>

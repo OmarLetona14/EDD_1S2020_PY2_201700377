@@ -6,8 +6,10 @@
 package edd.proyecto2.view;
 
 import edd.proyecto2.files.JSONFileUpload;
+import edd.proyecto2.process.StopProgram;
 import java.awt.FileDialog;
 import java.io.File;
+import java.util.Set;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,6 +41,14 @@ public class MainWindow extends javax.swing.JFrame {
         loginBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         cargaMasivaBtn.setText("Carga Masiva");
         cargaMasivaBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -104,6 +114,14 @@ public class MainWindow extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_cargaMasivaBtnActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        StopProgram.stop();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

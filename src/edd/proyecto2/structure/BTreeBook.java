@@ -6,6 +6,8 @@
 package edd.proyecto2.structure;
 
 import edd.proyecto2.model.Book;
+import edd.proyecto2.model.JsonBook;
+import edd.proyecto2.model.JsonUser;
 import edd.proyecto2.node.LinkedStack;
 import edd.proyecto2.node.NodeBook;
 import java.util.ArrayList;
@@ -34,6 +36,8 @@ public class BTreeBook {
     private NodeBook root;
     private String content;
     private List<Book> books;
+    private List<JsonBook> jsonBooks;
+   
 
     public BTreeBook (int k) {
     // Construct an empty B-tree of arity k.
@@ -56,6 +60,18 @@ public class BTreeBook {
             else
                 curr = curr.childs[pos];
         }
+    }
+    
+    public List<JsonBook> getAllJsonBooks(){
+        jsonBooks = new ArrayList();
+        books = new ArrayList();
+        books = getAll(root);
+        for(Book b: books){
+            JsonBook Jsonbook = new JsonBook(b.getISBN(), b.getTitulo(), b.getAutor(), b.getEditorial(), b.getAnio(), b.getEdicion(), b.getIdioma()
+            , String.valueOf(b.getUsuario().getCarnet()), b.getCategory().getCategoryName());
+            jsonBooks.add(Jsonbook);
+        }
+        return jsonBooks;
     }
     
     public List<Book> getAllBooks(){

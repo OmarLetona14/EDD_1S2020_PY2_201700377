@@ -5,6 +5,7 @@
  */
 package edd.proyecto2.model;
 
+import edd.proyecto2.node.NodeCategory;
 import edd.proyecto2.structure.AVLTreeCategory;
 import edd.proyecto2.structure.SimplyLinkedListPeer;
 import edd.proyecto2.structure.UserHashTable;
@@ -18,6 +19,8 @@ public class LocalData {
     public static UserHashTable users = new UserHashTable(45); 
     public static SimplyLinkedListPeer peers;
     public static AVLTreeCategory virtualLibrary;
+    public static NodeCategory virtualRoot;
+    public static Peer currentPeer;
     public static User currentUser;
     public static RemoteConfig remote;
     public static final int ISBN = 0;

@@ -10,6 +10,8 @@ import edd.proyecto2.model.LocalData;
 import edd.proyecto2.model.Peer;
 import edd.proyecto2.network.Blockchain;
 import edd.proyecto2.network.ServerThread;
+import edd.proyecto2.node.NodeCategory;
+import edd.proyecto2.structure.AVLTreeCategory;
 import edd.proyecto2.structure.SimplyLinkedListPeer;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -159,16 +161,25 @@ public class UserDashboard extends javax.swing.JFrame {
         RemoteConfiguration remote = new RemoteConfiguration();
         remote.setVisible(true);
     }//GEN-LAST:event_conexionRemotaBtnActionPerformed
-
+    private void syncLocalData(){
+        LocalData.virtualLibrary = new AVLTreeCategory();
+        LocalData.currentUser.getCategories().getAll(LocalData.currentUser.getRoot()).stream().filter((c) -> (c!=null)).forEach((c) -> {
+            LocalData.virtualRoot = LocalData.virtualLibrary.insert( LocalData.virtualRoot, c);
+            LocalData.virtualLibrary.syncRoot(LocalData.virtualRoot);
+        });
+    }
     private void bibliotecaVirtualBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaVirtualBtnActionPerformed
+
         if(LocalData.remote !=null){
-            blockchain = new Blockchain();
-            blockchain.connect();
-            blockchain.registerNode();
-            BooksWindow books = new BooksWindow();
-            books.setVisible(true);
             ServerThread serverThread = new ServerThread(LocalData.remote.getPort());
             serverThread.start();
+            syncLocalData();
+            blockchain = new Blockchain();
+            blockchain.sync();
+            blockchain.registerPeer();
+            this.dispose();
+            BooksWindow books = new BooksWindow(LocalData.virtualLibrary);
+            books.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(this, "Debe configurar un puerto y una ip", "Error de conexion", JOptionPane.WARNING_MESSAGE);
         }

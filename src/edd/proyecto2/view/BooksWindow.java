@@ -8,6 +8,7 @@ package edd.proyecto2.view;
 import edd.proyecto2.model.Book;
 import edd.proyecto2.model.Category;
 import edd.proyecto2.model.LocalData;
+import edd.proyecto2.structure.AVLTreeCategory;
 import edd.proyecto2.table.BookTableModel;
 import edd.proyecto2.table.CellManagement;
 import edd.proyecto2.table.HeaderManagement;
@@ -17,6 +18,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -38,18 +40,24 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
     private int filasTabla, columnasTabla;
     private JScrollPane scrollPane; 
     private TableRowSorter sorter = null; 
- 
+    private static AVLTreeCategory currentData;
+    private static JFrame currentWindow;
     /**
      * Creates new form BooksWindow
+     * @param _currentData
      */
-    public BooksWindow() {
+    public BooksWindow(AVLTreeCategory _currentData) {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         initWindow();
+        currentData = _currentData;
+        
+       
     }
     
     private void initWindow(){
+        currentWindow =this;
         scrollPane = new JScrollPane();
         scrollPane.setSize(booksPane.getWidth(), booksPane.getHeight());
         booksPane.add(scrollPane);
@@ -62,23 +70,22 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
     }
     
     private void fillPanel(){
-        booksPane.repaint();
-        
-        if(LocalData.currentUser.getCategories().searchNode(categoriaCb.getSelectedItem().toString(), LocalData.currentUser.getRoot(), null)!=null){
-            category = LocalData.currentUser.getCategories().searchNode(categoriaCb.getSelectedItem().toString(), LocalData.currentUser.getRoot(), null).getValue();
-            
-            libros = category.getBooks().getAllBooks();
-            
+        if(currentData.searchNode(categoriaCb.getSelectedItem().toString(), currentData.getRoot(), null)!=null){
+            category = currentData.searchNode(categoriaCb.getSelectedItem().toString(), currentData.getRoot(), null).getValue();
+            libros = category.getBooks().getAllBooks();       
         }else{
             JOptionPane.showMessageDialog(this, "No hay libros asociados a esta categoria", "Error", JOptionPane.ERROR_MESSAGE);
         }
         fillTable();
     }
     
+    public static void closeWindow(){
+        currentWindow.dispose();
+    }
+    
     private void fillTable(){
         booksTable = new JTable();
         booksTable.addMouseListener(this);
-       // booksTable.addMouseListener(this);
         String[] titulos_tabla = {"ISBN", "Titulo", "Autor", "Editorial", "Anio", "Edicion", "Idioma", "Usuario propietario", "Categoria"," "};
         Object[][] datos = obtainMatrix();
         bookModel = new BookTableModel(datos, titulos_tabla);
@@ -124,8 +131,7 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
             information[i][LocalData.ANIO] = String.valueOf(libros.get(i).getAnio());
             information[i][LocalData.EDICION] = String.valueOf(libros.get(i).getEdicion());
             information[i][LocalData.IDIOMA] = String.valueOf(libros.get(i).getIdioma());
-            information[i][LocalData.USUARIO] = libros.get(i).getUsuario().getNombre() + " "+libros.get(i).getUsuario().getApellido()
-                    + " " + libros.get(i).getUsuario().getCarnet();
+            information[i][LocalData.USUARIO] = String.valueOf(libros.get(i).getUsuario().getCarnet());
             information[i][LocalData.CATEGORIA] = libros.get(i).getCategory().getCategoryName();
         }
         return information;
@@ -151,6 +157,11 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
         filtroTxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setText("Seleccione la categoria");
 
@@ -282,6 +293,10 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
         booksTable.setRowSorter(sorter);
     }//GEN-LAST:event_filtroTxtKeyTyped
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+
+    }//GEN-LAST:event_formWindowClosed
+
     /**
      * @param args the command line arguments
      */
@@ -310,10 +325,9 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BooksWindow().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new BooksWindow(currentData).setVisible(true);
+            
         });
     }
 

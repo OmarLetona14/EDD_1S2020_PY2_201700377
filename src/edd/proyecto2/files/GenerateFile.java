@@ -6,10 +6,16 @@
 package edd.proyecto2.files;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import edd.proyecto2.model.Peer;
+import edd.proyecto2.model.RemoteConfig;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,6 +31,7 @@ import java.util.logging.Logger;
  */
 public class GenerateFile {
     
+    private FileReader reader;
     private FileWriter fileWriter;
     private PrintWriter printw;
     private Gson gson;
@@ -40,6 +47,18 @@ public class GenerateFile {
             fileWriter = new FileWriter(newFile);
             printw = new PrintWriter(fileWriter);
             printw.append(content);
+            printw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(GenerateReport.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void writePeersFile(String filename, String content){
+        try {
+            File newFile = new File(filename);
+            fileWriter = new FileWriter(newFile);
+            printw = new PrintWriter(fileWriter);
+            printw.println(content);
             printw.close();
         } catch (IOException ex) {
             Logger.getLogger(GenerateReport.class.getName()).log(Level.SEVERE, null, ex);
@@ -63,11 +82,28 @@ public class GenerateFile {
     
     public List<Peer> getPeers(String filename){
         List<Peer> peers = new ArrayList();
-        gson = new Gson();
-        File testFile = new File(getTemp() + filename);
-        if(testFile.exists()){
-            String jsonString = readFile(getTemp() + filename);
-            peers = gson.fromJson(jsonString, new TypeToken<List<Peer>>() {}.getType());
+        try {
+            File testFile = new File(filename);
+            JsonParser parser = new JsonParser();
+            if(testFile.exists()){
+                 reader = new FileReader(filename);
+                JsonElement datos = parser.parse(reader);
+                if(!datos.toString().equals("")){
+                    JsonArray peersArray = datos.getAsJsonArray();
+                    for(JsonElement e: peersArray){
+                        Peer peer = new Peer();
+                        RemoteConfig remote = new RemoteConfig();
+                        JsonElement remotejson = e.getAsJsonObject().get("remoteConfig");
+                        remote.setPort(remotejson.getAsJsonObject().get("port").getAsInt());
+                        remote.setIp(remotejson.getAsJsonObject().get("ip").getAsString());
+                        peer.setIdPeer(e.getAsJsonObject().get("idPeer").getAsInt());
+                        peer.setRemoteConfig(remote);
+                        peers.add(peer);
+                    }
+                }
+            }
+        } catch (Exception  ex) {
+            Logger.getLogger(GenerateFile.class.getName()).log(Level.SEVERE, null, ex);
         }
         return peers;
     }

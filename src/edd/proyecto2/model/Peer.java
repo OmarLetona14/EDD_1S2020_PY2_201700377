@@ -15,6 +15,8 @@ public class Peer {
         this.idPeer = idPeer;
         this.remoteConfig = remoteConfig;
     }
+    
+    public Peer(){}
 
     public int getIdPeer() {
         return idPeer;

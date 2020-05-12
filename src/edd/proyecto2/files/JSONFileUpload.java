@@ -8,16 +8,23 @@ package edd.proyecto2.files;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonIOException;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import edd.proyecto2.helper.CryptoMD5;
 import edd.proyecto2.model.Book;
 import edd.proyecto2.model.Category;
 import edd.proyecto2.model.LocalData;
 import edd.proyecto2.model.User;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,31 +56,61 @@ public class JSONFileUpload {
         try{
             gson = new Gson();
             JsonParser parser = new JsonParser();
-            fr = new FileReader(filename);
-            JsonElement datos = parser.parse(fr);
-            JsonElement librosJson = datos.getAsJsonObject().get("libros");
-            JsonArray libros = librosJson.getAsJsonArray();
+            try{fr = new FileReader(filename);}catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Ocurrio un error al cargar el archivo" + e.getMessage(), 
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            JsonArray libros = null;
+            try{
+                JsonElement datos = parser.parse(fr);
+                String d = datos.toString().replace('ñ', 'n');
+                datos = parser.parse(d);
+                JsonElement librosJson = datos.getAsJsonObject().get("libros");
+                libros = librosJson.getAsJsonArray();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Ocurrio un error al cargar el archivo" + e.getMessage(), 
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
             for(JsonElement e: libros){
-                Book book = new Book();
-                book.setISBN(e.getAsJsonObject().get("ISBN").getAsInt());
-                book.setTitulo(e.getAsJsonObject().get("Titulo").getAsString());
-                book.setAutor(e.getAsJsonObject().get("Autor").getAsString());
-                book.setAnio(e.getAsJsonObject().get("Año").getAsInt());
-                book.setEditorial(e.getAsJsonObject().get("Editorial").getAsString());
-                book.setEdicion(e.getAsJsonObject().get("Edicion").getAsInt());
-                book.setIdioma(e.getAsJsonObject().get("Idioma").getAsString());
-                currentCategory = searchCategory(e);
-                if(currentCategory==null){
-                    insertCategory(e.getAsJsonObject().get("Categoria").getAsString());
+                if(e!=null){
+                    Book book = new Book();
+                   
+                    book.setISBN(e.getAsJsonObject().get("ISBN").getAsInt());
+                    book.setTitulo(e.getAsJsonObject().get("Titulo").getAsString());
+                    book.setAutor(e.getAsJsonObject().get("Autor").getAsString());
+                    if(e.getAsJsonObject().get("Ano")!=null){
+                        book.setAnio(e.getAsJsonObject().get("Ano").getAsInt());
+                    }else if(e.getAsJsonObject().get("Anio")!=null){
+                        book.setAnio(e.getAsJsonObject().get("Anio").getAsInt());
+                    }
+                    book.setEditorial(e.getAsJsonObject().get("Editorial").getAsString());
+                    book.setEdicion(e.getAsJsonObject().get("Edicion").getAsInt());
+                    book.setIdioma(e.getAsJsonObject().get("Idioma").getAsString());
                     currentCategory = searchCategory(e);
+                    if(currentCategory==null){
+                        insertCategory(e.getAsJsonObject().get("Categoria").getAsString());
+                        currentCategory = searchCategory(e);
+                    }
+                    book.setCategory(currentCategory);      
+                    book.setUsuario(LocalData.currentUser);
+                    currentCategory.getBooks().insert(book);
+                    currentCategory.getBooks().print();
                 }
-                book.setCategory(currentCategory);      
-                book.setUsuario(LocalData.currentUser);
-                currentCategory.getBooks().insert(book);
-                currentCategory.getBooks().print();
+               
             }
         }catch(Exception e){
-            System.out.println(e.getMessage());
+            PrintWriter print = null;
+            try {
+                File file = new File("D:\\Users\\Omar\\Desktop\\log.txt");
+                print = new PrintWriter(file);
+                e.printStackTrace(print);
+                JOptionPane.showMessageDialog(null, "Ocurrio un error al cargar los libros " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                System.out.println(e.getMessage());
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(JSONFileUpload.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                print.close();
+            }
         }
     }
     
@@ -91,6 +128,7 @@ public class JSONFileUpload {
             Category newCategory = new Category();
             newCategory.setCategoryName(categoryName);
             LocalData.currentUser.setRoot(LocalData.currentUser.getCategories().insert(LocalData.currentUser.getRoot(), newCategory)); 
+            LocalData.currentUser.getCategories().syncRoot(LocalData.currentUser.getRoot());
         }catch(Exception e){
             System.out.println("Ocurrio un error al intentar ingresar la categoria");
         }

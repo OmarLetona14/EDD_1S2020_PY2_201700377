@@ -11,7 +11,7 @@ package edd.proyecto2.model;
  */
 public class Book implements Comparable <Book>{    
 
-    public Book(Integer ISBN, String titulo, String autor, String editorial, int anio, int edicion, String idioma, User usuario, Category category) {
+    public Book(int ISBN, String titulo, String autor, String editorial, int anio, int edicion, String idioma, User usuario, Category category) {
         this.ISBN = ISBN;
         this.titulo = titulo;
         this.autor = autor;
@@ -26,6 +26,17 @@ public class Book implements Comparable <Book>{
 
     public Integer getISBN() {
         return ISBN;
+    }
+
+    public Book(Integer ISBN, String titulo, String autor, String editorial, int anio, int edicion, String idioma, User usuario) {
+        this.ISBN = ISBN;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.editorial = editorial;
+        this.anio = anio;
+        this.edicion = edicion;
+        this.idioma = idioma;
+        this.usuario = usuario;
     }
 
     public void setISBN(Integer ISBN) {

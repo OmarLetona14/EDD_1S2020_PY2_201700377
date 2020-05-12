@@ -16,6 +16,7 @@ import java.util.List;
  * @author Omar
  */
 public class AVLTreeCategory {
+    private NodeCategory root;
 
     public int getIteracion() {
         return iteracion;
@@ -50,6 +51,14 @@ public class AVLTreeCategory {
             return 0;
         return N.getHeight();
     }
+     
+     public void syncRoot(NodeCategory syncRoot){
+         root = syncRoot;
+     }
+     
+     public NodeCategory getRoot(){
+         return this.root;
+     }
 
     public NodeCategory insert(NodeCategory node, Category value) {
         /* 1.  Perform the normal BST rotation */
@@ -448,6 +457,19 @@ public class AVLTreeCategory {
             searchByName(root.right, categoryName);
         }
         return validation;
+    }
+    
+    public Category searchByCategoryName(NodeCategory root, String categoryName){
+        if(root==null){
+            return null;
+        }else{
+            if(root.value.getCategoryName().equals(categoryName)){
+                return root.value;
+            }
+            searchByName(root.left, categoryName);
+            searchByName(root.right, categoryName);
+        }
+        return null;
     }
 
 }
