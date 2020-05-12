@@ -72,7 +72,6 @@ public class Blockchain {
                 LocalData.peers.addToFinal(p);
             });
         }
-        //spread();
         addLibrary();
     }
     private void addLibrary(){
@@ -85,15 +84,5 @@ public class Blockchain {
             }
         } 
     }
-    
-    private void spread(){
-        NodePeer aux = LocalData.peers.first;
-        while(aux!=null){
-            if(aux.getInfo()!=null){
-                client = new ClientThread(aux.getInfo().getRemoteConfig().getIp(), aux.getInfo().getRemoteConfig().getPort());
-                client.sendBroadcastMessagge(LocalData.currentPeer);
-                aux = aux.getNext();
-            }
-        }
-    }
+   
 }

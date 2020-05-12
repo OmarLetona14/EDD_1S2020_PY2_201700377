@@ -17,6 +17,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -70,9 +71,10 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
     }
     
     private void fillPanel(){
+        libros = new ArrayList();
         if(currentData.searchNode(categoriaCb.getSelectedItem().toString(), currentData.getRoot(), null)!=null){
             category = currentData.searchNode(categoriaCb.getSelectedItem().toString(), currentData.getRoot(), null).getValue();
-            libros = category.getBooks().getAllBooks();       
+            libros.addAll(category.getBooks().getAllBooks());       
         }else{
             JOptionPane.showMessageDialog(this, "No hay libros asociados a esta categoria", "Error", JOptionPane.ERROR_MESSAGE);
         }

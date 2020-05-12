@@ -20,7 +20,7 @@ import javax.swing.JScrollPane;
 public class BookDetailsButton extends JButton implements ActionListener {
     private Book currentBook;
     public BookDetailsButton(Book book){
-        this.setText("Detalles");
+        this.setText("Editar");
         this.setSize(150, 100);
         this.currentBook = book;
         this.addActionListener(this);

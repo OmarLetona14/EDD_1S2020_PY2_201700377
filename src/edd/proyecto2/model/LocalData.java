@@ -16,6 +16,7 @@ import edd.proyecto2.structure.UserHashTable;
  */
 public class LocalData {
     
+    public static boolean localEdit;
     public static UserHashTable users = new UserHashTable(45); 
     public static SimplyLinkedListPeer peers;
     public static AVLTreeCategory virtualLibrary;

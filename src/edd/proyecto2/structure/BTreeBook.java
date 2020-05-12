@@ -76,7 +76,7 @@ public class BTreeBook {
     
     public List<Book> getAllBooks(){
          books  = new ArrayList();
-         books.addAll(getAll(root));
+         getAll(root);
          return books;
     }
     
@@ -327,6 +327,29 @@ public class BTreeBook {
                }
         }
         return content;
+    }
+    
+    public Book searchBookTree(Comparable t){
+        return searchBook(root, t);
+    }
+    
+    private Book searchBook(NodeBook top, Comparable target){
+        if(top==null){
+            return null;
+        }else{
+            for(Comparable b: top.elems){
+                if(b==target){
+                    Book book = (Book)b;
+                    return book;
+                }
+            }
+            for(NodeBook node: top.childs){
+                if(node!=null){
+                    searchBook(node, target);
+                }
+            }
+        }
+        return null;
     }
     
     public int getSizeChildren(Comparable[] elems){

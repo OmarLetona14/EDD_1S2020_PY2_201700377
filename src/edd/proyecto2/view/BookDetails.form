@@ -29,6 +29,19 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="isbnTxt" pref="181" max="32767" attributes="0"/>
+                              <Component id="autorTxt" max="32767" attributes="0"/>
+                              <Component id="tituloTxt" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -36,26 +49,16 @@
                               <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="usuarioTxt" max="32767" attributes="0"/>
-                              <Component id="editorialTxt" max="32767" attributes="0"/>
-                              <Component id="edicionTxt" max="32767" attributes="0"/>
-                              <Component id="idiomaTxt" alignment="0" max="32767" attributes="0"/>
-                              <Component id="categoriaTxt" alignment="1" max="32767" attributes="0"/>
-                              <Component id="anioTxt" alignment="0" pref="181" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="isbnTxt" max="32767" attributes="0"/>
-                              <Component id="autorTxt" max="32767" attributes="0"/>
-                              <Component id="tituloTxt" max="32767" attributes="0"/>
+                              <Component id="editBtn" min="-2" pref="128" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="usuarioTxt" max="32767" attributes="0"/>
+                                  <Component id="editorialTxt" max="32767" attributes="0"/>
+                                  <Component id="edicionTxt" max="32767" attributes="0"/>
+                                  <Component id="idiomaTxt" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="categoriaTxt" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="anioTxt" alignment="0" pref="181" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -113,7 +116,9 @@
                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                   <Component id="categoriaTxt" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="34" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="editBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -136,7 +141,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="tituloTxt">
       <Properties>
-        <Property name="editable" type="boolean" value="false"/>
         <Property name="horizontalAlignment" type="int" value="0"/>
       </Properties>
     </Component>
@@ -147,9 +151,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="autorTxt">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -157,9 +158,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="editorialTxt">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -167,9 +165,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="edicionTxt">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
@@ -177,9 +172,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="idiomaTxt">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
@@ -197,9 +189,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="categoriaTxt">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
@@ -207,9 +196,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="anioTxt">
+    </Component>
+    <Component class="javax.swing.JButton" name="editBtn">
       <Properties>
-        <Property name="editable" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="Editar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
