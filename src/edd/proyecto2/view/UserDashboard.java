@@ -31,6 +31,7 @@ public class UserDashboard extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        LocalData.currentWindow = this;
     }
 
     /**
@@ -164,6 +165,7 @@ public class UserDashboard extends javax.swing.JFrame {
     private void syncLocalData(){
         LocalData.virtualLibrary = new AVLTreeCategory();
         LocalData.currentUser.getCategories().getAll(LocalData.currentUser.getRoot()).stream().filter((c) -> (c!=null)).forEach((c) -> {
+            
             LocalData.virtualRoot = LocalData.virtualLibrary.insert( LocalData.virtualRoot, c);
             LocalData.virtualLibrary.syncRoot(LocalData.virtualRoot);
         });
@@ -171,15 +173,15 @@ public class UserDashboard extends javax.swing.JFrame {
     private void bibliotecaVirtualBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaVirtualBtnActionPerformed
 
         if(LocalData.remote !=null){
+            this.dispose();
+            VirtualLibraryDashboard virtualLibrary = new VirtualLibraryDashboard();
+            virtualLibrary.setVisible(true);
             ServerThread serverThread = new ServerThread(LocalData.remote.getPort());
             serverThread.start();
             syncLocalData();
             blockchain = new Blockchain();
             blockchain.sync();
             blockchain.registerPeer();
-            this.dispose();
-            BooksWindow books = new BooksWindow(LocalData.virtualLibrary);
-            books.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(this, "Debe configurar un puerto y una ip", "Error de conexion", JOptionPane.WARNING_MESSAGE);
         }

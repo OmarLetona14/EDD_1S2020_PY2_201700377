@@ -27,6 +27,7 @@ public class InsertBook extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         initWindow();
+        LocalData.currentWindow = this;
     }
     
     private void initWindow(){

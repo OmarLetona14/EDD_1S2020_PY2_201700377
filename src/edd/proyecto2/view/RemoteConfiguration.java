@@ -23,6 +23,7 @@ public class RemoteConfiguration extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         loadConfiguration();
+        LocalData.currentWindow = this;
     }
     
     private void loadConfiguration(){

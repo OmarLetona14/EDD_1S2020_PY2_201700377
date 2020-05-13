@@ -25,6 +25,7 @@ public class SignUpUser extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        LocalData.currentWindow = this;
     }
     
     private void clear(){

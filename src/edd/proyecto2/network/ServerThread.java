@@ -10,6 +10,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import edd.proyecto2.files.GenerateFile;
+import edd.proyecto2.model.Block;
 import edd.proyecto2.model.Book;
 import edd.proyecto2.model.Category;
 import edd.proyecto2.model.JsonCategory;
@@ -18,7 +19,9 @@ import edd.proyecto2.model.Message;
 import edd.proyecto2.model.NetworkMessagge;
 import edd.proyecto2.model.Options;
 import edd.proyecto2.model.Peer;
+import edd.proyecto2.model.RemoteConfig;
 import edd.proyecto2.model.User;
+import edd.proyecto2.node.NodePeer;
 import edd.proyecto2.structure.AVLTreeCategory;
 import edd.proyecto2.view.BooksWindow;
 import java.io.DataInputStream;
@@ -31,6 +34,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.UnknownHostException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -45,6 +50,7 @@ public class ServerThread extends Thread{
     private int port;
     private String ip;
     private boolean closeConnection;
+    public static boolean flag;
     private ServerSocket serverSocket;
     private Socket incomingSocket;
     private Socket outcomingSocket;
@@ -80,10 +86,6 @@ public class ServerThread extends Thread{
         return "";
     }
     
-    private void addPeers(){
-        
-    }
-    
     private Object reciveData(){
         gson = new Gson();
         Peer peer = null;
@@ -99,6 +101,33 @@ public class ServerThread extends Thread{
             port = portOrigin;
             ip = ipOrigin;
             closeConnection = closeCon;
+            JsonElement chain = jsonElement.getAsJsonObject().get("chain");
+            JsonArray chainArray = chain.getAsJsonArray();
+            if(chainArray!=null){
+                for(JsonElement c: chainArray){
+                    Block block = new Block();
+                    block.setHash(c.getAsJsonObject().get("hash").getAsString());
+                    block.setIndex(c.getAsJsonObject().get("index").getAsInt());
+                    block.setNONCE(c.getAsJsonObject().get("NONCE").getAsInt());
+                    block.setPreviousHash(c.getAsJsonObject().get("previousHash").getAsInt());
+                    block.setTimestamp(Timestamp.valueOf(c.getAsJsonObject().get("timestamp").getAsString()));
+                    block.setData("");
+                }
+            }
+            JsonElement jsonPeers = jsonElement.getAsJsonObject().get("peers");
+            JsonArray peers = jsonPeers.getAsJsonArray();
+            if(peers!=null){
+                for(JsonElement e: peers){
+                    JsonElement jsonRemote = e.getAsJsonObject().get("remote");
+                    RemoteConfig remote = new RemoteConfig();
+                    remote.setIp(jsonRemote.getAsJsonObject().get("ip").getAsString());
+                    remote.setPort(jsonRemote.getAsJsonObject().get("port").getAsInt());
+                    Peer newPeer = new Peer();
+                     newPeer.setRemoteConfig(remote);
+                     newPeer.setIdPeer(LocalData.peers.listSize());
+                    LocalData.peers.addToFinal(newPeer);
+                }
+            }
             JsonElement categories = jsonElement.getAsJsonObject().get("categories");
             JsonArray array = categories.getAsJsonArray();
             if(array!=null){
@@ -124,31 +153,19 @@ public class ServerThread extends Thread{
                             currentBook.setEditorial(e.getAsJsonObject().get("editorial").getAsString());
                             currentBook.setIdioma(e.getAsJsonObject().get("idioma").getAsString());
                             if(newUser==null){
-                                currentBook.setUsuario(cat.getUser());
+                                currentBook.setUsuario(new User(e.getAsJsonObject().get("carnet").getAsInt(),"","","",""));
                             }else{
                                 currentBook.setUsuario(newUser);
                             }
                             currentBook.setCategory(cat);
                         }
+                      
                         cat.getBooks().insert(currentBook);
                     }
-                    LocalData.virtualRoot = LocalData.virtualLibrary.insert(LocalData.virtualRoot, cat);
+                    
                 }
                 Integer i =5;
                 return i;
-            }else{
-                String text = gson.fromJson(inputJson, String.class);
-                switch(text){
-                    case "DELETE_PEER":
-                        gson = new Gson();
-                        generateFile = new GenerateFile();
-                        List<Peer> peers = generateFile.getPeers(GenerateFile.getTemp() + "Peers.json");
-                        peers.remove(LocalData.currentPeer);
-                        String arrayJSON = gson.toJson(peers);
-                        generateFile.writeFile(GenerateFile.getTemp() + "Peers.json", arrayJSON);
-                        break;
-                }
-                return null;
             }
             
         } catch (IOException ex) {
@@ -176,7 +193,15 @@ public class ServerThread extends Thread{
                 messagge.setIp_origin(getIPV4Address(incomingSocket));
                 messagge.setPort_origin(incomingSocket.getLocalPort());
                 messagge.setCloseCon(true);
-                messagge.setPeers(null);
+                List<Peer> listPeers = new ArrayList();
+                NodePeer aux = LocalData.peers.first;
+                while(aux!=null){
+                    if(aux.getInfo()!=null){
+                        listPeers.add(aux.getInfo());
+                    }
+                    aux = aux.getNext();
+                }
+                messagge.setPeers(listPeers);
                 String jsonString= gson.toJson(messagge);
                 outputData.writeUTF(jsonString);
                 outputData.close();
@@ -189,39 +214,49 @@ public class ServerThread extends Thread{
         }
     }
     
+    public static void closeConnection(){
+        flag = false;
+        
+    }
+    
     
     @Override
     public void run() {
         try {
             Peer peer;
             System.out.println("Servidor escuchando... ");
-            incomingSocket = serverSocket.accept();
-            while(true){
+            flag = true;
+            while(flag){
                 try {
+                    incomingSocket = serverSocket.accept();
                     Object currentObject = reciveData();
-                    if(currentObject!=null){
-                        if(currentObject instanceof Peer){
-                            peer= (Peer)currentObject;
-                            LocalData.peers.addToFinal(peer);
-                            String peerString = gson.toJson(peer);
-                            generateFile.writeFile(GenerateFile.getTemp() + "Peers.json", peerString);
-                        }else if(currentObject instanceof Integer){
-                            answer();
-                            JOptionPane.showMessageDialog(null, "Se actualizo la biblioteca", "Biblioteca actualizada", JOptionPane.INFORMATION_MESSAGE);
-                            BooksWindow.closeWindow();
-                            BooksWindow booksWindow = new BooksWindow(LocalData.virtualLibrary);
-                            booksWindow.setVisible(true);
-                            incomingSocket.close(); 
-                        }
-                    }
                     if(!closeConnection){
+                        if(currentObject!=null){
+                            if(currentObject instanceof Peer){
+                                peer= (Peer)currentObject;
+                                LocalData.peers.addToFinal(peer);
+                                String peerString = gson.toJson(peer);
+                                generateFile.writeFile(GenerateFile.getTemp() + "Peers.json", peerString);
+                            }else if(currentObject instanceof Integer){
+                                answer();
+                                if(LocalData.currentWindow instanceof BooksWindow){
+                                    JOptionPane.showMessageDialog(null, "Se actualizo la biblioteca", "Biblioteca actualizada", JOptionPane.INFORMATION_MESSAGE);
+                                    BooksWindow.closeWindow();
+                                    BooksWindow booksWindow = new BooksWindow(LocalData.virtualLibrary);
+                                    booksWindow.setVisible(true);
+                                }
+                                incomingSocket.close(); 
+                            }
+                        }
                         answer();
                     }
                 } catch (IOException ex) {
                     Logger.getLogger(ServerThread.class.getName()).log(Level.SEVERE, null, ex);
+                    flag =false;
                 }
             }
-        } catch (IOException ex) {
+            serverSocket.close();
+        } catch (Exception ex) {
             Logger.getLogger(ServerThread.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

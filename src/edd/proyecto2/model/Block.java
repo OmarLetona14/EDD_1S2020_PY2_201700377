@@ -79,10 +79,21 @@ public class Block {
         this.previousHash = _previousHash;
         this.hash = generateHash();
     }
+
+    public Block(int index, Timestamp timestamp, String data, int NONCE, int previousHash, String hash) {
+        this.index = index;
+        this.timestamp = timestamp;
+        this.data = data;
+        this.NONCE = NONCE;
+        this.previousHash = previousHash;
+        this.hash = hash;
+    }
     
+    
+    public Block(){}
     private String generateHash(){
         String chain = "";
-        while(!chain.startsWith("000")){
+        while(!chain.startsWith("0000")){
             try {
                 String keyGenerator = String.valueOf(index).trim() + timestamp.toString().trim() + String.valueOf(previousHash).trim() +
                         data.trim() + String.valueOf(NONCE);

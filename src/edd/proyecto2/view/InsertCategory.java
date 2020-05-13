@@ -22,6 +22,7 @@ public class InsertCategory extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        LocalData.currentWindow = this;
     }
 
     /**

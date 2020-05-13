@@ -65,45 +65,47 @@ public class AVLTreeCategory {
         if (node == null) {
             return(new NodeCategory(value));
         }
-
-        if (value.compareTo(node.getValue()) < 0)
+        if(!searchByName(root, value.getCategoryName())){
+            if (value.compareTo(node.getValue()) < 0)
             node.left  = insert(node.left, value);
-        else
-            node.right = insert(node.right, value);
+            else
+                node.right = insert(node.right, value);
 
-        /* 2. Update height of this ancestor node */
-        node.height = Math.max(height(node.left), height(node.right)) + 1;
+            /* 2. Update height of this ancestor node */
+            node.height = Math.max(height(node.left), height(node.right)) + 1;
 
-        /* 3. Get the balance factor of this ancestor node to check whether
-           this node became unbalanced */
-        int balance = getBalance(node);
+            /* 3. Get the balance factor of this ancestor node to check whether
+               this node became unbalanced */
+            int balance = getBalance(node);
 
-        // If this node becomes unbalanced, then there are 4 cases
+            // If this node becomes unbalanced, then there are 4 cases
 
-        // Left Left Case
-        if (balance > 1 && value.compareTo(node.left.value) < 0)
-            return rightRotate(node);
+            // Left Left Case
+            if (balance > 1 && value.compareTo(node.left.value) < 0)
+                return rightRotate(node);
 
-        // Right Right Case
-        if (balance < -1 && value.compareTo(node.right.value) > 0)
-            return leftRotate(node);
+            // Right Right Case
+            if (balance < -1 && value.compareTo(node.right.value) > 0)
+                return leftRotate(node);
 
-        // Left Right Case
-        if (balance > 1 && value.compareTo(node.left.value) > 0)
-        {
-            node.left =  leftRotate(node.left);
-            return rightRotate(node);
-        }
+            // Left Right Case
+            if (balance > 1 && value.compareTo(node.left.value) > 0)
+            {
+                node.left =  leftRotate(node.left);
+                return rightRotate(node);
+            }
 
-        // Right Left Case
-        if (balance < -1 && value.compareTo(node.right.value) < 0)
-        {
-            node.right = rightRotate(node.right);
-            return leftRotate(node);
-        }
+            // Right Left Case
+            if (balance < -1 && value.compareTo(node.right.value) < 0)
+            {
+                node.right = rightRotate(node.right);
+                return leftRotate(node);
+            }
 
-        /* return the (unchanged) node pointer */
-        return node;
+            /* return the (unchanged) node pointer */
+            return node;
+        }   
+        return null;
     }
 
     private NodeCategory rightRotate(NodeCategory y) {

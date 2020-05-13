@@ -28,12 +28,13 @@ import javax.swing.JOptionPane;
  *
  * @author Omar
  */
-public class ClientThread {
+public class ClientThread extends Thread {
     private Socket socket;
     private DataOutputStream outputData;
     private Gson gson;
     private NetworkMessagge messagge;
     private List<Peer> peers;
+    private boolean flag;
     
     public ClientThread(String ip, int port){
         try {
@@ -71,6 +72,7 @@ public class ClientThread {
             messagge.setIp_origin(LocalData.remote.getIp());
             messagge.setPort_origin(LocalData.remote.getPort());
             messagge.setPeers(peers);
+            messagge.setCloseCon(false);
             String jsonString= gson.toJson(messagge);
             outputData.writeUTF(jsonString);
             outputData.close();
@@ -79,6 +81,10 @@ public class ClientThread {
             }
         }
         
+    }
+    
+    private void closeConnection(){
+        flag = false;
     }
     
     public void sendBroadcastMessagge(Object peer){
@@ -92,5 +98,12 @@ public class ClientThread {
             }
         }
         
+    }
+    
+    @Override
+    public void run(){
+        flag = true;
+        while(flag){}
+
     }
 }

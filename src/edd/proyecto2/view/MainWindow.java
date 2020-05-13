@@ -6,6 +6,7 @@
 package edd.proyecto2.view;
 
 import edd.proyecto2.files.JSONFileUpload;
+import edd.proyecto2.model.LocalData;
 import edd.proyecto2.process.StopProgram;
 import java.awt.FileDialog;
 import java.io.File;
@@ -26,6 +27,7 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        LocalData.currentWindow = this;
     }
 
     /**

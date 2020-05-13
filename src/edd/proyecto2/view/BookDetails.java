@@ -65,7 +65,9 @@ public class BookDetails extends javax.swing.JFrame {
                 currentBook.setEdicion(Integer.valueOf(edicionTxt.getText()));
                 currentBook.setIdioma(idiomaTxt.getText());
             }
-            
+            if(LocalData.currentWindow instanceof BooksWindow){
+                LocalData.currentWindow.dispose();
+            }
             JOptionPane.showMessageDialog(this, "Libro editado correctamente", "Editado correctamente", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
             BooksWindow books = null;
@@ -261,10 +263,8 @@ public class BookDetails extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BookDetails(staticBook).setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new BookDetails(staticBook).setVisible(true);
         });
     }
 

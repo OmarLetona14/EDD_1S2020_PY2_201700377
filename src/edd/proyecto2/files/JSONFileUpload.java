@@ -74,7 +74,6 @@ public class JSONFileUpload {
             for(JsonElement e: libros){
                 if(e!=null){
                     Book book = new Book();
-                   
                     book.setISBN(e.getAsJsonObject().get("ISBN").getAsInt());
                     book.setTitulo(e.getAsJsonObject().get("Titulo").getAsString());
                     book.setAutor(e.getAsJsonObject().get("Autor").getAsString());

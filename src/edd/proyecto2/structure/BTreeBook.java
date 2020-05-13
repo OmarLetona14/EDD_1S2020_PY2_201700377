@@ -65,7 +65,7 @@ public class BTreeBook {
     public List<JsonBook> getAllJsonBooks(){
         jsonBooks = new ArrayList();
         books = new ArrayList();
-        books = getAll(root);
+        getAll(root);
         for(Book b: books){
             JsonBook Jsonbook = new JsonBook(b.getISBN(), b.getTitulo(), b.getAutor(), b.getEditorial(), b.getAnio(), b.getEdicion(), b.getIdioma()
             , String.valueOf(b.getUsuario().getCarnet()), b.getCategory().getCategoryName());
@@ -107,25 +107,29 @@ public class BTreeBook {
     // Insert element elem into this B-tree.
         if (root == null) {
             root = new NodeBook(arity, elem, null, null);
-            return;
-        }
-        LinkedStack ancestors = new LinkedStack();
-        NodeBook curr = root;
-        for (;;) {
-            int currPos = curr.searchInNode(elem);
-            if (elem.equals(curr.elems[currPos]))
-                return;
-            else if (curr.isLeaf()) {
-                curr.insertInNode(elem, null, null, currPos);
-                if (curr.size == arity)  // curr has overflowed
-                    splitNode(curr, ancestors);
-                return;
-            } else {
-                ancestors.addLast(currPos);
-                ancestors.addLast(curr);
-                curr = curr.childs[currPos];
+        }else{
+            Book b = (Book)elem;
+            if(searchByISBN(root, b.getISBN())==null){
+                LinkedStack ancestors = new LinkedStack();
+                NodeBook curr = root;
+                for (;;) {
+                    int currPos = curr.searchInNode(elem);
+                    if (elem.equals(curr.elems[currPos]))
+                        return;
+                    else if (curr.isLeaf()) {
+                        curr.insertInNode(elem, null, null, currPos);
+                        if (curr.size == arity)  // curr has overflowed
+                            splitNode(curr, ancestors);
+                        return;
+                    } else {
+                        ancestors.addLast(currPos);
+                        ancestors.addLast(curr);
+                        curr = curr.childs[currPos];
+                    }
+                }
             }
         }
+        
     }
 
     private void splitNode (NodeBook node, 
@@ -346,6 +350,27 @@ public class BTreeBook {
             for(NodeBook node: top.childs){
                 if(node!=null){
                     searchBook(node, target);
+                }
+            }
+        }
+        return null;
+    }
+    
+    private Book searchByISBN(NodeBook top, int isbn){
+        if(top==null){
+            return null;
+        }else{
+            for(Comparable b: top.elems){
+                if(b!=null){
+                     Book book = (Book)b; 
+                    if(book.getISBN()==isbn){
+                        return book;
+                    }
+                }
+            }
+            for(NodeBook node: top.childs){
+                if(node!=null){
+                    searchBook(node, isbn);
                 }
             }
         }

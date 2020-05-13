@@ -5,6 +5,14 @@
  */
 package edd.proyecto2.view;
 
+import edd.proyecto2.files.GenerateFile;
+import edd.proyecto2.model.Block;
+import edd.proyecto2.model.LocalData;
+import edd.proyecto2.network.ServerThread;
+import edd.proyecto2.structure.DoubleLinkedListBlock;
+import java.io.File;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Omar
@@ -16,6 +24,9 @@ public class VirtualLibraryDashboard extends javax.swing.JFrame {
      */
     public VirtualLibraryDashboard() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        LocalData.currentWindow = this;
     }
 
     /**
@@ -27,22 +38,92 @@ public class VirtualLibraryDashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        libraryBtn = new javax.swing.JButton();
+        generarBloqueBtn = new javax.swing.JButton();
+        cerrarConexionBtn = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        libraryBtn.setText("Biblioteca");
+        libraryBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                libraryBtnActionPerformed(evt);
+            }
+        });
+
+        generarBloqueBtn.setText("Generar bloque");
+        generarBloqueBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generarBloqueBtnActionPerformed(evt);
+            }
+        });
+
+        cerrarConexionBtn.setText("Cerrar conexion");
+        cerrarConexionBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrarConexionBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cerrarConexionBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                    .addComponent(generarBloqueBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(libraryBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(libraryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(generarBloqueBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cerrarConexionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void libraryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_libraryBtnActionPerformed
+        LocalData.localEdit = false;
+        this.dispose();
+        BooksWindow booksWindow = new BooksWindow(LocalData.virtualLibrary);
+        booksWindow.setVisible(true);
+    }//GEN-LAST:event_libraryBtnActionPerformed
+
+    private void cerrarConexionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarConexionBtnActionPerformed
+        ServerThread.closeConnection();
+        deletePeers();
+    }//GEN-LAST:event_cerrarConexionBtnActionPerformed
+
+    private void generarBloqueBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarBloqueBtnActionPerformed
+        Block block = null;
+        if(LocalData.blockchain==null){
+            LocalData.blockchain = new DoubleLinkedListBlock();
+            block = new Block(LocalData.data,0000);
+            LocalData.blockchain.addToFinal(block);
+        }else{
+            block = new Block(LocalData.data, LocalData.blockchain.getLastIndex());
+            LocalData.blockchain.addToFinal(block);
+        }
+        JOptionPane.showMessageDialog(this, "Bloque generado correctamente", "Bloque generado", JOptionPane.INFORMATION_MESSAGE);
+        
+    }//GEN-LAST:event_generarBloqueBtnActionPerformed
+    
+    private void deletePeers(){
+        File file = new File(GenerateFile.getTemp() + "Peers.json");
+        if(file.exists()){
+            file.delete();
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -79,5 +160,8 @@ public class VirtualLibraryDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cerrarConexionBtn;
+    private javax.swing.JButton generarBloqueBtn;
+    private javax.swing.JButton libraryBtn;
     // End of variables declaration//GEN-END:variables
 }

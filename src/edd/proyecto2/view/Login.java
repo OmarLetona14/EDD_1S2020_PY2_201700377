@@ -5,6 +5,7 @@
  */
 package edd.proyecto2.view;
 
+import edd.proyecto2.model.LocalData;
 import edd.proyecto2.process.LoginProcess;
 
 /**
@@ -21,6 +22,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        LocalData.currentWindow = this;
     }
     
 

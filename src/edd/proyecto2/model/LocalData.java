@@ -7,8 +7,10 @@ package edd.proyecto2.model;
 
 import edd.proyecto2.node.NodeCategory;
 import edd.proyecto2.structure.AVLTreeCategory;
+import edd.proyecto2.structure.DoubleLinkedListBlock;
 import edd.proyecto2.structure.SimplyLinkedListPeer;
 import edd.proyecto2.structure.UserHashTable;
+import javax.swing.JFrame;
 
 /**
  *
@@ -16,6 +18,7 @@ import edd.proyecto2.structure.UserHashTable;
  */
 public class LocalData {
     
+    public static JFrame currentWindow;
     public static boolean localEdit;
     public static UserHashTable users = new UserHashTable(45); 
     public static SimplyLinkedListPeer peers;
@@ -23,6 +26,8 @@ public class LocalData {
     public static NodeCategory virtualRoot;
     public static Peer currentPeer;
     public static User currentUser;
+    public static DoubleLinkedListBlock blockchain;
+    public static String data;
     public static RemoteConfig remote;
     public static final int ISBN = 0;
     public static final int TITULO = 1;

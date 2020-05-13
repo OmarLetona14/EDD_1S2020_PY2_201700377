@@ -28,6 +28,7 @@ public class UserProfile extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         loadData();
+        LocalData.currentWindow = this;
     }
     
     private void loadData(){

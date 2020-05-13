@@ -87,6 +87,13 @@ public class DoubleLinkedListBlock {
         }
     }
     
+    public int getLastIndex(){
+        if(first!=null){
+            return last.getInfo().getIndex();
+        }
+        return 0;
+    }
+    
     public String print(){
         String listInfo = "";
         NodeBlock aux = first;

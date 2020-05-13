@@ -49,12 +49,11 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
      */
     public BooksWindow(AVLTreeCategory _currentData) {
         initComponents();
+        LocalData.currentWindow = this;
         setLocationRelativeTo(null);
         setResizable(false);
         initWindow();
         currentData = _currentData;
-        
-       
     }
     
     private void initWindow(){
@@ -271,8 +270,14 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
 
     private void atrasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasBtnActionPerformed
         this.dispose();
-        LibraryDashboard libraryDashboard = new LibraryDashboard();
-        libraryDashboard.setVisible(true);
+        if(!LocalData.localEdit){
+            VirtualLibraryDashboard library = new VirtualLibraryDashboard();
+            library.setVisible(true);
+        }else{
+            LibraryDashboard libraryDashboard = new LibraryDashboard();
+            libraryDashboard.setVisible(true);
+        }
+        
     }//GEN-LAST:event_atrasBtnActionPerformed
 
     private void mostrarLibrosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarLibrosBtnActionPerformed
