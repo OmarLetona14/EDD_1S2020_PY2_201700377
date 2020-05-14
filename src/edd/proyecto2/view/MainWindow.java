@@ -7,7 +7,6 @@ package edd.proyecto2.view;
 
 import edd.proyecto2.files.JSONFileUpload;
 import edd.proyecto2.model.LocalData;
-import edd.proyecto2.process.StopProgram;
 import java.awt.FileDialog;
 import java.io.File;
 import java.util.Set;
@@ -122,7 +121,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        StopProgram.stop();
+
     }//GEN-LAST:event_formWindowClosing
 
     /**

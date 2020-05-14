@@ -14,8 +14,8 @@ import edd.proyecto2.node.NodeUser;
  */
 public class SimplyLinkedListUser {
     
-    private NodeUser first;
-    private NodeUser last;
+    public NodeUser first;
+    public NodeUser last;
     int size=1;
     
     public SimplyLinkedListUser(){

@@ -5,8 +5,10 @@
  */
 package edd.proyecto2.view;
 
+import edd.proyecto2.model.CREAR_CATEGORIA;
 import edd.proyecto2.model.Category;
 import edd.proyecto2.model.LocalData;
+import edd.proyecto2.model.Operation;
 import javax.swing.JOptionPane;
 
 /**
@@ -95,6 +97,9 @@ public class InsertCategory extends javax.swing.JFrame {
             category.setCategoryName(nombreCategoriaTxt.getText());
             LocalData.currentUser.setRoot(LocalData.currentUser.getCategories().insert(LocalData.currentUser.getRoot(), category));
             LocalData.currentUser.getCategories().syncRoot(LocalData.currentUser.getRoot());
+            CREAR_CATEGORIA create = new CREAR_CATEGORIA(nombreCategoriaTxt.getText());
+            Operation o = new Operation(Operation.operationType.crear_categoria, create);
+            LocalData.operations.add(o);
             JOptionPane.showMessageDialog(this, "Se inserto correctamente la categoria",
                     "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
             LocalData.currentUser.getCategories().print(LocalData.currentUser.getRoot());

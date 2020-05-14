@@ -6,6 +6,7 @@
 package edd.proyecto2.structure;
 
 import edd.proyecto2.model.User;
+import edd.proyecto2.node.NodeUser;
 
 /**
  *
@@ -45,6 +46,42 @@ public class UserHashTable {
             System.out.println("Ocurrio un error al intentar buscar al usuario");
         }
         return null;
+    }
+    
+    public String getReport(){
+        SimplyLinkedListUser currentList;
+        String content="rankdir =LR"+ "\n";
+        content += "struct1 [label = \" ";
+        for(int i=0; i<listOfUsers.length;i++){
+            if(i!=listOfUsers.length-1){
+                content += "<f" + i + "> " + i +" |";
+            }else{
+                content += "<f" + i + "> " + i + " ";
+            }
+        }
+        content += " \" ];" + "\n";
+        for(int x=0; x<listOfUsers.length;x++){
+            currentList = listOfUsers[x];
+            if(currentList!=null){
+                NodeUser aux = currentList.first;
+                while(aux!=null){
+                    content += "\"node" + aux.info.getCarnet() + "\"[label= \" " + aux.info.getNombre() 
+                            + " "+ aux.info.getApellido() + " "+ aux.info.getCarnet() +" \" ];"+"\n"; 
+                    aux = aux.next;
+                }
+                NodeUser aux2 = currentList.first;
+                content += "struct1:f" + x + " -> ";
+                while(aux2!=null){
+                    if(aux2!=currentList.last){
+                        content += "\"node" + aux2.info.getCarnet() + "\" -> ";
+                    }else{
+                        content += "\"node" + aux2.info.getCarnet() + "\";" + "\n";
+                    }
+                    aux2 = aux2.next;
+                }
+            }
+        }
+        return content;
     }
     
     

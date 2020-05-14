@@ -6,8 +6,10 @@
 package edd.proyecto2.view;
 
 import edd.proyecto2.model.Book;
+import edd.proyecto2.model.CREAR_LIBRO;
 import edd.proyecto2.model.Category;
 import edd.proyecto2.model.LocalData;
+import edd.proyecto2.model.Operation;
 import javax.swing.JOptionPane;
 
 /**
@@ -223,6 +225,10 @@ public class InsertBook extends javax.swing.JFrame {
                 book.setAnio(Integer.valueOf(anioTxt.getText()));
                 book.setEdicion(Integer.valueOf(edicionTxt.getText()));
                 book.setCategory(currentCategory);
+                CREAR_LIBRO create = new CREAR_LIBRO(book.getISBN(), book.getAnio(), book.getIdioma(), book.getTitulo(), book.getEditorial(), book.getAutor(),
+                book.getEdicion(), book.getCategory().getCategoryName());
+                Operation o = new Operation(Operation.operationType.crear_libro, create);
+                LocalData.operations.add(o);
             }catch(Exception e ){
                 JOptionPane.showMessageDialog(this, "Ocurrio un error al insertar el libro", "Error", JOptionPane.ERROR_MESSAGE);
                 error= true;

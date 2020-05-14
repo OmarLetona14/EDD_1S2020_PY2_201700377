@@ -1,0 +1,1358 @@
+[
+  {
+    "index": 0,
+    "timestamp": "May 13, 2020 10:45:44 PM",
+    "data": [
+      {
+        "type": "crear_categoria",
+        "object": {
+          "NOMBRE": "Consulta"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10763,
+          "Anio": 1891,
+          "Idioma": "Espanol",
+          "Titulo": "Curso de derecho constitucional",
+          "Editorial": "3M Espana",
+          "Autor": "ESCOBAR, DAVID",
+          "Edicion": 2,
+          "Categoria": "Consulta"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10765,
+          "Anio": 1999,
+          "Idioma": "Ingles",
+          "Titulo": "Canales de comercialización",
+          "Editorial": "3R EDITORES",
+          "Autor": "ESCOBAR, FRANCISCO",
+          "Edicion": 1,
+          "Categoria": "Consulta"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10768,
+          "Anio": 2001,
+          "Idioma": "Frances",
+          "Titulo": "Planeación estratégica aplicada",
+          "Editorial": "A Lessons in Leadership Publications",
+          "Autor": "ESCOBAR, FRANCISCO ANDRÉS",
+          "Edicion": 2,
+          "Categoria": "Consulta"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10770,
+          "Anio": 2001,
+          "Idioma": "Frances",
+          "Titulo": "Marketing",
+          "Editorial": "A New Directions Book",
+          "Autor": "ESCOBAR, JORGE R",
+          "Edicion": 1,
+          "Categoria": "Consulta"
+        }
+      },
+      {
+        "type": "crear_categoria",
+        "object": {
+          "NOMBRE": "Informativos"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10772,
+          "Anio": 1997,
+          "Idioma": "Espanol",
+          "Titulo": "Las Ventas en el mundo actual",
+          "Editorial": "A Plume Book",
+          "Autor": "ESCOBEDO ARIAS DE TORALLA, LAURA LUCRECIA",
+          "Edicion": 1,
+          "Categoria": "Informativos"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10773,
+          "Anio": 1990,
+          "Idioma": "Espanol",
+          "Titulo": "Procesamiento de carnes y embutidos; elaboración, estandarización, control de calidad",
+          "Editorial": "A\u0026E Home Video",
+          "Autor": "ESCOBEDO MENCOS, OLIVIA",
+          "Edicion": 1,
+          "Categoria": "Informativos"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10774,
+          "Anio": 2000,
+          "Idioma": "Espanol",
+          "Titulo": "Optimización de rendimiento y aseguramiento de inocuidad en la industria de quesería; una guía para la pequena y mediana empresa",
+          "Editorial": "A\u0026E Mundo",
+          "Autor": "ESCOBEDO ORTEGA, AARÓN",
+          "Edicion": 1,
+          "Categoria": "Informativos"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10775,
+          "Anio": 2000,
+          "Idioma": "Espanol",
+          "Titulo": "Producción higiénica de la leche cruda; una guía para la pequena y mediana empresa",
+          "Editorial": "A\u0026E TELEVISION NETWORK",
+          "Autor": "ESCOFFIER, HENRI",
+          "Edicion": 1,
+          "Categoria": "Informativos"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10783,
+          "Anio": 1957,
+          "Idioma": "Espanol",
+          "Titulo": "Moral para intelectuales",
+          "Editorial": "A. \u0026 C. Black",
+          "Autor": "ESCOLÁ GIL, RAFAEL",
+          "Edicion": 1,
+          "Categoria": "Informativos"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10786,
+          "Anio": 1946,
+          "Idioma": "Espanol",
+          "Titulo": "La idea del hombre",
+          "Editorial": "A. A. Knopf",
+          "Autor": "ESCOLA, HÉCTOR JORGE",
+          "Edicion": 2,
+          "Categoria": "Informativos"
+        }
+      },
+      {
+        "type": "crear_categoria",
+        "object": {
+          "NOMBRE": "Biografia"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10787,
+          "Anio": 1957,
+          "Idioma": "Espanol",
+          "Titulo": "La nueva imagen del hombre común",
+          "Editorial": "A. AL. BURT",
+          "Autor": "ESCOLAR BAREÑO, LUIS",
+          "Edicion": 3,
+          "Categoria": "Biografia"
+        }
+      },
+      {
+        "type": "crear_categoria",
+        "object": {
+          "NOMBRE": "Literatura"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10790,
+          "Anio": 1956,
+          "Idioma": "Espanol",
+          "Titulo": "Pragmatismo y educación: su interpretación y crítica / John L. Childs.",
+          "Editorial": "A. Pedone",
+          "Autor": "ESCOTO MELGAR, NORA LISSETH",
+          "Edicion": 2,
+          "Categoria": "Literatura"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10791,
+          "Anio": 1946,
+          "Idioma": "Espanol",
+          "Titulo": "Historia de la etnología",
+          "Editorial": "A. REDONDO",
+          "Autor": "ESCOTT-STUMP",
+          "Edicion": 4,
+          "Categoria": "Literatura"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10792,
+          "Anio": 1970,
+          "Idioma": "Espanol",
+          "Titulo": "El cristianismo y las religiones de la Tierra",
+          "Editorial": "A. Taffin-Lefort",
+          "Autor": "ESCRIBÁ BARNOYA, EDGAR MIGUEL",
+          "Edicion": 4,
+          "Categoria": "Literatura"
+        }
+      },
+      {
+        "type": "crear_categoria",
+        "object": {
+          "NOMBRE": "Ensayo"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10793,
+          "Anio": 1946,
+          "Idioma": "Espanol",
+          "Titulo": "El misterio de María",
+          "Editorial": "A. W. Sijthoff",
+          "Autor": "ESCRIBÁ FIGUEROA, MARÍA DE LOS ÁNGELES",
+          "Edicion": 3,
+          "Categoria": "Ensayo"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10794,
+          "Anio": 1940,
+          "Idioma": "Espanol",
+          "Titulo": "Mil quinientas [1,500]... máximas y sentencias de los más destacados filósofos de todos los tiempos",
+          "Editorial": "A. W. Sythoff",
+          "Autor": "ESCRIBÁ FIGUEROA, MARÍA ISABEL",
+          "Edicion": 4,
+          "Categoria": "Ensayo"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10795,
+          "Anio": 1950,
+          "Idioma": "Aleman",
+          "Titulo": "Viajar es vivir (parábola imperfecta) / Juan José Arévalo Bermejo.",
+          "Editorial": "A.A.",
+          "Autor": "ESCRIBÁ HERNÁNDEZ, LILY ANA REGINA",
+          "Edicion": 4,
+          "Categoria": "Ensayo"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10797,
+          "Anio": 1929,
+          "Idioma": "Espanol",
+          "Titulo": "El misterio de la vida",
+          "Editorial": "A.C.A.M.",
+          "Autor": "ESCRIBÁ MARTÍNEZ, LILY ANA REGINA",
+          "Edicion": 2,
+          "Categoria": "Ensayo"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10798,
+          "Anio": 1945,
+          "Idioma": "Ingles",
+          "Titulo": "María Chapdelaine",
+          "Editorial": "A.C.M.E.",
+          "Autor": "ESCRIBA SANDOVAL, ANA LUCÍA",
+          "Edicion": 4,
+          "Categoria": "Ensayo"
+        }
+      },
+      {
+        "type": "crear_categoria",
+        "object": {
+          "NOMBRE": "Lírico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10799,
+          "Anio": 1962,
+          "Idioma": "Frances",
+          "Titulo": "Titanes de la canción guatemalteca",
+          "Editorial": "A.D.A. Edita",
+          "Autor": "ESCRIBÁ, LIGIA",
+          "Edicion": 2,
+          "Categoria": "Lírico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10801,
+          "Anio": 1967,
+          "Idioma": "Frances",
+          "Titulo": "Sociología de la educación",
+          "Editorial": "A.F.A.",
+          "Autor": "ESCRIU FONT, CARMEN MARÍA",
+          "Edicion": 2,
+          "Categoria": "Lírico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10802,
+          "Anio": 1953,
+          "Idioma": "Espanol",
+          "Titulo": "Thomas Jefferson; biografía",
+          "Editorial": "A.G.A.Y.C.",
+          "Autor": "ESCRIVÁ DE BALAGUER, JOSEMARÍA",
+          "Edicion": 4,
+          "Categoria": "Lírico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10803,
+          "Anio": 1924,
+          "Idioma": "Espanol",
+          "Titulo": "Hombres de América (Montalvo - Bolívar - Rubén Darío). Discursos parlamentarios",
+          "Editorial": "A.I.D.I.P.E.",
+          "Autor": "ESCRIVÁ, VICENTE",
+          "Edicion": 4,
+          "Categoria": "Lírico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10804,
+          "Anio": 1945,
+          "Idioma": "Espanol",
+          "Titulo": "Historia de las grandes religiones, v. 5",
+          "Editorial": "A.L. Mateos",
+          "Autor": "ESCRIVÁ-IVARS, JAVIER",
+          "Edicion": 4,
+          "Categoria": "Lírico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10806,
+          "Anio": 1999,
+          "Idioma": "Espanol",
+          "Titulo": "Ensenar a pensar",
+          "Editorial": "A.L.A.",
+          "Autor": "ESCUDERO LEHNHOFF, MARÍA ISABEL",
+          "Edicion": 4,
+          "Categoria": "Lírico"
+        }
+      },
+      {
+        "type": "crear_categoria",
+        "object": {
+          "NOMBRE": "Épico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10807,
+          "Anio": 2001,
+          "Idioma": "Espanol",
+          "Titulo": "Educar el carácter",
+          "Editorial": "A.T.E.",
+          "Autor": "ESCUDERO POBLETE, GASTÓN",
+          "Edicion": 1,
+          "Categoria": "Épico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10808,
+          "Anio": 2001,
+          "Idioma": "Espanol",
+          "Titulo": "Educar los sentimientos",
+          "Editorial": "AATCC",
+          "Autor": "ESCUDERO, JORDI AINAUD I",
+          "Edicion": 1,
+          "Categoria": "Épico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10809,
+          "Anio": 2001,
+          "Idioma": "Espanol",
+          "Titulo": "Cómo educar la voluntad",
+          "Editorial": "AB Allhems Tryckerier",
+          "Autor": "ESCUDERO, JOSÉ ANTONIO",
+          "Edicion": 1,
+          "Categoria": "Épico"
+        }
+      },
+      {
+        "type": "crear_categoria",
+        "object": {
+          "NOMBRE": "Drama"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10810,
+          "Anio": 1969,
+          "Idioma": "Espanol",
+          "Titulo": "Sociología de la educación",
+          "Editorial": "Ábaco",
+          "Autor": "ESCUÉ, JOSEP",
+          "Edicion": 1,
+          "Categoria": "Drama"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10812,
+          "Anio": 1958,
+          "Idioma": "Espanol",
+          "Titulo": "Metodología de la ensenanza técnica",
+          "Editorial": "Ábaco de Rodolfo Depalma",
+          "Autor": "ESCUELA DALY DE HOSTELERÍA Y TURISMO",
+          "Edicion": 1,
+          "Categoria": "Drama"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10813,
+          "Anio": 1971,
+          "Idioma": "Espanol",
+          "Titulo": "Las Ideas de Piaget; su aplicación en el aula",
+          "Editorial": "Abacus",
+          "Autor": "ESCUELA DE ESTUDIOS ADMINISTRATIVOS",
+          "Edicion": 1,
+          "Categoria": "Drama"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10815,
+          "Anio": 1996,
+          "Idioma": "Espanol",
+          "Titulo": "Manual gestión de mantenimiento a la medida",
+          "Editorial": "Abada",
+          "Autor": "ESCUELA DE PLANIFICACIÓN ALFONSO ALVAREZ LEMUS",
+          "Edicion": 1,
+          "Categoria": "Drama"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10816,
+          "Anio": 1995,
+          "Idioma": "Espanol",
+          "Titulo": "Manual de gestión de la calidad total a la medida",
+          "Editorial": "ABBEVILLE PRESS",
+          "Autor": "ESCUELA MEXICANA DE ARQUITECTURA, UNIVERSIDAD LA SALLE",
+          "Edicion": 3,
+          "Categoria": "Drama"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10817,
+          "Anio": 1998,
+          "Idioma": "Aleman",
+          "Titulo": "Terremoto empresarial",
+          "Editorial": "Abbeydale Press",
+          "Autor": "ESCUELA NORMAL CENTRAL DE VARONES",
+          "Edicion": 1,
+          "Categoria": "Drama"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10824,
+          "Anio": 1999,
+          "Idioma": "Espanol",
+          "Titulo": "Cuatro filósofos en busca de Dios",
+          "Editorial": "Abbott",
+          "Autor": "ESCUELA NORMAL PARA VARONES",
+          "Edicion": 1,
+          "Categoria": "Drama"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10825,
+          "Anio": 2001,
+          "Idioma": "Ingles",
+          "Titulo": "La Tolerancia y la manipulación",
+          "Editorial": "ABC",
+          "Autor": "ESCUELA SOCIAL JUAN XXIII",
+          "Edicion": 1,
+          "Categoria": "Drama"
+        }
+      },
+      {
+        "type": "crear_categoria",
+        "object": {
+          "NOMBRE": "Revista"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10826,
+          "Anio": 1990,
+          "Idioma": "Frances",
+          "Titulo": "Las Claves de la eficacia empresarial; un reto a los empresarios Espanoles",
+          "Editorial": "Abelard-Schuman",
+          "Autor": "ESCUELA SUPERIOR DE ADMINISTRACIÓN DE INSTITUCIONES",
+          "Edicion": 1,
+          "Categoria": "Revista"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10827,
+          "Anio": 2001,
+          "Idioma": "Frances",
+          "Titulo": "La Fe explicada / Leo J. Trese.",
+          "Editorial": "Abeledo Perrot",
+          "Autor": "ESCUELA SUPERIOR DE ADMINISTRACIÓN PÚBLICA",
+          "Edicion": 1,
+          "Categoria": "Revista"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10828,
+          "Anio": 1999,
+          "Idioma": "Espanol",
+          "Titulo": "ISO 9000; auditorías internas de la calidad en la pequena y mediana empresa",
+          "Editorial": "Abeledo-Perrot",
+          "Autor": "ESCUELA TÉCNICA DE HOTELERÍA Y HOGAR \u0027ALUX\u0027",
+          "Edicion": 1,
+          "Categoria": "Revista"
+        }
+      },
+      {
+        "type": "crear_categoria",
+        "object": {
+          "NOMBRE": "Sagas"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10829,
+          "Anio": 1991,
+          "Idioma": "Espanol",
+          "Titulo": "El creciente fértil y la Biblia",
+          "Editorial": "AbeledoPerrot",
+          "Autor": "ESCUELA TÉCNICA SUPERIOR DE ARQUITECTURA DE MADRID. CÁTEDRA DE DIBUJO TÉCNICO",
+          "Edicion": 1,
+          "Categoria": "Sagas"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10830,
+          "Anio": 2000,
+          "Idioma": "Espanol",
+          "Titulo": "Relación de la vida y virtudes del beato Hno. Pedro de San José de Betancurt",
+          "Editorial": "Ablex Publishing",
+          "Autor": "ESCUELA TÉCNICA SUPERIOR DE ARQUITECTURA DE SAN SEBASTIÁN",
+          "Edicion": 10,
+          "Categoria": "Consulta"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10831,
+          "Anio": 1998,
+          "Idioma": "Espanol",
+          "Titulo": "El camino y la meta",
+          "Editorial": "Abrams Comicarts",
+          "Autor": "ESCUELA TÉCNICA VOCACIONAL DE HOTELERÍA ALUX",
+          "Edicion": 9,
+          "Categoria": "Consulta"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10838,
+          "Anio": 2001,
+          "Idioma": "Espanol",
+          "Titulo": "Gestión de la calidad en pequenas y medianas empresas; memoria del proyecto copatrocinado por OEA /GTZ, 1982-2000",
+          "Editorial": "Abril",
+          "Autor": "ESDAI",
+          "Edicion": 5,
+          "Categoria": "Consulta"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10839,
+          "Anio": 1999,
+          "Idioma": "Espanol",
+          "Titulo": "El mapa; una guía para el mejoramiento de la calidad en la pequena y mediana empresa, basada en el método de W. Edwards Deming",
+          "Editorial": "AC",
+          "Autor": "ESEN, ASIM",
+          "Edicion": 5,
+          "Categoria": "Consulta"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10840,
+          "Anio": 1997,
+          "Idioma": "Espanol",
+          "Titulo": "Constitución pastoral Gaudium et spes, sobre la Iglesia en el mundo actual",
+          "Editorial": "Academia Antioquena de Historia",
+          "Autor": "ESHGHI, ABDOLREZA",
+          "Edicion": 5,
+          "Categoria": "Informativos"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10842,
+          "Anio": 1958,
+          "Idioma": "Espanol",
+          "Titulo": "Introducción a la ética",
+          "Editorial": "Academia Boyacense de Historia",
+          "Autor": "ESKEW, ROBERT K",
+          "Edicion": 5,
+          "Categoria": "Informativos"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10844,
+          "Anio": 1930,
+          "Idioma": "Espanol",
+          "Titulo": "El ocaso de un régimen",
+          "Editorial": "Academia Colombiana de Historia",
+          "Autor": "ESMOD",
+          "Edicion": 5,
+          "Categoria": "Informativos"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10846,
+          "Anio": 1941,
+          "Idioma": "Espanol",
+          "Titulo": "Educación política nacional",
+          "Editorial": "Academia Colombiana de Jurisprudencia",
+          "Autor": "ESOPO",
+          "Edicion": 5,
+          "Categoria": "Informativos"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10847,
+          "Anio": 1970,
+          "Idioma": "Espanol",
+          "Titulo": "De hombres sociales y movimientos políticos / C. Wright Mills.",
+          "Editorial": "Academia de Centroamérica",
+          "Autor": "ESPADA REYES, OLGA ALEJANDRA",
+          "Edicion": 4,
+          "Categoria": "Informativos"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10848,
+          "Anio": 1999,
+          "Idioma": "Espanol",
+          "Titulo": "Historia de la provincia de San Vicente de Chiapa y Guatemala de la orden de Predicadores",
+          "Editorial": "Academia de Diplomacia de Chile",
+          "Autor": "ESPAÑA",
+          "Edicion": 8,
+          "Categoria": "Informativos"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10850,
+          "Anio": 1999,
+          "Idioma": "Aleman",
+          "Titulo": "Historia de la provincia de San Vicente de Chiapa y Guatemala de la orden de Predicadores",
+          "Editorial": "Academia de Geografía e Historia de Costa Rica",
+          "Autor": "ESPAÑA AYALA, JUAN ANTONIO",
+          "Edicion": 8,
+          "Categoria": "Biografia"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10851,
+          "Anio": 1999,
+          "Idioma": "Espanol",
+          "Titulo": "Historia de la provincia de San Vicente de Chiapa y Guatemala de la orden de Predicadores",
+          "Editorial": "Academia de Geografía e Historia de Guatemala, AGHG",
+          "Autor": "ESPAÑA CALDERÓN, OLMEDO",
+          "Edicion": 8,
+          "Categoria": "Literatura"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10852,
+          "Anio": 1999,
+          "Idioma": "Ingles",
+          "Titulo": "Historia de la provincia de San Vicente de Chiapa y Guatemala de la orden de Predicadores",
+          "Editorial": "Academia de Guerra Naval",
+          "Autor": "ESPAÑA, JUAN DE, SEUD",
+          "Edicion": 7,
+          "Categoria": "Literatura"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10853,
+          "Anio": 1999,
+          "Idioma": "Frances",
+          "Titulo": "Historia de la provincia de San Vicente de Chiapa y Guatemala de la orden de Predicadores",
+          "Editorial": "Academia Gallega de Jurisprudencia y Legislación",
+          "Autor": "ESPAÑA. CONSTITUCIÓN",
+          "Edicion": 6,
+          "Categoria": "Literatura"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10854,
+          "Anio": 1999,
+          "Idioma": "Frances",
+          "Titulo": "Historia de la provincia de San Vicente de Chiapa y Guatemala de la orden de Predicadores",
+          "Editorial": "ACADEMIA GIL",
+          "Autor": "ESPAÑA. DIRECCIÓN GENERAL DE ARQUITECTURA",
+          "Edicion": 5,
+          "Categoria": "Ensayo"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10855,
+          "Anio": 1958,
+          "Idioma": "Espanol",
+          "Titulo": "Descripción geográfico-moral de la diócesis de Goathemala, v 1",
+          "Editorial": "Academia Guatemalteca de la Lengua",
+          "Autor": "ESPAÑA. LEYES Y DECRETOS",
+          "Edicion": 4,
+          "Categoria": "Ensayo"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10856,
+          "Anio": 1958,
+          "Idioma": "Espanol",
+          "Titulo": "Descripción geográfico-moral de la diócesis de Goathemala, v 2",
+          "Editorial": "Academia Iberoamericana de Poesía",
+          "Autor": "ESPAÑA. LEYES, DECRETOS, ETC",
+          "Edicion": 3,
+          "Categoria": "Ensayo"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10857,
+          "Anio": 1983,
+          "Idioma": "Espanol",
+          "Titulo": "Communicating through letters and reports",
+          "Editorial": "Academia Méxicana de Jurisprudencia y Legislación, Correspondiente de la de Espana",
+          "Autor": "ESPAÑA. MINISTERIO DE CULTURA",
+          "Edicion": 2,
+          "Categoria": "Ensayo"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10858,
+          "Anio": 1985,
+          "Idioma": "Espanol",
+          "Titulo": "Aprender a dibujar : un método garantizado",
+          "Editorial": "Academia Nacional de la Historia",
+          "Autor": "ESPAÑA. MINISTERIO DE EDUCACIÓN Y CIENCIA",
+          "Edicion": 3,
+          "Categoria": "Ensayo"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10859,
+          "Anio": 1996,
+          "Idioma": "Espanol",
+          "Titulo": "Jóvenes buscando un amor",
+          "Editorial": "Academias Pitman",
+          "Autor": "ESPAÑA. MINISTERIO DE INFORMACIÓN Y TURISMO",
+          "Edicion": 2,
+          "Categoria": "Lírico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10860,
+          "Anio": 1996,
+          "Idioma": "Espanol",
+          "Titulo": "El túnel del amor",
+          "Editorial": "Academic Press",
+          "Autor": "ESPAÑA. MINISTERIO DE JUSTICIA",
+          "Edicion": 1,
+          "Categoria": "Lírico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10862,
+          "Anio": 2001,
+          "Idioma": "Espanol",
+          "Titulo": "Guía de aspectos presupuestarios y fiscales",
+          "Editorial": "Académica Centroamericana",
+          "Autor": "ESPAÑA. MINISTERIO DE LA PRESIDENCIA",
+          "Edicion": 2,
+          "Categoria": "Lírico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10871,
+          "Anio": 2010,
+          "Idioma": "Espanol",
+          "Titulo": "Centesimus annus / Karol Wojtyla",
+          "Editorial": "Académicas",
+          "Autor": "ESPAÑA. MINISTERIO DE TRABAJO Y SEGURIDAD SOCIAL",
+          "Edicion": 1,
+          "Categoria": "Lírico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10872,
+          "Anio": 1931,
+          "Idioma": "Espanol",
+          "Titulo": "Successful houses and how to build them",
+          "Editorial": "ACADEMY",
+          "Autor": "ESPARZA ENCINA, MICHEL",
+          "Edicion": 2,
+          "Categoria": "Lírico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10873,
+          "Anio": 1990,
+          "Idioma": "Espanol",
+          "Titulo": "Viaje a América Central (Yucatán y Guatemala)",
+          "Editorial": "Academy of American Franciscan History",
+          "Autor": "ESPARZA, MICHEL",
+          "Edicion": 1,
+          "Categoria": "Lírico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10874,
+          "Anio": 1969,
+          "Idioma": "Espanol",
+          "Titulo": "Introducción a la vida política",
+          "Editorial": "Acali",
+          "Autor": "ESPARZA, MIGUEL ÁNGEL",
+          "Edicion": 2,
+          "Categoria": "Épico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10875,
+          "Anio": 1966,
+          "Idioma": "Espanol",
+          "Titulo": "El lenguaje y la vida humana",
+          "Editorial": "Acantilado",
+          "Autor": "ESPASA-CALPE",
+          "Edicion": 1,
+          "Categoria": "Épico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10876,
+          "Anio": 1964,
+          "Idioma": "Aleman",
+          "Titulo": "Sociología de la educación",
+          "Editorial": "ACANTO",
+          "Autor": "ESPEJA, JESÚS",
+          "Edicion": 1,
+          "Categoria": "Épico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10877,
+          "Anio": 1965,
+          "Idioma": "Espanol",
+          "Titulo": "Educación y sociedad : introducción a la sociología de la educación",
+          "Editorial": "ACC Art Books",
+          "Autor": "ESPEJO CALLADO, JORGE",
+          "Edicion": 1,
+          "Categoria": "Drama"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10878,
+          "Anio": 1963,
+          "Idioma": "Ingles",
+          "Titulo": "La rebelión de las masas",
+          "Editorial": "ACCE",
+          "Autor": "ESPEJO T., ROMILIO",
+          "Edicion": 1,
+          "Categoria": "Drama"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10884,
+          "Anio": 1999,
+          "Idioma": "Frances",
+          "Titulo": "La Guerra y la paz",
+          "Editorial": "Access Press",
+          "Autor": "ESPESO DÍEZ, MARÍA BELÉN",
+          "Edicion": 1,
+          "Categoria": "Drama"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10886,
+          "Anio": 2000,
+          "Idioma": "Frances",
+          "Titulo": "Educación en valores a partir de los clásicos greco-latinos; una propuesta de intervención en secundaria",
+          "Editorial": "Acción Católica Guatemalteca",
+          "Autor": "ESPICH, JAMES E",
+          "Edicion": 1,
+          "Categoria": "Drama"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10890,
+          "Anio": 1962,
+          "Idioma": "Espanol",
+          "Titulo": "Política y sociedad en una época de transición",
+          "Editorial": "Acción Ciudadana",
+          "Autor": "ESPIGARES FONG, LILIAN PATRICIA",
+          "Edicion": 2,
+          "Categoria": "Drama"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10891,
+          "Anio": 1972,
+          "Idioma": "Espanol",
+          "Titulo": "Sociología de la educación",
+          "Editorial": "Acción Democrática Boliviana",
+          "Autor": "ESPINA CASTELLANOS, CANDY ANAHÍ",
+          "Edicion": 3,
+          "Categoria": "Drama"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10892,
+          "Anio": 1989,
+          "Idioma": "Espanol",
+          "Titulo": "Multinational financial management",
+          "Editorial": "Acción Social Empresarial, ASE",
+          "Autor": "ESPINA PAZ, WENDY LISSETTE",
+          "Edicion": 2,
+          "Categoria": "Drama"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10893,
+          "Anio": 1961,
+          "Idioma": "Espanol",
+          "Titulo": "Corporation accounts and statements; an advanced course",
+          "Editorial": "ACE Books",
+          "Autor": "ESPINA SANDOVAL, KEVIN ALEJANDRO",
+          "Edicion": 4,
+          "Categoria": "Drama"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10894,
+          "Anio": 1951,
+          "Idioma": "Espanol",
+          "Titulo": "Introducción al estudio de la música",
+          "Editorial": "Acento",
+          "Autor": "ESPINA, ANTONIO",
+          "Edicion": 4,
+          "Categoria": "Revista"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10896,
+          "Anio": 1962,
+          "Idioma": "Espanol",
+          "Titulo": "Sociología de la educación",
+          "Editorial": "ACEPRENSA",
+          "Autor": "ESPINA, WIFREDO",
+          "Edicion": 3,
+          "Categoria": "Revista"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10902,
+          "Anio": 1966,
+          "Idioma": "Espanol",
+          "Titulo": "El hombre y el dinero: (vistos a la luz de la ensenanza de la Biblia y el Evangelio) / Jacques Ellul ; versión castellana Juan Gil Albert.",
+          "Editorial": "ACER",
+          "Autor": "ESPINAR, JAIME",
+          "Edicion": 4,
+          "Categoria": "Revista"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10905,
+          "Anio": 1937,
+          "Idioma": "Espanol",
+          "Titulo": "¡Espana, despierta! (Lo que es el nacional-sindicalismo) por X.Y.Z.",
+          "Editorial": "ACERVO",
+          "Autor": "ESPINAS, JOSÉ MARÍA",
+          "Edicion": 4,
+          "Categoria": "Sagas"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10907,
+          "Anio": 1997,
+          "Idioma": "Espanol",
+          "Titulo": "Las ventas en el mundo actual",
+          "Editorial": "Acervo Cultural",
+          "Autor": "ESPINO GARCÍA, GABRIEL",
+          "Edicion": 2,
+          "Categoria": "Consulta"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10910,
+          "Anio": 1960,
+          "Idioma": "Espanol",
+          "Titulo": "Problemas y métodos de investigación en la historia de la filosofía",
+          "Editorial": "Achenbach Foundation for Graphic Arts",
+          "Autor": "ESPINO MÁRQUEZ, LUIS I",
+          "Edicion": 4,
+          "Categoria": "Consulta"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10912,
+          "Anio": 1962,
+          "Idioma": "Espanol",
+          "Titulo": "La Educación de los padres",
+          "Editorial": "ACME",
+          "Autor": "ESPINO, ALFREDO",
+          "Edicion": 2,
+          "Categoria": "Consulta"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10916,
+          "Anio": 1994,
+          "Idioma": "Espanol",
+          "Titulo": "La Odisea",
+          "Editorial": "Acme Agency",
+          "Autor": "ESPINO, MIGUEL ÁNGEL",
+          "Edicion": 2,
+          "Categoria": "Consulta"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10927,
+          "Anio": 2000,
+          "Idioma": "Aleman",
+          "Titulo": "Evaluación de impacto en formación empresarial ; el caso FUNDES",
+          "Editorial": "ACNUR",
+          "Autor": "ESPINÓS, VÍCTOR",
+          "Edicion": 4,
+          "Categoria": "Informativos"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10928,
+          "Anio": 1977,
+          "Idioma": "Espanol",
+          "Titulo": "Cómo resolver el problema de falta de tiempo",
+          "Editorial": "ACOME",
+          "Autor": "ESPINOSA AJA DE GAITÁN, CRISTINA FLOR DEL ROCÍO",
+          "Edicion": 4,
+          "Categoria": "Informativos"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10930,
+          "Anio": 1965,
+          "Idioma": "Ingles",
+          "Titulo": "Psicología aplicada a la ensenanza",
+          "Editorial": "ACOUSTIC COMMUNICATIONS GROUP",
+          "Autor": "ESPINOSA AJA, HÉCTOR OMAR",
+          "Edicion": 4,
+          "Categoria": "Informativos"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10932,
+          "Anio": 1987,
+          "Idioma": "Frances",
+          "Titulo": "Pan Am: an airline and its aircraft",
+          "Editorial": "ACPD",
+          "Autor": "ESPINOSA ALARCÓN, ANDRÉS",
+          "Edicion": 4,
+          "Categoria": "Informativos"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10933,
+          "Anio": 1967,
+          "Idioma": "Frances",
+          "Titulo": "La Mujer de pelo largo / Leonor Paz y Paz G.",
+          "Editorial": "ACRIBIA",
+          "Autor": "ESPINOSA DE LOS MONTEROS, ORLANDO",
+          "Edicion": 1,
+          "Categoria": "Informativos"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10934,
+          "Anio": 1923,
+          "Idioma": "Espanol",
+          "Titulo": "El libro de la piedad y de la muerte",
+          "Editorial": "Acropolis",
+          "Autor": "ESPINOSA MORETT, ALFREDO",
+          "Edicion": 1,
+          "Categoria": "Informativos"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10935,
+          "Anio": 1927,
+          "Idioma": "Espanol",
+          "Titulo": "Política. Figuras. Paisajes",
+          "Editorial": "Actar",
+          "Autor": "ESPINOSA PÓLIT, AURELIO",
+          "Edicion": 1,
+          "Categoria": "Biografia"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10936,
+          "Anio": 1955,
+          "Idioma": "Espanol",
+          "Titulo": "Educación y vida",
+          "Editorial": "Action Media",
+          "Autor": "ESPINOSA, GUADALUPE",
+          "Edicion": 1,
+          "Categoria": "Literatura"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10937,
+          "Anio": 1959,
+          "Idioma": "Espanol",
+          "Titulo": "Lo que Espana llevó a América",
+          "Editorial": "Actualidad Económica",
+          "Autor": "ESPINOZA AGUILERA, RAÚL",
+          "Edicion": 1,
+          "Categoria": "Literatura"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10938,
+          "Anio": 1973,
+          "Idioma": "Espanol",
+          "Titulo": "Desarrollo organizacional : estrategias de interrelación humana para el desarrollo de organizaciones v 1 Desarrollo organizacional: su naturaleza, sus orígenes y perspectivas",
+          "Editorial": "Acuity Productions",
+          "Autor": "ESPINOZA CELADA, GABRIELA TATIANA",
+          "Edicion": 1,
+          "Categoria": "Literatura"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10939,
+          "Anio": 1973,
+          "Idioma": "Espanol",
+          "Titulo": "Desarrollo organizacional : estrategias de interrelación humana para el desarrollo de organizaciones v 2 : Desarrollo organizacional: estrategias y modelos",
+          "Editorial": "Ad Qualite",
+          "Autor": "ESPINOZA DE LEE, OLGA",
+          "Edicion": 1,
+          "Categoria": "Ensayo"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 10940,
+          "Anio": 1973,
+          "Idioma": "Espanol",
+          "Titulo": "Desarrollo organizacional : estrategias de interrelación humana para el desarrollo de organizaciones v 3 El modelo de cuadro organizacional GRID",
+          "Editorial": "Ad-Hoc",
+          "Autor": "ESPINOZA DE TARACENA, TELMA ONELIA",
+          "Edicion": 3,
+          "Categoria": "Ensayo"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 13549,
+          "Anio": 1998,
+          "Idioma": "Mandarin",
+          "Titulo": "Introducción al código procesal penal",
+          "Editorial": "Agencia para la Planeación del Desarrollo Urbano de Nuevo León",
+          "Autor": "FAST, HOWARD MELVIN",
+          "Edicion": 1,
+          "Categoria": "Lírico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 13550,
+          "Anio": 1996,
+          "Idioma": "Ingles",
+          "Titulo": "Future libraries, future catalogues",
+          "Editorial": "AGENGIA EspanolA DE COOPERACIÓN INTERNACIONAL / OIT",
+          "Autor": "FAT, CHOW YUN",
+          "Edicion": 1,
+          "Categoria": "Épico"
+        }
+      },
+      {
+        "type": "crear_libro",
+        "object": {
+          "ISBN": 13551,
+          "Anio": 2000,
+          "Idioma": "Espanol",
+          "Titulo": "La revalorización del art nouveau en Guatemala (un caso : la casa Fénix)",
+          "Editorial": "AGEXPRONT",
+          "Autor": "FATÁS, GUILLERMO",
+          "Edicion": 1,
+          "Categoria": "Épico"
+        }
+      }
+    ],
+    "NONCE": 47530,
+    "previousHash": 0,
+    "hash": "00005322b31cbe9ace9d4aa8dc5da2ccc6a181b7714192b77819c1caa7b17fb4"
+  }
+]

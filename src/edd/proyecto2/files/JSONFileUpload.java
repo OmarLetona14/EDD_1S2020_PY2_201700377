@@ -13,6 +13,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import edd.proyecto2.helper.CryptoMD5;
 import edd.proyecto2.model.Book;
+import edd.proyecto2.model.CREAR_CATEGORIA;
 import edd.proyecto2.model.CREAR_LIBRO;
 import edd.proyecto2.model.Category;
 import edd.proyecto2.model.LocalData;
@@ -134,6 +135,9 @@ public class JSONFileUpload {
             newCategory.setCategoryName(categoryName);
             LocalData.currentUser.setRoot(LocalData.currentUser.getCategories().insert(LocalData.currentUser.getRoot(), newCategory)); 
             LocalData.currentUser.getCategories().syncRoot(LocalData.currentUser.getRoot());
+            CREAR_CATEGORIA create = new CREAR_CATEGORIA(categoryName);
+            Operation o = new Operation(Operation.operationType.crear_categoria, create);
+            LocalData.operations.add(o);
         }catch(Exception e){
             System.out.println("Ocurrio un error al intentar ingresar la categoria");
         }

@@ -114,6 +114,7 @@ public class VirtualLibraryDashboard extends javax.swing.JFrame {
         userDashboard.setVisible(true);
     }//GEN-LAST:event_cerrarConexionBtnActionPerformed
     private void generateChain(){
+        generate = new GenerateFile();
         List<Block> chain = new ArrayList();
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setPrettyPrinting();
@@ -124,7 +125,7 @@ public class VirtualLibraryDashboard extends javax.swing.JFrame {
             if(aux.getInfo()!=null){
                 chain.add(aux.getInfo());
             }
-            aux.getNext();
+            aux = aux.getNext();
         }
         fileChainString = gson.toJson(chain);
         generate.writeFile("chain.json", fileChainString);

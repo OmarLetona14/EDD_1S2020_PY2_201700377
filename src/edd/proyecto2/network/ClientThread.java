@@ -71,13 +71,16 @@ public class ClientThread extends Thread {
             peers.add(LocalData.currentPeer);
             messagge.setCategories(jsonList);
             List<Block> chain  = new ArrayList();
-            NodeBlock aux = LocalData.blockchain.first;
-            while(aux!=null){
-                if(aux.getInfo()!=null){
-                    chain.add(aux.getInfo());
+            if(LocalData.blockchain!=null){
+                NodeBlock aux = LocalData.blockchain.first;
+                while(aux!=null){
+                    if(aux.getInfo()!=null){
+                        chain.add(aux.getInfo());
+                    }
+                    aux = aux.getNext();
                 }
-                aux = aux.getNext();
             }
+            
             messagge.setChain(chain);
             messagge.setIp_origin(LocalData.remote.getIp());
             messagge.setPort_origin(LocalData.remote.getPort());

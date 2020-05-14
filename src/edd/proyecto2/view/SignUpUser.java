@@ -6,7 +6,9 @@
 package edd.proyecto2.view;
 
 import edd.proyecto2.helper.CryptoMD5;
+import edd.proyecto2.model.CREAR_USUARIO;
 import edd.proyecto2.model.LocalData;
+import edd.proyecto2.model.Operation;
 import edd.proyecto2.model.User;
 import javax.swing.JOptionPane;
 
@@ -216,6 +218,7 @@ public class SignUpUser extends javax.swing.JFrame {
             }
             if(!insertError){
                 if(LocalData.users.insert(user)){
+                    
                     JOptionPane.showMessageDialog(this, "Usuario registrado correctamente", "Usuario registrado", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
                     Login login = new Login();

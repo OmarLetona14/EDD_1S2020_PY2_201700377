@@ -77,6 +77,11 @@ public class ReportDashboard extends javax.swing.JFrame {
         });
 
         usuariosBtn.setText("Usuarios");
+        usuariosBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuariosBtnActionPerformed(evt);
+            }
+        });
 
         preOrdenBtn.setText("Preorden AVL");
         preOrdenBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -237,9 +242,28 @@ public class ReportDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void lagOperacionesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lagOperacionesBtnActionPerformed
-        OperationsWindow operationsWindow = new OperationsWindow();
-        operationsWindow.setVisible(true);
+        if(LocalData.blockchain!=null){
+            OperationsWindow operationsWindow = new OperationsWindow();
+            operationsWindow.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "Aun no se han generado bloques", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_lagOperacionesBtnActionPerformed
+
+    private void usuariosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuariosBtnActionPerformed
+        report = new GenerateReport();
+        if(LocalData.users!=null){
+            try{
+                report.generate("Usuarios", LocalData.users.getReport());
+                JOptionPane.showMessageDialog(this, "Reporte Generado correctamente", "Generado correctamente", JOptionPane.INFORMATION_MESSAGE);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this, "Ocurrio un error al generar el reporte", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "La lista de usuarios se encuentra vacia", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_usuariosBtnActionPerformed
     
     /**
      * @param args the command line arguments

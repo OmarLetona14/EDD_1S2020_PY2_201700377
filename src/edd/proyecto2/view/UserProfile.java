@@ -6,7 +6,9 @@
 package edd.proyecto2.view;
 
 import edd.proyecto2.helper.CryptoMD5;
+import edd.proyecto2.model.EDITAR_USUARIO;
 import edd.proyecto2.model.LocalData;
+import edd.proyecto2.model.Operation;
 import edd.proyecto2.model.User;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -189,6 +191,14 @@ public class UserProfile extends javax.swing.JFrame {
         loggedUser.setPassword(encryptedPassword);
         LocalData.users.edit(String.valueOf(loggedUser.getCarnet()), loggedUser);
         JOptionPane.showMessageDialog(this, "Usuario editado correctamente", "Editado", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            EDITAR_USUARIO edit = new EDITAR_USUARIO(loggedUser.getCarnet(),loggedUser.getNombre(), loggedUser.getApellido(), loggedUser.getCarrera(),
+                    CryptoMD5.desencriptar(loggedUser.getPassword()));
+            Operation o =new Operation(Operation.operationType.editar_usuario, edit);
+            LocalData.operations.add(o);
+        } catch (Exception ex) {
+            Logger.getLogger(UserProfile.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
         UserProfile userProfile = new UserProfile();
         userProfile.setVisible(true);

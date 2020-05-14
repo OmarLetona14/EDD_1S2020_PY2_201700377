@@ -39,7 +39,7 @@ public class LoginProcess {
                     JOptionPane.showMessageDialog(window, "Password incorrecto",
                         "Error de credenciales", JOptionPane.ERROR_MESSAGE);
                 }
-            } catch (Exception ex) {
+            } catch (Exception ex) { 
                 Logger.getLogger(LoginProcess.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
