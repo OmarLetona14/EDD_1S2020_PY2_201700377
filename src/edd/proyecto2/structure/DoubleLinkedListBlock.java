@@ -14,7 +14,7 @@ import edd.proyecto2.node.NodeBlock;
  */
 public class DoubleLinkedListBlock {
     
-    private NodeBlock first;
+    public NodeBlock first;
     private NodeBlock last;
     private int size;
     

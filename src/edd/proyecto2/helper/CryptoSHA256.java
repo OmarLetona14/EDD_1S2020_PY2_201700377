@@ -16,15 +16,18 @@ import java.security.NoSuchAlgorithmException;
  */
 public class CryptoSHA256 {
     
-    public static byte[] getSHA(String input) throws NoSuchAlgorithmException 
+    public static String getSHA(String input) throws NoSuchAlgorithmException 
     {  
         // Static getInstance method is called with hashing SHA  
-        MessageDigest md = MessageDigest.getInstance("SHA-256");  
+       // MessageDigest md = MessageDigest.getInstance("SHA-256");  
   
         // digest() method called  
         // to calculate message digest of an input  
         // and return array of byte 
-        return md.digest(input.getBytes(StandardCharsets.UTF_8));  
+      //  return md.digest(input.getBytes(StandardCharsets.UTF_8));  
+        
+        String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(input);
+        return sha256hex;
     } 
     
     public static String toHexString(byte[] hash) 

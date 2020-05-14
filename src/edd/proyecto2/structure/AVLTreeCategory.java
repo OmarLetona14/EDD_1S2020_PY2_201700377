@@ -107,6 +107,7 @@ public class AVLTreeCategory {
         }   
         return null;
     }
+    
 
     private NodeCategory rightRotate(NodeCategory y) {
         NodeCategory x = y.left;
@@ -163,7 +164,7 @@ public class AVLTreeCategory {
         return current;
     }
 
-    private NodeCategory deleteNode(NodeCategory root, Category value) {
+    public NodeCategory deleteNode(NodeCategory root, Category value) {
         // STEP 1: PERFORM STANDARD BST DELETE
 
         if (root == null)

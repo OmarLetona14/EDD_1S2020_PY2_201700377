@@ -7,12 +7,13 @@ package edd.proyecto2.view;
 
 import edd.proyecto2.model.Book;
 import edd.proyecto2.model.Category;
+import edd.proyecto2.model.ELIMINAR_CATEGORIA;
 import edd.proyecto2.model.LocalData;
+import edd.proyecto2.model.Operation;
 import edd.proyecto2.structure.AVLTreeCategory;
 import edd.proyecto2.table.BookTableModel;
 import edd.proyecto2.table.CellManagement;
 import edd.proyecto2.table.HeaderManagement;
-import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -175,6 +176,11 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
         jLabel3.setText("Eliminar categoria");
 
         eliminarCategoriaBtn.setText("Eliminar");
+        eliminarCategoriaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarCategoriaBtnActionPerformed(evt);
+            }
+        });
 
         atrasBtn.setText("Atras");
         atrasBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -304,6 +310,33 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
 
     }//GEN-LAST:event_formWindowClosed
 
+    private void eliminarCategoriaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarCategoriaBtnActionPerformed
+        deleteCategory();
+    }//GEN-LAST:event_eliminarCategoriaBtnActionPerformed
+
+    
+    private void deleteCategory(){
+        Category deleteCategory = LocalData.currentUser.getCategories().searchByCategoryName(LocalData.currentUser.getRoot(), categoriaCb.getSelectedItem().toString());
+        if(deleteCategory!=null){
+            if(deleteCategory.getUser()==LocalData.currentUser){
+                if(LocalData.localEdit){
+                    try{
+                        LocalData.currentUser.getCategories().deleteNode(LocalData.currentUser.getRoot(), deleteCategory);
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(this, "Ocurrio un error al intentar eliminar la categoria", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }else{
+                    ELIMINAR_CATEGORIA eliminar = new ELIMINAR_CATEGORIA(deleteCategory.getCategoryName());
+                    Operation operation = new Operation(Operation.operationType.eliminar_categoria, eliminar);
+                    LocalData.operations.add(operation);
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "Usted no tiene permiso para eliminar esta categoria", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+        
+        }
+        
+    }
     /**
      * @param args the command line arguments
      */

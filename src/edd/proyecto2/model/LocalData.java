@@ -10,6 +10,7 @@ import edd.proyecto2.structure.AVLTreeCategory;
 import edd.proyecto2.structure.DoubleLinkedListBlock;
 import edd.proyecto2.structure.SimplyLinkedListPeer;
 import edd.proyecto2.structure.UserHashTable;
+import java.util.List;
 import javax.swing.JFrame;
 
 /**
@@ -20,6 +21,8 @@ public class LocalData {
     
     public static JFrame currentWindow;
     public static boolean localEdit;
+    public static Block currentBlock;
+    public static List<Operation> operations;
     public static UserHashTable users = new UserHashTable(45); 
     public static SimplyLinkedListPeer peers;
     public static AVLTreeCategory virtualLibrary;

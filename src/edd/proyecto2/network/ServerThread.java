@@ -17,6 +17,7 @@ import edd.proyecto2.model.JsonCategory;
 import edd.proyecto2.model.LocalData;
 import edd.proyecto2.model.Message;
 import edd.proyecto2.model.NetworkMessagge;
+import edd.proyecto2.model.Operation;
 import edd.proyecto2.model.Options;
 import edd.proyecto2.model.Peer;
 import edd.proyecto2.model.RemoteConfig;
@@ -103,16 +104,52 @@ public class ServerThread extends Thread{
             closeConnection = closeCon;
             JsonElement chain = jsonElement.getAsJsonObject().get("chain");
             JsonArray chainArray = chain.getAsJsonArray();
+            Block block =null;
             if(chainArray!=null){
                 for(JsonElement c: chainArray){
-                    Block block = new Block();
+                    block = new Block();
+                    List<Operation> op=null;
                     block.setHash(c.getAsJsonObject().get("hash").getAsString());
                     block.setIndex(c.getAsJsonObject().get("index").getAsInt());
                     block.setNONCE(c.getAsJsonObject().get("NONCE").getAsInt());
                     block.setPreviousHash(c.getAsJsonObject().get("previousHash").getAsInt());
                     block.setTimestamp(Timestamp.valueOf(c.getAsJsonObject().get("timestamp").getAsString()));
-                    block.setData("");
+                    JsonElement operationsJson = c.getAsJsonObject().get("data");
+                    JsonArray operations = operationsJson.getAsJsonArray();
+                    if(operations!=null){
+                        op = new ArrayList();
+                        for(JsonElement k: operations){
+                            if(k!=null){
+                                Operation o = new Operation();
+                                o.setObject(k.getAsJsonObject().get("object").getAsJsonObject());
+                                switch(k.getAsJsonObject().get("type").getAsString()){
+                                    case "crear_usuario":
+                                        o.setType(Operation.operationType.crear_usuario);
+                                        break;
+                                    case "editar_usuario":
+                                        o.setType(Operation.operationType.editar_usuario);
+                                        break;
+                                    case "crear_libro":
+                                        o.setType(Operation.operationType.crear_libro);
+                                        break;
+                                    case "eliminar_libro":
+                                        o.setType(Operation.operationType.eliminar_libro);
+                                        break;
+                                    case "crear_categoria":
+                                        o.setType(Operation.operationType.crear_categoria);
+                                        break;
+                                    case "eliminar_categoria":
+                                        o.setType(Operation.operationType.eliminar_categoria);
+                                        break;
+                                
+                                }
+                                op.add(o);
+                            }
+                        }
+                    }
+                    block.setData(op);
                 }
+                LocalData.blockchain.addToFinal(block);
             }
             JsonElement jsonPeers = jsonElement.getAsJsonObject().get("peers");
             JsonArray peers = jsonPeers.getAsJsonArray();
@@ -218,7 +255,6 @@ public class ServerThread extends Thread{
         flag = false;
         
     }
-    
     
     @Override
     public void run() {

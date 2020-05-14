@@ -5,12 +5,17 @@
  */
 package edd.proyecto2.view;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import edd.proyecto2.files.GenerateFile;
 import edd.proyecto2.model.Block;
 import edd.proyecto2.model.LocalData;
 import edd.proyecto2.network.ServerThread;
+import edd.proyecto2.node.NodeBlock;
 import edd.proyecto2.structure.DoubleLinkedListBlock;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,7 +23,9 @@ import javax.swing.JOptionPane;
  * @author Omar
  */
 public class VirtualLibraryDashboard extends javax.swing.JFrame {
-
+    
+    private GenerateFile generate;
+    private Gson gson;
     /**
      * Creates new form VirtualLibraryDashboard
      */
@@ -102,20 +109,52 @@ public class VirtualLibraryDashboard extends javax.swing.JFrame {
     private void cerrarConexionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarConexionBtnActionPerformed
         ServerThread.closeConnection();
         deletePeers();
+        this.dispose();
+        UserDashboard userDashboard = new UserDashboard();
+        userDashboard.setVisible(true);
     }//GEN-LAST:event_cerrarConexionBtnActionPerformed
-
+    private void generateChain(){
+        List<Block> chain = new ArrayList();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setPrettyPrinting();
+        gson = gsonBuilder.create();
+        String fileChainString;
+        NodeBlock aux = LocalData.blockchain.first;
+        while(aux!=null){
+            if(aux.getInfo()!=null){
+                chain.add(aux.getInfo());
+            }
+            aux.getNext();
+        }
+        fileChainString = gson.toJson(chain);
+        generate.writeFile("chain.json", fileChainString);
+    }
+            
     private void generarBloqueBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarBloqueBtnActionPerformed
         Block block = null;
-        if(LocalData.blockchain==null){
-            LocalData.blockchain = new DoubleLinkedListBlock();
-            block = new Block(LocalData.data,0000);
-            LocalData.blockchain.addToFinal(block);
+        if(!LocalData.operations.isEmpty()){
+             if(LocalData.blockchain==null){
+                LocalData.blockchain = new DoubleLinkedListBlock();
+                block = new Block(LocalData.operations,0000);
+                LocalData.blockchain.addToFinal(block);
+            }else{
+                block = new Block(LocalData.operations, LocalData.blockchain.getLastIndex());
+                LocalData.blockchain.addToFinal(block);
+            }
+            JOptionPane.showMessageDialog(this, "Bloque generado correctamente", "Bloque generado", JOptionPane.INFORMATION_MESSAGE);
         }else{
-            block = new Block(LocalData.data, LocalData.blockchain.getLastIndex());
+            if(LocalData.blockchain==null){
+            LocalData.blockchain = new DoubleLinkedListBlock();
+            block = new Block(0000);
             LocalData.blockchain.addToFinal(block);
-        }
-        JOptionPane.showMessageDialog(this, "Bloque generado correctamente", "Bloque generado", JOptionPane.INFORMATION_MESSAGE);
-        
+            }else{
+                block = new Block(LocalData.blockchain.getLastIndex());
+                LocalData.blockchain.addToFinal(block);
+            }
+            LocalData.currentBlock = block;
+            JOptionPane.showMessageDialog(this, "Bloque generado correctamente", "Bloque generado", JOptionPane.INFORMATION_MESSAGE);
+            }
+        generateChain();
     }//GEN-LAST:event_generarBloqueBtnActionPerformed
     
     private void deletePeers(){

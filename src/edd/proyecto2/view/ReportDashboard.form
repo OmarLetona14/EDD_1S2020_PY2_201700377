@@ -37,16 +37,14 @@
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="backBtn" pref="165" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="lagOperacionesBtn" max="32767" attributes="0"/>
-                      <Component id="listaNodosBtn" max="32767" attributes="0"/>
-                      <Component id="inOrdenBtn" max="32767" attributes="0"/>
-                      <Component id="postOrdenBtn" max="32767" attributes="0"/>
-                      <Component id="preOrdenBtn" max="32767" attributes="0"/>
-                      <Component id="usuariosBtn" max="32767" attributes="0"/>
-                      <Component id="arbolbBtn" pref="165" max="32767" attributes="0"/>
-                      <Component id="arbolALVbtn" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="lagOperacionesBtn" max="32767" attributes="0"/>
+                  <Component id="listaNodosBtn" max="32767" attributes="0"/>
+                  <Component id="inOrdenBtn" max="32767" attributes="0"/>
+                  <Component id="postOrdenBtn" max="32767" attributes="0"/>
+                  <Component id="preOrdenBtn" max="32767" attributes="0"/>
+                  <Component id="usuariosBtn" max="32767" attributes="0"/>
+                  <Component id="arbolbBtn" pref="165" max="32767" attributes="0"/>
+                  <Component id="arbolALVbtn" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="42" max="32767" attributes="0"/>
           </Group>
@@ -133,6 +131,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Lag de operaciones"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lagOperacionesBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="backBtn">
       <Properties>

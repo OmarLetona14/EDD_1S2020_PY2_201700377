@@ -5,8 +5,14 @@
  */
 package edd.proyecto2.view;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import edd.proyecto2.files.GenerateReport;
+import edd.proyecto2.model.Block;
 import edd.proyecto2.model.LocalData;
+import edd.proyecto2.node.NodeBlock;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,7 +21,8 @@ import javax.swing.JOptionPane;
  */
 public class ReportDashboard extends javax.swing.JFrame {
     
-    GenerateReport report;
+    private GenerateReport report;
+    private Gson gson;
     /**
      * Creates new form ReportDashboard
      */
@@ -95,6 +102,11 @@ public class ReportDashboard extends javax.swing.JFrame {
         listaNodosBtn.setText("Listado Nodos ");
 
         lagOperacionesBtn.setText("Lag de operaciones");
+        lagOperacionesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lagOperacionesBtnActionPerformed(evt);
+            }
+        });
 
         backBtn.setText("Atras");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -111,15 +123,14 @@ public class ReportDashboard extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(backBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lagOperacionesBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(listaNodosBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(inOrdenBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(postOrdenBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(preOrdenBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(usuariosBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(arbolbBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                        .addComponent(arbolALVbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(lagOperacionesBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(listaNodosBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(inOrdenBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(postOrdenBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(preOrdenBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(usuariosBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(arbolbBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                    .addComponent(arbolALVbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -225,6 +236,11 @@ public class ReportDashboard extends javax.swing.JFrame {
         userDashboard.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
 
+    private void lagOperacionesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lagOperacionesBtnActionPerformed
+        OperationsWindow operationsWindow = new OperationsWindow();
+        operationsWindow.setVisible(true);
+    }//GEN-LAST:event_lagOperacionesBtnActionPerformed
+    
     /**
      * @param args the command line arguments
      */

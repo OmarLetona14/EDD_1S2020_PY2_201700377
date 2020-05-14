@@ -9,6 +9,7 @@ import edd.proyecto2.helper.CryptoMD5;
 import edd.proyecto2.model.LocalData;
 import edd.proyecto2.model.User;
 import edd.proyecto2.view.UserDashboard;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -30,6 +31,7 @@ public class LoginProcess {
                     LocalData.currentUser = userLogger;
                     JOptionPane.showMessageDialog(window, "Bienvenido " + userLogger.getNombre() + " " +userLogger.getApellido(),
                         "Login exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    LocalData.operations = new ArrayList();
                     window.dispose();
                     UserDashboard userDashboard = new UserDashboard();
                     userDashboard.setVisible(true);

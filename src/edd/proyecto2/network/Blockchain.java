@@ -6,6 +6,7 @@
 package edd.proyecto2.network;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import edd.proyecto2.files.GenerateFile;
 import edd.proyecto2.model.Block;
 import edd.proyecto2.model.LocalData;
@@ -26,11 +27,6 @@ public class Blockchain {
     private Gson gson;
     private ClientThread client;
     
-    public void createBlock(String data, int previous){
-        block = new Block(data, previous);
-        
-    }
-    
     public void deletePeer(){
        NodePeer aux = LocalData.peers.first;
         while(aux!=null){
@@ -44,7 +40,9 @@ public class Blockchain {
     
     
     public void registerPeer(){
-        gson = new Gson();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setPrettyPrinting();
+        gson = gsonBuilder.create();
         try{
             List<Peer> peers = new ArrayList();
             Peer peer = new Peer(LocalData.peers.listSize()+1, LocalData.remote);
