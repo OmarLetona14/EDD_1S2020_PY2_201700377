@@ -13,8 +13,10 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import edd.proyecto2.helper.CryptoMD5;
 import edd.proyecto2.model.Book;
+import edd.proyecto2.model.CREAR_LIBRO;
 import edd.proyecto2.model.Category;
 import edd.proyecto2.model.LocalData;
+import edd.proyecto2.model.Operation;
 import edd.proyecto2.model.User;
 import java.io.BufferedReader;
 import java.io.File;
@@ -92,6 +94,10 @@ public class JSONFileUpload {
                     }
                     book.setCategory(currentCategory);      
                     book.setUsuario(LocalData.currentUser);
+                    CREAR_LIBRO create = new CREAR_LIBRO(book.getISBN(), book.getAnio(), book.getIdioma(),
+                            book.getTitulo(), book.getEditorial(), book.getAutor(), book.getEdicion(), book.getCategory().getCategoryName());
+                    Operation o = new Operation(Operation.operationType.crear_libro, create);
+                    LocalData.operations.add(o);
                     currentCategory.getBooks().insert(book);
                     currentCategory.getBooks().print();
                 }

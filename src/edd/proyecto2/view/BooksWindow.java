@@ -322,6 +322,11 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
                 if(LocalData.localEdit){
                     try{
                         LocalData.currentUser.getCategories().deleteNode(LocalData.currentUser.getRoot(), deleteCategory);
+                        JOptionPane.showMessageDialog(this, "Se elimino correctamente la categoria", "Eliminado correctamente", JOptionPane.INFORMATION_MESSAGE);
+                        this.dispose();
+                        BooksWindow booksWindow = new BooksWindow(LocalData.currentUser.getCategories());
+                        booksWindow.setVisible(true);
+                        
                     }catch(Exception e){
                         JOptionPane.showMessageDialog(this, "Ocurrio un error al intentar eliminar la categoria", "Error", JOptionPane.ERROR_MESSAGE);
                     }

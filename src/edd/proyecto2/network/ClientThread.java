@@ -6,6 +6,7 @@
 package edd.proyecto2.network;
 
 import com.google.gson.Gson;
+import edd.proyecto2.model.Block;
 import edd.proyecto2.model.Category;
 import edd.proyecto2.model.JsonCategory;
 import edd.proyecto2.model.JsonUser;
@@ -13,6 +14,7 @@ import edd.proyecto2.model.LocalData;
 import edd.proyecto2.model.Message;
 import edd.proyecto2.model.NetworkMessagge;
 import edd.proyecto2.model.Peer;
+import edd.proyecto2.node.NodeBlock;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -68,7 +70,15 @@ public class ClientThread extends Thread {
             }
             peers.add(LocalData.currentPeer);
             messagge.setCategories(jsonList);
-            messagge.setChain(null);
+            List<Block> chain  = new ArrayList();
+            NodeBlock aux = LocalData.blockchain.first;
+            while(aux!=null){
+                if(aux.getInfo()!=null){
+                    chain.add(aux.getInfo());
+                }
+                aux = aux.getNext();
+            }
+            messagge.setChain(chain);
             messagge.setIp_origin(LocalData.remote.getIp());
             messagge.setPort_origin(LocalData.remote.getPort());
             messagge.setPeers(peers);
