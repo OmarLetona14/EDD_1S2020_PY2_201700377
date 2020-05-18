@@ -138,8 +138,14 @@ public class LibraryDashboard extends javax.swing.JFrame {
 
     private void atrasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasBtnActionPerformed
         this.dispose();
-        UserDashboard userDashboard = new UserDashboard();
-        userDashboard.setVisible(true);
+        if(LocalData.localEdit){
+            UserDashboard userDashboard = new UserDashboard();
+            userDashboard.setVisible(true);
+        }else{
+            VirtualLibraryDashboard virtualLibrary = new VirtualLibraryDashboard();
+            virtualLibrary.setVisible(true);
+        }
+        
     }//GEN-LAST:event_atrasBtnActionPerformed
 
     private void agregarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarLibroActionPerformed
@@ -150,8 +156,8 @@ public class LibraryDashboard extends javax.swing.JFrame {
 
     private void verLibrosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verLibrosBtnActionPerformed
         this.dispose();
-        BooksWindow booksWindow = new BooksWindow(LocalData.currentUser.getCategories());
-        LocalData.localEdit=true;
+        BooksWindow booksWindow = null;
+        booksWindow = new BooksWindow();
         booksWindow.setVisible(true);
     }//GEN-LAST:event_verLibrosBtnActionPerformed
 

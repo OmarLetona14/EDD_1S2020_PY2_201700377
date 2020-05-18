@@ -23,6 +23,7 @@ public class LocalData {
     public static boolean localEdit;
     public static Block currentBlock;
     public static List<Operation> operations;
+    public static boolean sendingChain;
     public static UserHashTable users = new UserHashTable(45); 
     public static SimplyLinkedListPeer peers;
     public static AVLTreeCategory virtualLibrary;

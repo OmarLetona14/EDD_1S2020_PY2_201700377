@@ -19,7 +19,8 @@ import javax.swing.JOptionPane;
 public class InsertBook extends javax.swing.JFrame {
     
     private Book book;
-    private Category currentCategory;
+    private Category currentCategoryLocal;
+    private Category currentCategoryRemote;
     private boolean error;
     /**
      * Creates new form InsertBook
@@ -33,9 +34,16 @@ public class InsertBook extends javax.swing.JFrame {
     }
     
     private void initWindow(){
-        LocalData.currentUser.getCategories().getAll(LocalData.currentUser.getRoot()).stream().filter((category) -> (category!=null)).forEach((category) -> {
+        if(LocalData.localEdit){
+            LocalData.currentUser.getCategories().getAll(LocalData.currentUser.getRoot()).stream().filter((category) -> (category!=null)).forEach((category) -> {
             cbCategory.addItem(category.getCategoryName());
-        });
+            });
+        }else{
+            for(Category c:LocalData.virtualLibrary.getAll(LocalData.virtualRoot)){
+                cbCategory.addItem(c.getCategoryName());
+            }
+        }
+        
     }   
 
     /**
@@ -209,13 +217,9 @@ public class InsertBook extends javax.swing.JFrame {
         libraryDashboard.setVisible(true);
     }//GEN-LAST:event_atrasBtnActionPerformed
     
-    private void insertBook(){
-        error= false;
-        book = new Book();
-        currentCategory = LocalData.currentUser.getCategories().searchNode(
-                String.valueOf(cbCategory.getSelectedItem()), LocalData.currentUser.getRoot(), null).getValue();
-        if(currentCategory!=null){
-            try{
+    
+    private void insertLocal(Category cat){
+        if(currentCategoryLocal!=null){
                 book.setUsuario(LocalData.currentUser);
                 book.setTitulo(tituloTxt.getText());
                 book.setAutor(autorTxt.getText());
@@ -224,19 +228,58 @@ public class InsertBook extends javax.swing.JFrame {
                 book.setIdioma(idiomaTxt.getText());
                 book.setAnio(Integer.valueOf(anioTxt.getText()));
                 book.setEdicion(Integer.valueOf(edicionTxt.getText()));
-                book.setCategory(currentCategory);
-                CREAR_LIBRO create = new CREAR_LIBRO(book.getISBN(), book.getAnio(), book.getIdioma(), book.getTitulo(), book.getEditorial(), book.getAutor(),
-                book.getEdicion(), book.getCategory().getCategoryName());
-                Operation o = new Operation(Operation.operationType.crear_libro, create);
-                LocalData.operations.add(o);
+                book.setCategory(cat);
+        }
+    }
+    
+    private void insertRemote(Category local, Category remote){
+        insertLocal(local);
+        if(local!=null && remote!=null){
+                book.setUsuario(LocalData.currentUser);
+                book.setTitulo(tituloTxt.getText());
+                book.setAutor(autorTxt.getText());
+                book.setISBN(Integer.valueOf(isbnTxt.getText()));
+                book.setEditorial(editorialTxt.getText());
+                book.setIdioma(idiomaTxt.getText());
+                book.setAnio(Integer.valueOf(anioTxt.getText()));
+                book.setEdicion(Integer.valueOf(edicionTxt.getText()));
+                book.setCategory(remote);
+            }
+        
+    }
+    private void insertBook(){
+        error= false;
+        book = new Book();
+        if(LocalData.currentUser.getCategories().searchNode(
+                String.valueOf(cbCategory.getSelectedItem()), LocalData.currentUser.getRoot(), null)!=null){
+                currentCategoryLocal = LocalData.currentUser.getCategories().searchNode(
+                String.valueOf(cbCategory.getSelectedItem()), LocalData.currentUser.getRoot(), null).getValue();
+         }
+        if(LocalData.virtualLibrary!=null){
+            if(LocalData.virtualLibrary.searchNode(String.valueOf(cbCategory.getSelectedItem()), LocalData.virtualRoot, null)!=null){
+                currentCategoryRemote = LocalData.virtualLibrary.searchNode(String.valueOf(cbCategory.getSelectedItem()), LocalData.virtualRoot, null).getValue();
+            } 
+        }
+        if(LocalData.localEdit){
+            insertLocal(currentCategoryLocal);
+            try{
+                if(!LocalData.localEdit){
+                    insertRemote(currentCategoryLocal, currentCategoryRemote);
+                    CREAR_LIBRO create = new CREAR_LIBRO(book.getISBN(), book.getAnio(), book.getIdioma(), book.getTitulo(), book.getEditorial(), book.getAutor(),
+                    book.getEdicion(), book.getCategory().getCategoryName());
+                    Operation o = new Operation(Operation.operationType.crear_libro, create);
+                    LocalData.operations.add(o);
+                }
             }catch(Exception e ){
                 JOptionPane.showMessageDialog(this, "Ocurrio un error al insertar el libro", "Error", JOptionPane.ERROR_MESSAGE);
                 error= true;
             }
-            if(!error){
+        if(!error){
                 try{
-                    currentCategory.getBooks().insert(book);
-                    currentCategory.getBooks().print();
+                    if(!LocalData.localEdit){
+                        currentCategoryRemote.getBooks().insert(book);
+                    }
+                    currentCategoryLocal.getBooks().insert(book);
                     JOptionPane.showMessageDialog(this, "Libro insertado correctamente", "Insertado", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
                     InsertBook insert = new InsertBook();

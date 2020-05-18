@@ -31,6 +31,7 @@ public class LoginProcess {
                     LocalData.currentUser = userLogger;
                     JOptionPane.showMessageDialog(window, "Bienvenido " + userLogger.getNombre() + " " +userLogger.getApellido(),
                         "Login exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    LocalData.localEdit = true;
                     LocalData.operations = new ArrayList();
                     window.dispose();
                     UserDashboard userDashboard = new UserDashboard();

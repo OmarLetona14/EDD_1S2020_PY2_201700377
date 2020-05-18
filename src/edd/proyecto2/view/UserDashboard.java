@@ -163,7 +163,9 @@ public class UserDashboard extends javax.swing.JFrame {
         remote.setVisible(true);
     }//GEN-LAST:event_conexionRemotaBtnActionPerformed
     private void syncLocalData(){
-        LocalData.virtualLibrary = new AVLTreeCategory();
+        if(LocalData.virtualLibrary==null){
+            LocalData.virtualLibrary = new AVLTreeCategory();
+        }
         LocalData.currentUser.getCategories().getAll(LocalData.currentUser.getRoot()).stream().filter((c) -> (c!=null)).forEach((c) -> {
             
             LocalData.virtualRoot = LocalData.virtualLibrary.insert( LocalData.virtualRoot, c);
@@ -171,7 +173,7 @@ public class UserDashboard extends javax.swing.JFrame {
         });
     }
     private void bibliotecaVirtualBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaVirtualBtnActionPerformed
-
+        LocalData.localEdit =true;
         if(LocalData.remote !=null){
             this.dispose();
             VirtualLibraryDashboard virtualLibrary = new VirtualLibraryDashboard();

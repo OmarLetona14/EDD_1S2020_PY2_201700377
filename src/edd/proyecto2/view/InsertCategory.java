@@ -95,11 +95,16 @@ public class InsertCategory extends javax.swing.JFrame {
         Category category = new Category();
         if(!nombreCategoriaTxt.getText().equals("")){
             category.setCategoryName(nombreCategoriaTxt.getText());
-            LocalData.currentUser.setRoot(LocalData.currentUser.getCategories().insert(LocalData.currentUser.getRoot(), category));
-            LocalData.currentUser.getCategories().syncRoot(LocalData.currentUser.getRoot());
-            CREAR_CATEGORIA create = new CREAR_CATEGORIA(nombreCategoriaTxt.getText());
-            Operation o = new Operation(Operation.operationType.crear_categoria, create);
-            LocalData.operations.add(o);
+            if(!LocalData.localEdit){
+                LocalData.virtualRoot = LocalData.virtualLibrary.insert(LocalData.virtualRoot, category);
+                LocalData.virtualLibrary.syncRoot(LocalData.virtualRoot);
+               CREAR_CATEGORIA create = new CREAR_CATEGORIA(nombreCategoriaTxt.getText());
+                Operation o = new Operation(Operation.operationType.crear_categoria, create);
+                LocalData.operations.add(o);
+            }else{
+                LocalData.currentUser.setRoot(LocalData.currentUser.getCategories().insert(LocalData.currentUser.getRoot(), category));
+                LocalData.currentUser.getCategories().syncRoot(LocalData.currentUser.getRoot());
+            }
             JOptionPane.showMessageDialog(this, "Se inserto correctamente la categoria",
                     "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
             LocalData.currentUser.getCategories().print(LocalData.currentUser.getRoot());
@@ -109,8 +114,6 @@ public class InsertCategory extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Debe introducir un nombre valido", "Error registro", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
     }
     /**
      * @param args the command line arguments

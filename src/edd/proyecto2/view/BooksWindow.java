@@ -46,15 +46,12 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
     private static JFrame currentWindow;
     /**
      * Creates new form BooksWindow
-     * @param _currentData
      */
-    public BooksWindow(AVLTreeCategory _currentData) {
+    public BooksWindow() {
         initComponents();
         LocalData.currentWindow = this;
         setLocationRelativeTo(null);
         setResizable(false);
-        initWindow();
-        currentData = _currentData;
     }
     
     private void initWindow(){
@@ -62,7 +59,14 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
         scrollPane = new JScrollPane();
         scrollPane.setSize(booksPane.getWidth(), booksPane.getHeight());
         booksPane.add(scrollPane);
-        List<Category> categories = LocalData.currentUser.getCategories().getAll(LocalData.currentUser.getRoot());
+        List<Category> categories = null;
+        if(LocalData.localEdit){
+            categories = LocalData.currentUser.getCategories().getAll(LocalData.currentUser.getRoot());
+            currentData = LocalData.currentUser.getCategories();
+        }else{
+            categories = LocalData.virtualLibrary.getAll(LocalData.virtualRoot);
+            currentData = LocalData.virtualLibrary;
+        }
         if(categories!=null){
             for(Category c: categories){
                 categoriaCb.addItem(c.getCategoryName());
@@ -276,14 +280,8 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
 
     private void atrasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasBtnActionPerformed
         this.dispose();
-        if(!LocalData.localEdit){
-            VirtualLibraryDashboard library = new VirtualLibraryDashboard();
-            library.setVisible(true);
-        }else{
-            LibraryDashboard libraryDashboard = new LibraryDashboard();
-            libraryDashboard.setVisible(true);
-        }
-        
+        LibraryDashboard libraryDashboard = new LibraryDashboard();
+        libraryDashboard.setVisible(true);
     }//GEN-LAST:event_atrasBtnActionPerformed
 
     private void mostrarLibrosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarLibrosBtnActionPerformed
@@ -313,27 +311,67 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
     private void eliminarCategoriaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarCategoriaBtnActionPerformed
         deleteCategory();
     }//GEN-LAST:event_eliminarCategoriaBtnActionPerformed
-
+    
+    private Category searchCategory(){
+        if(LocalData.localEdit){
+            if(LocalData.currentUser.getCategories().searchNode(
+                String.valueOf(categoriaCb.getSelectedItem()), LocalData.currentUser.getRoot(), null)!=null){
+                return LocalData.currentUser.getCategories().searchNode(
+                String.valueOf(categoriaCb.getSelectedItem()), LocalData.currentUser.getRoot(), null).getValue();
+            }
+        }else{
+            if(LocalData.virtualLibrary.searchNode(String.valueOf(categoriaCb.getSelectedItem()), LocalData.virtualRoot, null)!=null){
+                return LocalData.virtualLibrary.searchNode(String.valueOf(categoriaCb.getSelectedItem()), LocalData.virtualRoot, null).getValue();
+            }   
+        }
+        return null;
+    }
+    
+    private void deleteFromLocal(Category category, boolean showWindow){
+        if(category!=null){
+            if(category.getUser()==LocalData.currentUser){
+                LocalData.currentUser.setRoot(LocalData.currentUser.getCategories().deleteNode(LocalData.currentUser.getRoot(), category));
+                LocalData.currentUser.getCategories().syncRoot(LocalData.currentUser.getRoot());
+                if(showWindow){
+                    JOptionPane.showMessageDialog(this, "Se elimino correctamente la categoria", "Eliminado correctamente", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
+                    BooksWindow booksWindow = new BooksWindow();
+                    booksWindow.setVisible(true);
+                } 
+            }
+        }
+    }
+    private void deleteFromRemote(Category category){
+        deleteFromLocal(category, false);
+        LocalData.virtualRoot = LocalData.virtualLibrary.deleteNode(LocalData.virtualRoot, category);
+        LocalData.virtualLibrary.syncRoot(LocalData.virtualRoot);
+        ELIMINAR_CATEGORIA eliminar = new ELIMINAR_CATEGORIA(category.getCategoryName());
+        Operation operation = new Operation(Operation.operationType.eliminar_categoria, eliminar);
+        LocalData.operations.add(operation);
+        JOptionPane.showMessageDialog(this, "Se elimino correctamente la categoria", "Eliminado correctamente", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
+        BooksWindow booksWindow = new BooksWindow();
+        booksWindow.setVisible(true);
+    }
     
     private void deleteCategory(){
-        Category deleteCategory = LocalData.currentUser.getCategories().searchByCategoryName(LocalData.currentUser.getRoot(), categoriaCb.getSelectedItem().toString());
+        Category deleteCategory = searchCategory();
         if(deleteCategory!=null){
             if(deleteCategory.getUser()==LocalData.currentUser){
                 if(LocalData.localEdit){
                     try{
-                        LocalData.currentUser.setRoot(LocalData.currentUser.getCategories().deleteNode(LocalData.currentUser.getRoot(), deleteCategory));
-                        JOptionPane.showMessageDialog(this, "Se elimino correctamente la categoria", "Eliminado correctamente", JOptionPane.INFORMATION_MESSAGE);
-                        this.dispose();
-                        BooksWindow booksWindow = new BooksWindow(LocalData.currentUser.getCategories());
-                        booksWindow.setVisible(true);
-                        
+                        deleteFromLocal(deleteCategory, true);
                     }catch(Exception e){
                         JOptionPane.showMessageDialog(this, "Ocurrio un error al intentar eliminar la categoria", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
                     }
                 }else{
-                    ELIMINAR_CATEGORIA eliminar = new ELIMINAR_CATEGORIA(deleteCategory.getCategoryName());
-                    Operation operation = new Operation(Operation.operationType.eliminar_categoria, eliminar);
-                    LocalData.operations.add(operation);
+                    try{
+                        deleteFromRemote(deleteCategory);
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(this, "Ocurrio un error al intentar eliminar la categoria", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                 }
             }else{
                 JOptionPane.showMessageDialog(this, "Usted no tiene permiso para eliminar esta categoria", "Error", JOptionPane.WARNING_MESSAGE);
@@ -371,7 +409,7 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new BooksWindow(currentData).setVisible(true);
+            new BooksWindow().setVisible(true);
             
         });
     }

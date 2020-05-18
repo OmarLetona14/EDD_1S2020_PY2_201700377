@@ -77,7 +77,6 @@ public class Blockchain {
         while(aux!=null){
             if(aux.getInfo()!=null && aux.getInfo()!=LocalData.currentPeer){
                 client = new ClientThread(aux.getInfo().getRemoteConfig().getIp(), aux.getInfo().getRemoteConfig().getPort());
-                client.start();
                 client.sendData();
                 aux = aux.getNext();
             }

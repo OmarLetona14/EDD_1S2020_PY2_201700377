@@ -88,8 +88,10 @@ public class DoubleLinkedListBlock {
     }
     
     public int getLastIndex(){
-        if(first!=null){
-            return last.getInfo().getIndex();
+        if(first!=null && last!=null){
+            if(last.getInfo()!=null){
+                return last.getInfo().getIndex();
+            }
         }
         return 0;
     }

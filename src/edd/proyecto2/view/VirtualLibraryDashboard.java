@@ -50,6 +50,11 @@ public class VirtualLibraryDashboard extends javax.swing.JFrame {
         cerrarConexionBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         libraryBtn.setText("Biblioteca");
         libraryBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -102,8 +107,8 @@ public class VirtualLibraryDashboard extends javax.swing.JFrame {
     private void libraryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_libraryBtnActionPerformed
         LocalData.localEdit = false;
         this.dispose();
-        BooksWindow booksWindow = new BooksWindow(LocalData.virtualLibrary);
-        booksWindow.setVisible(true);
+        LibraryDashboard libraryDashboard = new LibraryDashboard();
+        libraryDashboard.setVisible(true);
     }//GEN-LAST:event_libraryBtnActionPerformed
 
     private void cerrarConexionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarConexionBtnActionPerformed
@@ -112,6 +117,7 @@ public class VirtualLibraryDashboard extends javax.swing.JFrame {
         this.dispose();
         UserDashboard userDashboard = new UserDashboard();
         userDashboard.setVisible(true);
+        LocalData.localEdit=true;
     }//GEN-LAST:event_cerrarConexionBtnActionPerformed
     private void generateChain(){
         generate = new GenerateFile();
@@ -144,7 +150,7 @@ public class VirtualLibraryDashboard extends javax.swing.JFrame {
             }
             JOptionPane.showMessageDialog(this, "Bloque generado correctamente", "Bloque generado", JOptionPane.INFORMATION_MESSAGE);
         }else{
-            if(LocalData.blockchain==null){
+            if(LocalData.blockchain!=null){
             LocalData.blockchain = new DoubleLinkedListBlock();
             block = new Block(0000);
             LocalData.blockchain.addToFinal(block);
@@ -157,6 +163,10 @@ public class VirtualLibraryDashboard extends javax.swing.JFrame {
             }
         generateChain();
     }//GEN-LAST:event_generarBloqueBtnActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        LocalData.localEdit=false;
+    }//GEN-LAST:event_formWindowClosing
     
     private void deletePeers(){
         File file = new File(GenerateFile.getTemp() + "Peers.json");

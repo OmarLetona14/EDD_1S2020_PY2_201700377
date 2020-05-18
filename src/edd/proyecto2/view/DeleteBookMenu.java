@@ -7,7 +7,9 @@ package edd.proyecto2.view;
 
 import edd.proyecto2.model.Book;
 import edd.proyecto2.model.Category;
+import edd.proyecto2.model.ELIMINAR_LIBRO;
 import edd.proyecto2.model.LocalData;
+import edd.proyecto2.model.Operation;
 import java.awt.HeadlessException;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -29,29 +31,87 @@ public class DeleteBookMenu extends javax.swing.JFrame {
         LocalData.currentWindow = this;
     }
     
-    private void deleteByISBN(){
-        deleted=false;
-        try{
-            List<Category> categorias = LocalData.currentUser.getCategories().getAll(LocalData.currentUser.getRoot());
+    private List<Category> getCategories(){
+        if(LocalData.localEdit){
+            return LocalData.currentUser.getCategories().getAll(LocalData.currentUser.getRoot());
+        }else{
+            return LocalData.virtualLibrary.getAll(LocalData.virtualRoot);
+        }
+    }
+    
+    private void deleteFromLocal(boolean showWindow){
+        List<Category> categorias = LocalData.currentUser.getCategories().getAll(LocalData.currentUser.getRoot());
             for(Category c: categorias){
                 if(c!=null){
                     for(Book book: c.getBooks().getAllBooks()){
                         if(book!=null){
                             int isbn = Integer.valueOf(isbnTxt.getText());
                             if(book.getISBN()==isbn){
-                                int answer = JOptionPane.showConfirmDialog(this,"Esta seguro que desea eliminar este libro?" , 
+                                if(showWindow){
+                                    int answer = JOptionPane.showConfirmDialog(this,"Esta seguro que desea eliminar este libro?" , 
                                     "Eliminacion", JOptionPane.WARNING_MESSAGE);
-                                if(answer==0){
-                                    c.getBooks().delete(book);
-                                    JOptionPane.showMessageDialog(this, "Libro eliminado correctamente", "Eliminado",JOptionPane.OK_OPTION);
-                                    deleted=true;
-                                }else{
-                                    return;
+                                    if(answer==0){
+                                        c.getBooks().delete(book);
+                                        if(!LocalData.localEdit){
+                                            ELIMINAR_LIBRO delete = new ELIMINAR_LIBRO(book.getISBN(), book.getTitulo(), book.getCategory().getCategoryName());
+                                            Operation o = new Operation(Operation.operationType.eliminar_libro, delete);
+                                            LocalData.operations.add(o);
+                                        }
+                                        JOptionPane.showMessageDialog(this, "Libro eliminado correctamente", "Eliminado",JOptionPane.OK_OPTION);
+                                        deleted=true;
+                                    }else{
+                                        return;
+                                    }
                                 }
+                                
                             }
                         }
                     }
                 }
+            }
+    
+    }
+    
+    private void deleteFromRemote(){
+        deleteFromLocal(false);
+         List<Category> categorias = LocalData.virtualLibrary.getAll(LocalData.virtualRoot);
+            for(Category c: categorias){
+                if(c!=null){
+                    for(Book book: c.getBooks().getAllBooks()){
+                        if(book!=null){
+                            int isbn = Integer.valueOf(isbnTxt.getText());
+                            if(book.getISBN()==isbn){
+                                
+                                    int answer = JOptionPane.showConfirmDialog(this,"Esta seguro que desea eliminar este libro?" , 
+                                    "Eliminacion", JOptionPane.WARNING_MESSAGE);
+                                    if(answer==0){
+                                        c.getBooks().delete(book);
+                                        if(!LocalData.localEdit){
+                                            ELIMINAR_LIBRO delete = new ELIMINAR_LIBRO(book.getISBN(), book.getTitulo(), book.getCategory().getCategoryName());
+                                            Operation o = new Operation(Operation.operationType.eliminar_libro, delete);
+                                            LocalData.operations.add(o);
+                                        }
+                                        JOptionPane.showMessageDialog(this, "Libro eliminado correctamente", "Eliminado",JOptionPane.OK_OPTION);
+                                        deleted=true;
+                                    }else{
+                                        return;
+                                    }
+                                }
+                                
+                            
+                        }
+                    }
+                }
+            }
+    }
+    
+    private void deleteByISBN(){
+        deleted=false;
+        try{
+            if(LocalData.localEdit){
+                deleteFromLocal(true);
+            }else{
+                deleteFromRemote();
             }
             if(!deleted){
                 JOptionPane.showMessageDialog(this, "No se encontro el libro especificado", "Error", JOptionPane.WARNING_MESSAGE);

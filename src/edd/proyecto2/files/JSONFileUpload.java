@@ -95,37 +95,37 @@ public class JSONFileUpload {
                     }
                     book.setCategory(currentCategory);      
                     book.setUsuario(LocalData.currentUser);
-                    CREAR_LIBRO create = new CREAR_LIBRO(book.getISBN(), book.getAnio(), book.getIdioma(),
+                    if(!LocalData.localEdit){
+                        CREAR_LIBRO create = new CREAR_LIBRO(book.getISBN(), book.getAnio(), book.getIdioma(),
                             book.getTitulo(), book.getEditorial(), book.getAutor(), book.getEdicion(), book.getCategory().getCategoryName());
-                    Operation o = new Operation(Operation.operationType.crear_libro, create);
-                    LocalData.operations.add(o);
+                        Operation o = new Operation(Operation.operationType.crear_libro, create);
+                        LocalData.operations.add(o);
+                    }
                     currentCategory.getBooks().insert(book);
                     currentCategory.getBooks().print();
                 }
                
             }
         }catch(Exception e){
-            PrintWriter print = null;
-            try {
-                File file = new File("D:\\Users\\Omar\\Desktop\\log.txt");
-                print = new PrintWriter(file);
-                e.printStackTrace(print);
-                JOptionPane.showMessageDialog(null, "Ocurrio un error al cargar los libros " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                System.out.println(e.getMessage());
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(JSONFileUpload.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                print.close();
-            }
+            JOptionPane.showMessageDialog(null, "Ocurrio un error al cargar los libros " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); 
         }
     }
     
     private Category searchCategory(JsonElement e){
-        if(LocalData.currentUser.getCategories().searchNode(e.getAsJsonObject().get("Categoria").getAsString(), LocalData.currentUser.getRoot(), null) !=null){
-            return LocalData.currentUser.getCategories().searchNode(e.getAsJsonObject().get("Categoria").getAsString(), LocalData.currentUser.getRoot(), null).getValue();
+        if(LocalData.localEdit){
+            if(LocalData.currentUser.getCategories().searchNode(e.getAsJsonObject().get("Categoria").getAsString(), LocalData.currentUser.getRoot(), null) !=null){
+                return LocalData.currentUser.getCategories().searchNode(e.getAsJsonObject().get("Categoria").getAsString(), LocalData.currentUser.getRoot(), null).getValue();
+            }else{
+                return null;
+            }
         }else{
-            return null;
+            if(LocalData.virtualLibrary.searchNode(e.getAsJsonObject().get("Categoria").getAsString(), LocalData.virtualRoot, null)!=null){
+                return LocalData.virtualLibrary.searchNode(e.getAsJsonObject().get("Categoria").getAsString(), LocalData.virtualRoot, null).getValue();
+            }
+            
         }
+        return null;
+            
     }
     
     
@@ -133,16 +133,22 @@ public class JSONFileUpload {
         try{
             Category newCategory = new Category();
             newCategory.setCategoryName(categoryName);
-            LocalData.currentUser.setRoot(LocalData.currentUser.getCategories().insert(LocalData.currentUser.getRoot(), newCategory)); 
-            LocalData.currentUser.getCategories().syncRoot(LocalData.currentUser.getRoot());
-            CREAR_CATEGORIA create = new CREAR_CATEGORIA(categoryName);
-            Operation o = new Operation(Operation.operationType.crear_categoria, create);
-            LocalData.operations.add(o);
+            if(LocalData.localEdit){
+                LocalData.currentUser.setRoot(LocalData.currentUser.getCategories().insert(LocalData.currentUser.getRoot(), newCategory)); 
+                LocalData.currentUser.getCategories().syncRoot(LocalData.currentUser.getRoot());
+            }else{
+                LocalData.virtualRoot = LocalData.virtualLibrary.insert(LocalData.virtualRoot, newCategory);
+                LocalData.virtualLibrary.syncRoot(LocalData.virtualRoot);
+                CREAR_CATEGORIA create = new CREAR_CATEGORIA(categoryName);
+                Operation o = new Operation(Operation.operationType.crear_categoria, create);
+                LocalData.operations.add(o);
+            }  
         }catch(Exception e){
             System.out.println("Ocurrio un error al intentar ingresar la categoria");
         }
-        
     }
+    
+    
     public void uploadUserDocument(String filename){
         FileReader fr = null;
         try{

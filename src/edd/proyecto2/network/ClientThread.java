@@ -64,12 +64,15 @@ public class ClientThread extends Thread {
         if(socket!=null){
             gson = new Gson();
         try {
-            for(Category c: LocalData.currentUser.getCategories().getAll( LocalData.currentUser.getRoot())){
+            if(!LocalData.sendingChain){
+                for(Category c: LocalData.currentUser.getCategories().getAll( LocalData.currentUser.getRoot())){
                category = new JsonCategory(c, String.valueOf(c.getUser().getCarnet()), c.getBooks().getAllJsonBooks());
                jsonList.add(category);
+                }
+                peers.add(LocalData.currentPeer);
+                messagge.setCategories(jsonList);
             }
-            peers.add(LocalData.currentPeer);
-            messagge.setCategories(jsonList);
+            
             List<Block> chain  = new ArrayList();
             if(LocalData.blockchain!=null){
                 NodeBlock aux = LocalData.blockchain.first;
@@ -80,12 +83,14 @@ public class ClientThread extends Thread {
                     aux = aux.getNext();
                 }
             }
-            
             messagge.setChain(chain);
             messagge.setIp_origin(LocalData.remote.getIp());
             messagge.setPort_origin(LocalData.remote.getPort());
-            messagge.setPeers(peers);
-            messagge.setCloseCon(false);
+            //messagge.setPeers(peers);
+            if(!LocalData.sendingChain){
+                messagge.setCloseCon(false);
+            }
+            
             String jsonString= gson.toJson(messagge);
             outputData.writeUTF(jsonString);
             outputData.close();

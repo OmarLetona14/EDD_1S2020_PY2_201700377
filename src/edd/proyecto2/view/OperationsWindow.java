@@ -44,7 +44,7 @@ public class OperationsWindow extends javax.swing.JFrame {
             if(aux.getInfo()!=null){
                 chain.add(aux.getInfo());
             }
-            aux.getNext();
+            aux = aux.getNext();
         }
         fileChainString = gson.toJson(chain);
         lagTxt.append(fileChainString);

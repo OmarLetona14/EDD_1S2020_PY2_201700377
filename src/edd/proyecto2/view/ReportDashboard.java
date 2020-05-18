@@ -105,6 +105,11 @@ public class ReportDashboard extends javax.swing.JFrame {
         });
 
         listaNodosBtn.setText("Listado Nodos ");
+        listaNodosBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaNodosBtnActionPerformed(evt);
+            }
+        });
 
         lagOperacionesBtn.setText("Lag de operaciones");
         lagOperacionesBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -264,6 +269,19 @@ public class ReportDashboard extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "La lista de usuarios se encuentra vacia", "Error", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_usuariosBtnActionPerformed
+
+    private void listaNodosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaNodosBtnActionPerformed
+        report = new GenerateReport();
+        if(LocalData.peers!=null){
+            try{
+                report.generate("PeersReport",LocalData.peers.print());
+                JOptionPane.showMessageDialog(this, "Se ha generado correctamente el reporte", "Nodos", JOptionPane.INFORMATION_MESSAGE);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this,
+                        "Ha ocurrido un error al intentar generar el reporte", "Nodos", JOptionPane.ERROR_MESSAGE);
+            } 
+        }
+    }//GEN-LAST:event_listaNodosBtnActionPerformed
     
     /**
      * @param args the command line arguments
