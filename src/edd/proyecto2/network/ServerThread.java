@@ -212,13 +212,10 @@ public class ServerThread extends Thread{
                             }
                             currentBook.setCategory(cat);
                         }
-                      
                         cat.getBooks().insert(currentBook);
                     }
                 }
-               
             }
-    
     }
     
     private Object reciveData(){
@@ -328,7 +325,8 @@ public class ServerThread extends Thread{
                                 if(LocalData.currentWindow instanceof BooksWindow){
                                     JOptionPane.showMessageDialog(null, "Se actualizo la biblioteca", "Biblioteca actualizada", JOptionPane.INFORMATION_MESSAGE);
                                     BooksWindow.closeWindow();
-                                    BooksWindow booksWindow = new BooksWindow();
+                                   
+                                    BooksWindow booksWindow = new BooksWindow(LocalData.virtualLibrary);
                                     booksWindow.setVisible(true);
                                 }
                                 incomingSocket.close(); 

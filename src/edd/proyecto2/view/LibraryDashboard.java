@@ -157,7 +157,12 @@ public class LibraryDashboard extends javax.swing.JFrame {
     private void verLibrosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verLibrosBtnActionPerformed
         this.dispose();
         BooksWindow booksWindow = null;
-        booksWindow = new BooksWindow();
+        if(LocalData.localEdit){
+             booksWindow = new BooksWindow(LocalData.currentUser.getCategories());
+        }else{
+             booksWindow = new BooksWindow(LocalData.virtualLibrary);
+        }
+       
         booksWindow.setVisible(true);
     }//GEN-LAST:event_verLibrosBtnActionPerformed
 

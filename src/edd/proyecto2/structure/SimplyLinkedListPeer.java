@@ -76,18 +76,21 @@ public class SimplyLinkedListPeer {
         String listInfo = "";
         NodePeer aux = first;
         while(aux!=null){
-            listInfo += "\"node" + aux.hashCode() + "\"[ label = \" " +  " IP: " + aux.getInfo().getRemoteConfig().getIp() + " active port: " + 
-                    aux.getInfo().getRemoteConfig().getPort() +" \" ]; \n";
+            if(aux.getInfo()!=null){
+                listInfo += "\"node" + aux.hashCode() + "\"[ label = \" " +  " IP: " + aux.getInfo().getRemoteConfig().getIp() + " active port: " + 
+                aux.getInfo().getRemoteConfig().getPort() +" \" ]; \n";
+            }
             aux = aux.getNext(); 
         }
         NodePeer aux2 = first;
         while(aux2!=null){
-            if(aux2!=last){
-                listInfo += "\"node" + aux.hashCode() + "\" -> ";
-            }else{
-                listInfo += "\"node" + aux.hashCode() + "\" ; ";
+            if(aux2.getInfo()!=null){
+                if(aux2!=last){
+                listInfo += "\"node" + aux2.hashCode() + "\" -> ";
+                }else{
+                    listInfo += "\"node" + aux2.hashCode() + "\" ; ";
+                }
             }
-            
             aux2 = aux2.getNext();
         }
         return listInfo;

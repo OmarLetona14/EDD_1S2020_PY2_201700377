@@ -71,7 +71,12 @@ public class BookDetails extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Libro editado correctamente", "Editado correctamente", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
             BooksWindow books = null;
-            books = new BooksWindow();
+            if(LocalData.localEdit){
+                books = new BooksWindow(LocalData.currentUser.getCategories());
+            }else{
+                books = new BooksWindow(LocalData.virtualLibrary);
+            }
+           
            books.setVisible(true);
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Ocurrio un error al editar el libro", "Error de edicion", JOptionPane.ERROR_MESSAGE);

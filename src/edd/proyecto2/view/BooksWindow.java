@@ -46,12 +46,15 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
     private static JFrame currentWindow;
     /**
      * Creates new form BooksWindow
+     * @param _currentData
      */
-    public BooksWindow() {
+    public BooksWindow(AVLTreeCategory _currentData) {
         initComponents();
         LocalData.currentWindow = this;
         setLocationRelativeTo(null);
         setResizable(false);
+        initWindow();
+        currentData = _currentData;
     }
     
     private void initWindow(){
@@ -62,10 +65,8 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
         List<Category> categories = null;
         if(LocalData.localEdit){
             categories = LocalData.currentUser.getCategories().getAll(LocalData.currentUser.getRoot());
-            currentData = LocalData.currentUser.getCategories();
         }else{
             categories = LocalData.virtualLibrary.getAll(LocalData.virtualRoot);
-            currentData = LocalData.virtualLibrary;
         }
         if(categories!=null){
             for(Category c: categories){
@@ -335,7 +336,7 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
                 if(showWindow){
                     JOptionPane.showMessageDialog(this, "Se elimino correctamente la categoria", "Eliminado correctamente", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
-                    BooksWindow booksWindow = new BooksWindow();
+                    BooksWindow booksWindow = new BooksWindow(LocalData.currentUser.getCategories());
                     booksWindow.setVisible(true);
                 } 
             }
@@ -350,7 +351,7 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
         LocalData.operations.add(operation);
         JOptionPane.showMessageDialog(this, "Se elimino correctamente la categoria", "Eliminado correctamente", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
-        BooksWindow booksWindow = new BooksWindow();
+        BooksWindow booksWindow = new BooksWindow(LocalData.virtualLibrary);
         booksWindow.setVisible(true);
     }
     
@@ -409,7 +410,7 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new BooksWindow().setVisible(true);
+            new BooksWindow(currentData).setVisible(true);
             
         });
     }
