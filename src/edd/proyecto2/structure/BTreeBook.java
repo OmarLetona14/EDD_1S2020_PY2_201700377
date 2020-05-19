@@ -201,7 +201,13 @@ public class BTreeBook {
         }
         NodeBook parent = (NodeBook)ancestors.peek();
         int childPos = 0;
-        while (parent.childs[childPos] != node)  childPos++;
+        while (parent.childs[childPos] != node){
+            if(childPos+1<parent.childs.length){
+                childPos++;
+            }else{
+                break;
+            }
+        }
         int sibMinSize = (arity - 1)/2;
         if (childPos > 0 && parent.childs[childPos-1].size > sibMinSize) {
             NodeBook sib = parent.childs[childPos-1];

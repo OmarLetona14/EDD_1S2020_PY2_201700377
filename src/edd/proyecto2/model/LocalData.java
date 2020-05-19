@@ -24,6 +24,7 @@ public class LocalData {
     public static Block currentBlock;
     public static List<Operation> operations;
     public static boolean sendingChain;
+    public static boolean onDeleteOperation;
     public static UserHashTable users = new UserHashTable(45); 
     public static SimplyLinkedListPeer peers;
     public static AVLTreeCategory virtualLibrary;

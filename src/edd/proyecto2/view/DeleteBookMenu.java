@@ -81,7 +81,6 @@ public class DeleteBookMenu extends javax.swing.JFrame {
                         if(book!=null){
                             int isbn = Integer.valueOf(isbnTxt.getText());
                             if(book.getISBN()==isbn){
-                                
                                     int answer = JOptionPane.showConfirmDialog(this,"Esta seguro que desea eliminar este libro?" , 
                                     "Eliminacion", JOptionPane.WARNING_MESSAGE);
                                     if(answer==0){
@@ -97,8 +96,6 @@ public class DeleteBookMenu extends javax.swing.JFrame {
                                         return;
                                     }
                                 }
-                                
-                            
                         }
                     }
                 }
@@ -144,6 +141,11 @@ public class DeleteBookMenu extends javax.swing.JFrame {
         jLabel2.setText("Eliminar por nombre");
 
         eliminarNombreBtn.setText("Eliminar por nombre");
+        eliminarNombreBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarNombreBtnActionPerformed(evt);
+            }
+        });
 
         atrasBtn.setText("Atras");
         atrasBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -204,7 +206,14 @@ public class DeleteBookMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
-        deleteByISBN();
+        try{
+            deleteByISBN();
+            this.dispose();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Ocurrio un error al intentar eliminar el libro", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+        
     }//GEN-LAST:event_eliminarBtnActionPerformed
 
     private void atrasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasBtnActionPerformed
@@ -212,6 +221,17 @@ public class DeleteBookMenu extends javax.swing.JFrame {
         LibraryDashboard libraryDashboard = new LibraryDashboard();
         libraryDashboard.setVisible(true);
     }//GEN-LAST:event_atrasBtnActionPerformed
+
+    private void eliminarNombreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarNombreBtnActionPerformed
+        LocalData.onDeleteOperation = true;
+        BooksWindow booksWindow = null;
+        if(LocalData.localEdit){
+            booksWindow = new BooksWindow(LocalData.currentUser.getCategories());
+        }else{
+            booksWindow = new BooksWindow(LocalData.virtualLibrary);
+        }
+        booksWindow.setVisible(true);
+    }//GEN-LAST:event_eliminarNombreBtnActionPerformed
 
     /**
      * @param args the command line arguments

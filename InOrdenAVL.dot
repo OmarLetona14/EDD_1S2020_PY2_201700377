@@ -1,4 +1,0 @@
-digraph InOrdenAVL { 
-node[shape=record]
-Biografia -> Consulta -> Drama -> Ensayo -> Informativos -> Literatura -> Lírico -> Revista -> Sagas -> Épico
-}

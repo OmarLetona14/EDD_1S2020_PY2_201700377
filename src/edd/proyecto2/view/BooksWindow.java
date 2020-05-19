@@ -430,10 +430,50 @@ public class BooksWindow extends javax.swing.JFrame implements MouseListener{
     @Override
     public void mouseClicked(MouseEvent e) {
         Book book = libros.get(booksTable.rowAtPoint(e.getPoint()));
-        if(book!=null){
+        if(book!=null && !LocalData.onDeleteOperation){
             BookDetails bookDetails = new BookDetails(book);
             bookDetails.setVisible(true);
+        }else if(book!=null && LocalData.onDeleteOperation){
+            try{
+                deleteBook(book);
+                JOptionPane.showMessageDialog(this, "Se elimino correctamente el libro", "Libro eliminado", JOptionPane.INFORMATION_MESSAGE);
+                BooksWindow b = null;
+                this.dispose();
+                if(LocalData.localEdit){
+                    b = new BooksWindow(LocalData.currentUser.getCategories());
+                }else{
+                    b = new BooksWindow(LocalData.virtualLibrary);
+                }
+                b.setVisible(true);
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(this, "Ocurrio un error al eliminar el libro", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
+    }
+    
+    private void deleteBook(Book _book){
+        if(LocalData.localEdit){
+            deleteFromLocal(_book);
+        }else{
+            deleteFromRemote(_book);
+        }
+    }
+    
+    private void deleteFromRemote(Book _b){
+        deleteFromLocal(_b);
+        LocalData.virtualLibrary.getAll(LocalData.virtualRoot).stream().filter((c) -> (c!=null)).forEach((c) -> {
+            c.getBooks().getAllBooks().stream().filter((b) -> (b!=null)).filter((b) -> (b==_b)).forEach((b) -> {
+                c.getBooks().delete(b);
+            });
+        });
+    }
+    
+    private void deleteFromLocal(Book book){
+        LocalData.currentUser.getCategories().getAll(LocalData.currentUser.getRoot()).stream().filter((c) -> (c!=null)).forEach((c) -> {
+            c.getBooks().getAllBooks().stream().filter((b) -> (b!=null)).filter((b) -> (b==book)).forEach((b) -> {
+                c.getBooks().delete(b);
+            });
+        });
     }
 
     @Override

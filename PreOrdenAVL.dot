@@ -1,4 +1,0 @@
-digraph PreOrdenAVL { 
-node[shape=record]
-Informativos -> Consulta -> Biografia -> Ensayo -> Drama -> Lírico -> Literatura -> Sagas -> Revista -> Épico
-}

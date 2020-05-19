@@ -6,6 +6,7 @@
 package edd.proyecto2.view;
 
 import edd.proyecto2.model.Book;
+import edd.proyecto2.model.LocalData;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -20,7 +21,11 @@ import javax.swing.JScrollPane;
 public class BookDetailsButton extends JButton implements ActionListener {
     private Book currentBook;
     public BookDetailsButton(Book book){
-        this.setText("Editar");
+        if(!LocalData.onDeleteOperation){
+            this.setText("Editar");
+        }else{
+            this.setText("Eliminar");
+        }
         this.setSize(150, 100);
         this.currentBook = book;
         this.addActionListener(this);
